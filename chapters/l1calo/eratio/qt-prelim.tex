@@ -1,0 +1,234 @@
+Preliminary studies were undertaken to gain familiarity with the codebase for Phase-I
+studies, which the Phase-II software detailed here is built upon, and to learn how typical trigger
+results are created. The key results from this study are two plots: one comparing efficiency of two
+different trigger thresholds at selecting signal events, as a function of the transverse energy of
+the candidate electron; and one comparing the output \egamma rate from the L1 trigger for different
+versions of the trigger algorithm, as a function of the electron transverse energy threshold required
+for an event to contribute to the output rate. These results are recreations of existing results from
+prior studies, but using original code to analyse the output of L1 trigger simulations.
+
+The exercise was intended to be more straightforward than it turned out to be. There were issues with
+code, documentation, and MC samples that had to be resolved to be able to obtain the results. The following
+sections document the method used to generate each of the results.
+
+It is useful to define the following quantities:
+`truth electrons' refers to the properties (transverse energy, $\eta$ and $\phi$ coordinates, etc.)
+of electrons as simulated at truth-level, before detector reconstruction;
+`L1 electrons' refers to
+the same set of properties as measured by the simulated L1 system for objects that are identified as
+electrons at L1;
+`offline electrons' refers to objects that have been identified as electrons by the full,
+more sophisticated, ATLAS software identification algorithms that would be used as electrons in typical
+analyses.
+
+\subsection{L1 trigger efficiency}
+
+%Issues:
+% - at one point the efficiency didn't cap out at 100\%. Actually it still doesn't? Was it worse before?
+%    - Excluding TR solved some issues
+%    - Expect that offline has some electrons without calo information
+% - Had issues using truth electrons as baseline, gave weird shapes in low ET
+%    - This was because truth selections don't include energy from brem photons
+% - Was not documented which trigger menu was implemented in framework
+%    - Empirically matched to pp_v7 -- this was a lot of work!!
+%      What was the need for the trigger menu? Ah, only had threshold bits
+The trigger efficiency for a given threshold is determined by calculating what fraction of all possible
+electrons pass that threshold.
+This requires determination of two quantities: the initial number of electrons present
+in the simulated data, and the number of electrons that pass the simulated L1 trigger threshold.
+The calculation is dependent only on the signal sample as the efficiency in question is the
+efficiency of selecting signal events.
+
+The particular result that this study was based on is shown in Figure \ref{fig:PO-eff}.
+\begin{figure}
+  \centering
+  \includegraphics[width=.8\textwidth]{\resource{PO_eff.pdf}}
+  \caption{Efficiency of triggers selecting electrons from $Z\to ee$ sample as a function
+    of the electron $p_T$ (in GeV) as measured by the offline reconstruction system. Shown for two
+    trigger thresholds: `eEM22I', a Phase-I trigger threshold, and `EM22VHI', a legacy trigger
+    threshold. Result from Reference \cite{Deviveiros2019}.
+  }
+  \label{fig:PO-eff}
+\end{figure}
+%TODO add detail?
+The graph compares the efficiency of a legacy trigger threshold to that of a comparable Phase-I
+threshold, demonstrating the increased performance with the Phase-I upgrade.
+The below details the steps taken to create an equivalent plot using the $Z\to ee$ signal sample
+processed with \texttt{R3L1Sim}.
+
+%TODO explain truth and reco in theory (MC section)
+The initial number of electrons is most simply determined from truth-level data in the MC sample.
+Given that this calculation is for the efficiency of the trigger, not the overall
+detection of electrons, some requirements must be set on truth electrons for them to be included
+among the total `initial' electrons. Truth electrons that fall outside of the calorimeter's acceptance could not
+possibly be triggered on, thus the number of initial electrons can be taken as the number of truth electrons
+within calorimeter acceptance.
+
+The number of electrons passing L1 trigger requirements can be taken directly from the
+output of \texttt{R3L1Sim}. This gives a set of L1 electrons along with their energy and isolation (or other
+variables in the Phase-I case) as it would be measured by the L1 trigger.
+Efficiency is typically calculated
+for a particular trigger threshold as a function of the `real' electron $E_T$, e.g. truth electron $E_T$.
+%TODO define E_T? and eta and phi
+The calculation is done in bins of $E_T^\mathsf{truth}$, with the efficiency in each bin being the ratio of the number
+of electrons passing the chosen threshold to the number of initial electrons. The complication here is that to work out
+which bin the L1 electron falls in the $E_T$ of the corresponding truth electron has to be used, this may differ
+from the L1 measured $E_T$. L1 electrons and truth electrons are not connected in the simulations a priori, so it is not
+trivial to find the truth $E_T$ for an L1 electron. However, if the truth electron and L1 electron are both representing
+the same underlying electron, it should be possible to match between L1 and truth electrons if they have similar $\eta$ and
+$\phi$ coordinates. The values may not be exactly identical due to the limited resolution of the trigger. Electron
+matching may be done
+by searching for truth and L1 electron pairings with a small $\Delta R$:
+%
+\begin{equation}
+  \Delta R = \sqrt{ \Delta\phi ^2 + \Delta\eta ^2 },
+  \label{eqn:deltaR}
+\end{equation}
+%
+where $\Delta\eta$ and $\Delta\phi$ are the differences in the $\eta$ and $\phi$ coordinates, respectively, of the
+two types of electron. Once L1 electrons in each event have been appropriately matched to a truth electron, the $E_T$ of
+the truth electron can be used to split the L1 electrons into bins for the efficiency calculation.
+
+%Trigger menus?
+To get the efficiency for a specific trigger threshold the L1 electrons have to be limited to those passing the
+threshold requirement. In this case there are two thresholds for which efficiencies are calculated: a legacy trigger
+threshold requiring electrons to have a transverse energy of at least 22 GeV and to satisfy isolation criteria,
+`EM22VHI'%TODO add footnote explaining VHI in more detail
+; and a Phase-I trigger threshold also requiring electrons to be 22 GeV or higher and to pass all discriminating
+variable requirements, `eEM22I'. The latter threshold is straightforward to implement in the code as the sample
+has variables for the energy and discriminating variables as measured in the Phase-I system. Any particular legacy
+threshold could be implemented by requiring a certain bit of the threshold word was equal to one. The issue was that
+there was no documentation about which bit corresponded to which threshold. The bits are set by a trigger menu, but there
+are multiple different trigger menus that could have been used. By inspecting the $E_T$ and isolation distributions
+after each threshold bit was required to be one, the trigger menu used for the simulations was identified.
+%TODO if need more in this section could include plots of E_T distributions used to determine trig. menu
+
+The expectation for the efficiency curves is for electrons well below the energy threshold (22 GeV in both the legacy and
+Phase-I case) to have zero or very small efficiency and for electrons well above the energy threshold to have close to
+100\% efficiency. In the region around the threshold energy there will be some smooth turn-on curve, not an immediate switch
+from 0 to 1 as the energies measured at L1 will have limited resolution. This pattern can be clearly seen in the example result
+(Figure \ref{fig:PO-eff}).
+
+In initial iterations of the efficiency calculations the shape had some clear discrepancies compared to the expectation described
+above. The first of these was that the low energy bins (10-20 GeV) had larger efficiency values than expected. This is speculated
+to be an issue with the definition of electrons at truth level compared to how they are detected. When an electron is travelling
+through the detector towards the calorimeter it may radiate a photon via bremsstrahlung. This will reduce the energy of the electron,
+but it is possible for the photon to be radiated at a small enough angle that it contributes to the same energy cluster in the
+calorimeter. The truth-level information takes the energy of the electron as its energy after radiating the photon, but the detector
+measures the entire energy of the electron before bremsstrahlung if the photon is included in the shower. This causes the truth electron
+energy to be lower than expected, thus some electrons in the low energy bins should actually be in higher energy bins, where the higher
+efficiencies are expected.
+
+The solution to this is to change the estimate of the total number of electrons to use offline electrons instead of truth electrons.
+Technically this is not as complete a definition as using truth electrons as offline reconstruction
+itself will not be perfect. It serves as a suitable option for this purpose however as anything that fails offline electron ID should
+be out of reach of the trigger as it is essentially a simplified version of the offline system. Using offline electrons in place of truth
+electrons fixes the discrepancies for low-energy electrons, as hypothesised.
+
+The high-energy electrons also had deviations from the expected form: the plateau for efficiencies was significantly below 100\%.
+Upon investigating the distribution of efficiencies across $\eta$ it appeared that these efficiency losses were coming from the
+transition region of the calorimeter.
+%TODO make sure TR is defined in calo section
+%TODO eff. eta plot? Possible extension at least
+For the purposes of this study, electrons falling in the transition region, both L1 and offline, were excluded from calculations.
+This brought the plateau closer to the ideal value of 1.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{\resource{Run2vs3Eff_pt_nocrack.pdf}}
+  \caption{ Efficiency of triggers selecting electrons from $Z\to ee$ sample as a function
+    of the electron $E_T$ as measured by the offline reconstruction system. Shown for two
+    trigger thresholds: `eEM22I', a Phase-I trigger threshold, and `EM22VHI', a legacy trigger
+    threshold. }
+  \label{fig:my-eff}
+\end{figure}
+
+The final efficiency plot is shown in Figure \ref{fig:my-eff}.
+This follows the expected shape, and matches the result from Figure \ref{fig:PO-eff}.
+
+\subsection{L1 trigger rate}
+
+%Issues:
+% - Complication with pileup in the sample that is essentially already representing
+%   pileup
+%    - Normalisation is not trivially possible, normalise to data rates instead
+% - Had 
+
+The rate can be calculated for a given trigger threshold by taking the fraction of all events that pass that threshold,
+and applying the appropriate normalisation. The majority of events passing the L1 trigger are still background events
+(as the decisions are further refined in later stages), so the rate can be estimated accurately using only the background
+sample from simulations.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{\resource{PO_rate.pdf}}
+  \caption{
+    L1 output trigger rate for a selection of thresholds as a function
+    of the required minimum L1 electron $p_T$. Calculated from simulated minimum
+    bias jet samples. The rate given is assuming an instantaneous luminosity of
+    $1.8\times10^{34}~\mathrm{cm^{-2}s^{-1}}$. Result from Reference \cite{Deviveiros2019}.
+  }
+  \label{fig:PO_rate}
+\end{figure}
+
+This study aims to reproduce the result in Figure \ref{fig:PO_rate}.
+This shows the rate for trigger thresholds with a range of $E_T$ requirements for both the legacy and Phase-I systems.
+Separate curves are present for each system to demonstrate the rate with and without applying isolation/discriminating
+variables.
+
+% Process of creating plot - iterate over each energy, calculate rate for each case
+Rate calculation is performed in bins of $E_T$. For each bin, require that electron candidates have an $E_T$ greater
+than that of the bin and measure the resulting rate. The $E_T$ used for the candidate is as measured by the trigger
+system in question. This calculation is repeated for both the Phase-I and legacy systems. Isolation requirements
+can also be applied in addition to the $E_T$ threshold.
+
+% Complications with variable thresholds for legacy systems -- had to implement approximation
+Determining if an electron, with a known legacy $E_T$ in simulations, passes a given $E_T$ threshold is more
+complicated than in the Phase-I case.
+The legacy system employs variable thresholds that are dependent on which $\eta$ region of the detector candidates are
+found in, to account for detector response differences. This means that with a 26 GeV variable threshold an electron
+with an $E_T$ of 25 GeV in the outermost region of the calorimeter could pass the trigger. The variable threshold
+can be simulated by modifying the L1 electron $E_T$ based on its $\eta$ coordinate. This is an approximate solution,
+the hardware implementation of the variable threshold in the trigger may give different results; this is why the
+threshold bits were used in the efficiency calculation, to avoid manual simulation of the variable thresholds.
+
+% Normalisation: how to do it and why it's difficult with JZ0W sample
+Once the number of events passing the trigger for each threshold is known, the result can be scaled to
+obtain the predicted rate of the L1 trigger. In theory, this can be done by scaling the number of events
+by the ratio of the instantaneous luminosity of collisions in ATLAS to the integrated luminosity of the MC
+sample. This is complicated by the pileup collisions present in the background sample. The sample contains
+minimum-bias jet events, constrained to low transverse momentum, as the primary collision in each event. 
+There are also around 80 additional pileup collisions in the event. The pileup is also simulated by minimum-bias
+jet events, but this time with no momentum constraint. This means that the pileup collisions are essentially the
+same as the primary collision, so each event actually contains around 80 instances of the collision of interest. 
+This could be accounted for by dividing the rate by 80, but because of the differences in momentum constraints
+this will not be precise. The solution to this is instead to use rates measured from data to normalise the rate
+curve for the legacy system, and scale the Phase-I rates by the same factor. The relative difference in rate between
+the legacy and Phase-I systems should be accurate in the simulations, so this normalisation will give an accurate
+estimate for the Phase-I rate.
+
+% Issues with samples being used, unknown precisely what but updating sample fixed it
+Once all rate curves had been calculated, there were some clear discrepancies when compared to the example result
+(Figure \ref{fig:PO_rate}),
+the shapes for the legacy system curves were clearly different. In the end this was determined to be an issue
+in the underlying MC sample used for the study. The nature of the issue is not precisely known, but
+updating to a more recent sample resolved the discrepancies.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{\resource{rates_combined_mca.pdf}}
+  \caption{
+    L1 output trigger rate for a selection of thresholds as a function
+    of the required minimum L1 electron $E_T$. Calculated from simulated minimum
+    bias jet samples. The rate given is assuming an instantaneous luminosity of
+    $1.8\times10^{34}~\mathrm{cm^{-2}s^{-1}}$.
+    The black points, marked as Run 2 benchmark, are calculated using the threshold
+    words built into the simulation, as opposed to using approximate variable $E_T$
+    thresholds, to validate the method.
+    %TODO comment on uncertainties?
+  }
+  \label{fig:my-rate}
+\end{figure}
+The final result from this study is shown in Figure \ref{fig:my-rate}.
+
+% NTS: how did I get errors? pure stats?

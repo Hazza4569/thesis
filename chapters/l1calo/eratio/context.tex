@@ -1,0 +1,123 @@
+%INTRODUCE THE TRIGGER
+%...
+Protons from the LHC collide in the ATLAS detector around 40 million times every
+second \cite{ATLAS2020a}.
+The data associated with all of these collisions would be impossible to read from the detector
+in real time and equally impossible to store to be used in analyses later on.
+The trigger is an element of the detector which reduces the number of events that are
+kept by throwing away those that will be less interesting for physicists to investigate.
+The end result is around 1000 events accepted by the trigger every second.
+
+%HARD VS SOFT SCATTER
+%TODO need to find a source on this really for some more precise vocab
+When two protons collide it can happen at a variety of different angles; it is rare
+that the collision is direct and involves the full energy of each proton, most of the time
+the collision is more akin to the protons glancing off each other. Direct collisions are
+described as hard collisions or hard-scatter processes, whereas soft collisions
+are non-direct. It turns out that the most interesting physics happens in the hard-scatter
+processes where higher energy systems will be created. This can help solve the problem of
+which events to keep; the trigger can be tuned to select hard-scatter events to be saved
+and discard collision events with only soft scatter processes.
+
+%describe rough format of the trigger, how it selects events and reduces rate.
+%multi-level etc.
+To handle the rate of incoming data, the trigger needs to make decisions very quickly,
+while the full data is stored in temporary buffers.
+This is achieved using a multi-level system which can be broken down into two main parts:
+the Level-1 (L1) trigger which makes fast and loose cuts to reduce the rate significantly,
+from the initial $\sim40$ MHz down to $100$ kHz,
+and the High Level Trigger (HLT) which takes this reduced rate
+and refines the decisions using more detailed information. The L1 trigger uses
+custom-built electronics to allow it to make the relevant calculations as fast as
+possible. The HLT consists of typical off-the-shelf computer components, and can make use
+of the reduced rate coming through Level 1 to make more complicated calculations.
+
+The L1 trigger uses a limited subset of information from the detector. There are two main L1
+systems each dedicated to a detector component: L1Calo uses the calorimeters, and L1Muon
+uses the Muon spectrometer. L1Calo is further split into systems looking for specific
+particle signatures to trigger on: jets, electrons/photons, tau leptons, and global event quantities
+such as missing energy.
+
+The work discussed in this report is on the electron and photon trigger. The following
+sections will therefore focus on the L1Calo \egamma trigger.
+
+\subsection{Upgrades}\label{sec:upgrade}
+%Talk in general about upgrades?
+%TODO discuss LHC schedule in earlier section?
+As technology advances the ATLAS detector and trigger undergo upgrades to enhance their
+physics capabilities. There are two upgrades ongoing: the Phase-I upgrade currently being
+commissioned going into Run 3 of the LHC and the Phase-II upgrade planned for the
+transition to the High Luminosity LHC (HL-LHC), i.e. Run 4 of the LHC. The systems planned
+for these upgrades will be referred to as the Phase-I and Phase-II systems, respectively.
+The system in place in the most recent run, Run 2, will be referred to as the legacy
+system. Work presented here is on the Phase-II system, but relevant parts of earlier
+systems will also be discussed for context.
+
+In the legacy system \egamma candidates are handled by the Cluster Processor (CP). The CP
+receives energies for each tower in the calorimeter, achieved by summing over energies of
+all cells in the tower. This gives a reduced granularity picture of events, allowing it to
+be processed as fast as possible. The CP makes decisions on \egamma candidates based on
+simple transverse energy and isolation calculations.
+
+The Phase-I system improves on this by introducing a new module for the \egamma trigger,
+the electromagnetic Feature Extractor (eFEX). The eFEX receives more granular data from
+the calorimeter than the CP received, now in the form of ``SuperCells'' where a
+calorimeter tower will typically contain 10 SuperCells. Each SuperCell energy is still
+formed by summing over the energy of the constituent cells, where there are between four
+and eight cells in a SuperCell. With this more segmented view of the energy deposits in an
+event the eFEX uses more sophisticated criteria for selecting \egamma objects: a
+transverse energy is still used but now the isolation is handled by three discriminating
+variables targeting differences between \egamma objects and generic QCD background.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\linewidth]{\resource{p2-ey.pdf}}
+  \caption{
+    Planned structure of the L1 trigger for the Phase-II upgrade (Referred to
+    as Level 0 in the diagram for technical reasons). The components and data flow
+    necessary for the \egamma trigger are highlighted in red.
+  }
+  \label{fig:p2diag}
+\end{figure}
+
+%TODO discuss pileup in detector section
+With the move to HL-LHC at Phase-II there will be a significant increase in pileup as the
+number of collisions per bunch crossing is increased: from the initial design value of 25,
+to 50-80 in Phase-I, up to as high as 200 $pp$ collisions per bunch crossing in Phase-II.
+To maintain sensitivity to
+electroweak physics it is important that the acceptance of the trigger is kept as high as
+possible whilst rejecting enough events to meet the required rates.
+To achieve this, the Phase-II system adds the Global Event Processor (GEP), a new module
+which will work in tandem with the eFEX introduced in Phase I. The GEP will have access
+to individual cells of the electromagnetic calorimeter, even more granular than the
+Phase-I upgrade. It will also have more time available in which to make decisions than previous
+trigger systems. This time and information can be used to exploit fine differences in the shower
+shapes between \egamma objects and background QCD. Trigger objects from the
+GEP and eFEX will then be merged to give a final decision on each event.
+Figure \ref{fig:p2diag} shows the structure of the Level 1 trigger in Phase II.
+
+\subsection{Discriminating variables} \label{sec:trig-vars}
+
+The legacy system uses a single isolation value for a candidate \egamma object, the sum of
+energies in the 12-tower ring surrounding a $2\times2$ tower cluster. This is based on the
+idea that \egamma objects will be isolated (i.e. little other activity around them) and
+background QCD objects will not.
+The Phase-I and II systems take a more complex approach to the problem and use multiple
+discriminating variables in place of the isolation. Each variable is designed to exploit
+more specific differences between \egamma and background objects. Three such variables are
+used in the Phase-I system: $R_{\eta}$, $R_\mathrm{had}$, and $w_{s,\mathrm{tot}}$.
+
+Choice of discriminating variables in Phase II is a work in progress. The study presented
+in this report focuses on the use of \eratio as a discriminating variable in the GEP.
+\eratio compares the energy of the secondary maximum in a cluster to that of the primary
+maximum. With the finer granularity data available in Phase II, particularly with the
+strips in Layer 1 of the calorimeter, \eratio has potential to be a strong discriminant
+against QCD background where it is common to have multiple peaks of activity separated by
+a small distance. For the studies presented here, \eratio is defined as
+%
+\begin{equation}
+  E_\mathsf{ratio} = \frac{E_2}{E_1},
+  \label{eqn:eratio}
+\end{equation}
+%
+where $E_1$ and $E_2$ are the energies of the primary and secondary maxima respectively.

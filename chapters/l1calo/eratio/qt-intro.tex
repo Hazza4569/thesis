@@ -1,0 +1,33 @@
+%This project has formed my qualification task, to become an ATLAS author.
+%\subsection{Project goals and status}
+
+%summary
+This project aims to provide an outline of possible discriminating variables for 
+triggering on \egamma events with the GEP in the Phase-II upgrade of the LHC. This
+is achieved by using MC simulations to evaluate the performance of candidate
+algorithms, given the expected hardware available for the trigger at that time.
+
+%MC samples
+The studies outlined in this chapter use two main MC samples: the objects of interest are
+taken from electrons in simulated events of a Z boson decaying to two electrons, this will
+be described as the signal sample; the background objects that the trigger aims to filter out
+are taken from minimum bias QCD events producing (mostly) low-energy jets, this will be described
+as the background sample. Each of these samples are initially simulations of the raw physics
+process. The signal sample is generated using
+\powheg\cite{Frixione2007}
+and \pythia \cite{Sjostrand2006, Sjostrand2008},
+the background sample is generated with \pythia.
+The physics simulations are then passed through a simulation of the ATLAS detector,
+as described in Section \ref{sec:mc-context}.
+Additional simulations of the upgraded trigger are then performed by the Phase-I upgrade
+software, henceforth referred to as \texttt{R3L1Sim}.
+
+%3 phases of work -- 3 following sections
+In order to achieve the project's goals there was an initial period of learning how
+to use the \texttt{R3L1Sim} software, this included
+recreating some typical results made by the developers of the software; this work is
+detailed below under preliminary studies. In order to study \egamma performance with the GEP
+at Phase-II some modifications had to be made to the simulation software; the software
+development section describes the necessary changes made. Once these foundations had been laid
+the first candidate variable was investigated; the implementation, performance, and optimisation
+of the \eratio algorithm is described in Section \ref{sec:eratio}
