@@ -2009,7 +2009,7 @@ sub __lc_merge {
 sub __word_class {
   my ($wd,$regs)=@_;
   my @classes;
-  $wd=~s/\\\w+({})?/\\{}/g;
+  $wd=~s/\\\w+(\{})?/\\{}/g;
   foreach my $name (keys %{$regs}) {
     if ($wd=~$regs->{$name}) {push @classes,$name;}
   }
@@ -2218,7 +2218,7 @@ sub __print_count_using_template {
   }
   $template=~s/\{VER\}/$versionnumber/gi;
   # TODO: Should base warnings and errors on TeXcode or Main object
-  $template=__process_template($template,"W|WARN|WARNING|WARNINGS",length(%warnings));
+  $template=__process_template($template,"W|WARN|WARNING|WARNINGS",scalar(keys %warnings));
   $template=__process_template($template,"E|ERR|ERROR|ERRORS",$errorcount);
   $template=__process_template($template,"S|SUM",get_sum_count($count));
   $template=__process_template($template,"T|TITLE",$count->{'title'}||"");
