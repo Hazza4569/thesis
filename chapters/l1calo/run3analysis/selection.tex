@@ -1,0 +1,19 @@
+%% TOB and RoI selection subsection
+
+Phase-1 \ac{TOB}s and legacy \ac{RoI}s in events are compared to find instances
+in the same event that have the same, or very similar, $\eta$-$\phi$
+coordinates. A match is considered to be a pair of objects within $\pm$1 trigger
+tower in both $\eta$ and $\phi$, i.e. a \ac{TOB} matches an \ac{RoI} if it falls
+within the $3\times3$ area of trigger towers centred on the tower containing the
+\ac{RoI}. Matched objects are considered to be the same physics object,
+identified independently by both systems. 
+%
+Instances where there is a \ac{TOB} or \ac{RoI} with no analogue in the opposing
+system are also tracked.
+%
+
+Only the barrel region was considered for this as a preliminary investigation,
+since it has a simpler geometry and as such it is easier to isolate bugs. Also,
+at the time of analysing, only half of the eFEX modules were installed so the
+Phase-1 system had coverage for half of the $\phi$ range; only \ac{RoI}s inside
+of this coverage are accepted.

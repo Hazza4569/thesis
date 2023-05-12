@@ -1,0 +1,19 @@
+%%% MOTIVATION SUBSECTION %%%
+During development of algorithms for the hardware trigger, each algorithm is
+implemented multiple times. First, algorithms will be implemented in offline
+software to be tested and tuned against simulations or existing data. Then, in
+order to run on hardware, the algorithm needs to be ported to firmware. Often, to
+provide closer cross-checks of the firmware algorithms, they are also simulated
+in online software. Inevitably, due to software and firmware bugs, subtle
+differences will exist between these algorithms; these differences need to be
+understood and corrected to have a complete bug-free implementation.
+
+The need to find these subtle differences between algorithms motivates the
+visualisation software discussed here. Although at first it seems illogical to
+add an additional, independent, implementation of the algorithm (since the issue
+is in part due to having multiple different implementations), the added
+visualisation aspect makes it easier to understand where a particular algorithm
+implementation might have gone wrong in cases where there are discrepancies.
+This has been demonstrated through the use of the visualisation software in
+tests, discussed in Section \ref{sec:trig-vis-usage}.
+

@@ -1,0 +1,55 @@
+%%% USER INTERFACE SUBSECTION %%%
+The \ac{eFEX} Visualiser program provides a minimal \ac{UI} to explore input
+data and results of the \ac{eFEX} algorithms. The basic interface is shown in
+Figure \ref{fig:trig-vis-initial}.  It prompts the user to specify an input
+file, $(\eta,\phi)$ centre-tower coordinates, and an event number, then on
+receipt of these inputs it reads the information and displays the requested
+energies in a grid.
+
+\begin{figure}[tbph]
+  \centering
+  \fbox{
+    \includegraphics[width=.44\textwidth,trim=0 0 0 5px,clip]{\resource{default_view_blank}}
+  }
+  \hfill
+  \fbox{
+    \includegraphics[width=.44\textwidth,trim=0 0 0 5px,clip]{\resource{default_view_filled}}
+  }
+  \caption{
+    Initial interface on launching the \ac{eFEX} Visualiser program (left) and the default
+    view once data is read from a file (right).
+  }
+  \label{fig:trig-vis-initial}
+\end{figure}
+
+The full interface becomes visible after the grid is displayed. The grid itself
+is a $3\times3$ area divided by bold lines, with each square representing a
+trigger tower, and each trigger tower square divided further into SuperCells.
+%
+The horizontal axis represents the $\eta$ coordinate of the tower or SuperCell,
+and the vertical axis represents the $\phi$ coordinate. These coordinates are
+labelled with the same indices the user gave as initial input.
+%
+In order to show all layers simultaneously, in the default view layers are
+stacked on top of each other, in the phi axis, within each tower. Controls are
+provided to instead view each layer individually if preferred.
+
+Below the grid, a list of all the quantities calculated for the current \ac{TOB}
+is displayed. Clicking on one of these quantities will highlight all of the
+SuperCells involved in the calculation.  The details of how these values are
+calculated and how the algorithms are visualised are discussed in more detail in
+Section \ref{sec:trig-vis-algorithms}.
+
+Above the grid, alongside the layer selection buttons, are options to manually
+set the seed SuperCell and to select the units used to display energies.
+The unit selection input is a drop-down box that allows the user to
+choose between 25 MeV (default units in firmware) or GeV units. Changing this
+option instantly updates all displayed energies.
+%
+Pressing the ``Select seed'' button will toggle the layer view to display Layer
+2, prompt the user to click on the SuperCell with the highest energy, and then
+on its $\phi$-neighbour with the highest energy. This aids the user in selecting
+the correct seed for \ac{TOB} generation, but is not normally necessary as the
+program will apply these criteria to automatically set the seed as soon as the
+grid is loaded. The manual override is included in case the automatic selection
+is wrong, or if looking at algorithms with a different seed may help debugging.

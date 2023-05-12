@@ -17,7 +17,7 @@
 \usepackage{pdfpages}
 \usepackage{sectsty}
 \usepackage{setspace}
-\usepackage{subfig}
+\usepackage{subcaption}
 \usepackage{type1cm}
 \usepackage[normalem]{ulem}
 \usepackage{url}
@@ -25,9 +25,9 @@
 %
 \usepackage[Sonny]{fncychap} %Styles: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, and Bjornstrup.
 
-\newcommand{\thesistitle}{My Amazing Thesis} %Fill in title
-\newcommand{\thesisauthor}{A. Author} %Fill in your name
-\newcommand{\thesisemail}{xyz@hep.ph.bham.ac.uk} %Fill in your email
+\newcommand{\thesistitle}{Electroweak Multiboson Interactions in Z$\gamma jj$} %Fill in title
+\newcommand{\thesisauthor}{Harry Cooke} %Fill in your name
+\newcommand{\thesisemail}{hgc@hep.ph.bham.ac.uk} %Fill in your email
 %Choose your front page crest. crest_1 (photograph) or crest_2 (logo)
 \newcommand{\thesiscrest}{UoB_logo}
 
@@ -178,6 +178,7 @@
 \cleardoublepage
 \pagenumbering{arabic}
 \setstretch{1.5} %Officially should be line spacing 2. But I think it looks too ugly
+%\setstretch{2}
 %\linenumbers %Uncomment for line numbering
 
 %%%%%%%%%% Main Body Text %%%%%%%%%%
@@ -188,7 +189,7 @@
 \cleardoublepage
 \renewcommand{\bibname}{REFERENCES}
 \bibliographystyle{ieeetr}
-\bibliography{thesis}
+\bibliography{thesis,bib/trigger}
 
 \cleardoublepage
 \appendix

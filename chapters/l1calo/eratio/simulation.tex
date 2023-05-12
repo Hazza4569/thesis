@@ -1,0 +1,18 @@
+%%% PHASE-II SIMULATION SOFTWARE %%%
+
+Producing prospective results for the Phase-II trigger requires simulation of
+the requisite algorithms. On top of the existing simulations of the Phase-I
+simulations, two things are needed to produce the results possible with Phase
+II: collection of the higher granularity calorimeter data that will be available
+to the \ac{GEP}, and any algorithms that the \ac{GEP} will run on its input
+data.
+
+The first of these tasks is done by taking the location of \egamma candidate
+\ac{TOB}s identified by the simulated \ac{eFEX}, collecting calorimeter cell
+energies in a region around this location, and storing it in a cluster. This
+method was chosen over storing calorimeter cell output in the entire detector to
+reduce computing requirements. The size of stored clusters is $0.3\times0.3$ in
+$\eta\times\phi$, centred on the seed \ac{TOB} location, chosen conservatively
+to be sufficiently large that it will contain all information required by any
+algorithm.
+%TODO size of cluster, vs typical size of EM shower? Can I find this somewhere??

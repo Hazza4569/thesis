@@ -1,0 +1,83 @@
+%% ALGORITHMS SECTION
+For each \ac{TOB} processed (i.e. each particular event, coordinate location,
+and seed), several algorithms are run to calculate the quantities displayed
+on-screen. These are the same algorithms used by the eFEX to calculate \ac{TOB}
+energies and isolations. The following variables are calculated: EM cluster
+energy, EM \reta, EM \rhad, EM \wstot, tau cluster energy,
+tau \reta, and tau \rhad. All of these are either sums of SuperCell
+energies (EM and tau cluster energies), ratios of sums of SuperCell energies
+(\reta and \rhad), or a ratio with weighted sums (\wstot).
+
+The values of these variables are calculated immediately after the data for a
+given \ac{TOB} is collected, or once the seed is re-specified, and displayed
+on-screen below the grid. If the user clicks on a displayed quantity, the
+SuperCells involved in the sums for the corresponding algorithm are highlighted
+with colours corresponding to whether those cells are used in the numerator
+(lime green); the denominator (gold); or, in the case of \wstot, in the
+numerator with a larger weight (dark green). Figures
+\ref{fig:trig-vis-highlights-tau} and \ref{fig:trig-vis-highlights-em}
+demonstrate the highlighting for all of the algorithms.
+
+\begin{figure}[tbph]
+  \centering
+  %
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_none}}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_tau_cluster}}}
+    \caption{}
+  \end{subfigure}
+  \\[1em]%
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_tau_reta}}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_tau_rhad}}}
+    \caption{}
+  \end{subfigure}
+  %
+  \caption{
+    Demonstration of highlighting used to visualise algorithms, all shown
+    for the same \ac{TOB}. Showing (a) initial view without highlighting, (b)
+    highlighting for tau cluster energy, (c) highlighting for tau \reta, and (d)
+    highlighting for tau \rhad.
+  }
+  \label{fig:trig-vis-highlights-tau}
+\end{figure}
+
+\begin{figure}[tbph]
+  \centering
+  %
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_em_cluster}}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_em_reta}}}
+    \caption{}
+  \end{subfigure}
+  \\[1em]%
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_em_rhad}}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.44\textwidth}
+    \fbox{\includegraphics[width=\textwidth,trim=0 0 0 5px,clip]{\resource{highlight_em_wstot}}}
+    \caption{}
+  \end{subfigure}
+  %
+  \caption{
+    Demonstration of highlighting used to visualise algorithms, all shown
+    for the same \ac{TOB}. Showing (a) highlighting for EM cluster energy,
+    (b) highlighting for EM \reta, (c) highlighting for EM \rhad, and (d)
+    highlighting for EM \wstot.
+  }
+  \label{fig:trig-vis-highlights-em}
+\end{figure}

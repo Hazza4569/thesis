@@ -1,0 +1,14 @@
+%%% INPUT DATA SUBSECTION %%%
+The visualisation software takes as input the calorimeter energies visible to a
+single \ac{eFEX} \ac{FPGA}. This covers a $6\times10$ area in $\eta\times\phi$
+of trigger towers, with each tower being split into SuperCells across 5
+calorimeter layers, as described in Section X.
+%TODO add reference to section describing eFEX SuperCells.
+For each event, the input data provides one energy value per SuperCell, encoded
+with either LAr or Tile energy encoding.
+
+From this input data, a $3\times3$ area of trigger towers, centred on an
+$(\eta,\phi)$ coordinate provided by the user, is extracted and displayed
+on-screen. This area covers all energy values used for \ac{eFEX} algorithms if
+the seed of the TOB is located in the central trigger tower.
+

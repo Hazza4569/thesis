@@ -55,3 +55,4 @@ ax.annotate(\
 )
 # Save figure
 plt.savefig('word_count.pdf')
+plt.savefig('word_count.png', dpi=1200)
