@@ -1,0 +1,85 @@
+%%% Exclusion region subsubsection %%%
+
+Another alteration tested on the \eratio algorithm is an `exclusion region'
+around the seed, i.e. a number of cells close to the seed in which secondary
+maxima will not be searched for. 
+%
+An $n$-cell exclusion region means making the first step along any route $n$
+cells away from the seed in $\eta$.
+%
+Since secondary maxima can
+be found as soon as two steps have been taken from the seed cell (they cannot be
+found on the first step as it will always be a step down from the seed), this
+excludes all cells in an $\eta$ range from $-n$ to $n$ (in relative
+coordinates) from being considered secondary maxima. Comparatively, the baseline
+algorithm with no exclusion region can find secondary maxima anywhere but the
+four cells directly adjacent to the seed. Figure
+\ref{fig:trig-eratio-algorithm-exclusion-diagram} highlights the effect of the
+exclusion region.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{eratio-exclude.pdf}}
+  \caption{
+    Diagram showing how the introduction of an exclusion region to the \eratio
+    algorithm prevents secondary maxima close to the seed from being selected.
+    %the baseline algorithm with no exclusion region is shown alongside the
+    %algorithm with a one or two cell exclusion region.
+    Red arrows mark each of the six paths traversed by the stepwise algorithm.
+    Blue dots mark each step where the energy gradient is calculated. The shaded
+    grey area shows cells that cannot be selected as a candidate secondary
+    maximum, due to either being skipped over or being the first step from the
+    seed.
+  }
+  \label{fig:trig-eratio-algorithm-exclusion-diagram}
+\end{figure}
+
+Performance for the \eratio algorithm was tested with exclusion regions from
+between one and five cells, shown in Figure
+\ref{fig:trig-eratio-algorithm-exclusion-results} alongside the baseline
+algorithm with no exclusion region. This time a clear increase in performance is
+visible compared to the initial form of the algorithm, with a one-cell exclusion
+region attaining a background rejection of 3.1 at 95\% signal efficiency. For
+most signal efficiencies the one-cell exclusion still seems to perform best,
+though perhaps competing with a two-cell exclusion region for very high signal
+efficiencies. Since the only difference between no exclusion region and the
+one-cell case is that cells diagonally adjacent to the seed are excluded, these
+results suggest signal clusters frequently create secondary peaks on these
+diagonal; this could stem from incident particles falling close to the corner of
+a cell.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{eratio-exclude-res.pdf}}
+  \caption{
+    Results for calculating \eratio with different or no exclusion region
+    definitions. Plots show background rejection as a function of signal
+    efficiency for each tested exclusion region (left) and background rejection
+    at 95\% signal efficiency as a function of exclusion region size (right).
+  }
+  \label{fig:trig-eratio-algorithm-exclusion-results}
+\end{figure}
+
+Given that cell widths vary significantly in different regions of the
+calorimeter, the performance for the \eratio algorithm with different exclusion
+widths was also tested as a function of $\eta$. Figure
+\ref{fig:trig-eratio-algorithm-exclusion-etadep} compares background rejection
+at 95\% signal efficiency in several $\eta$ regions. It is evident that the
+one-cell exclusion region performs best regardless or calorimeter geometry. The
+difference between one-cell and two-cell is much more drastic in the high-$\eta$
+endcap regions, here the strips are less granular so likely the larger exclusion
+regions are starting to miss real secondary peaks in background clusters.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.9\textwidth]{\resource{eratio-exclude-eta.pdf}}
+  \caption{
+    Plot of background rejection at 95\% signal efficiency as a function of
+    pseudorapidity, $\eta$, for \eratio algorithms with different exclusion
+    regions.
+    %NOTE: bins don't correspond precisely with calorimeter geometry regions.
+    %Not sure what the motivation was for this binning and I can't easily change
+    %it.
+  }
+  \label{fig:trig-eratio-algorithm-exclusion-etadep}
+\end{figure}

@@ -1,0 +1,51 @@
+%%% Peak size subsubsection %%%
+
+The first parameter to investigate is the size of the area used to calculate
+energies. In the algorithm as described in Section
+\ref{sec:trig-eratio-algorithm-initial}, the energies used in comparisons and in
+the final \eratio calculation are always the energies of a single cell. This
+could be modified by instead summing the energy of a cell with that of its
+neighbours in $\eta$ to reduce sensitivity to small fluctuations. The number of
+cells summed is labelled the `peak size', where the default algorithm would have
+a peak size of one. With a peak size greater than one the algorithm uses a
+`sliding window' approach, so the step size is still a single cell despite the
+energy value coming from a larger area. For an odd numbered peak size the energy
+of a cell is added to that of its neighbours on each side. For an even numbered
+peak size, neighbours in positive $\eta$ are preferred. Figure
+\ref{fig:trig-eratio-algorithm-peak-diagram}
+shows how cells are included in the calculated energy.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{eratio-peak-diag.pdf}}
+  \caption{
+    Diagram showing which cells contribute to the energy sum for the seed cell
+    (bright yellow) for different peak sizes. The horizontal axis represents
+    $\eta$ and the vertical axis $\phi$. In each case, the calculated energy
+    would be the sum of the energies of the cells contained within the red box.
+  }
+  \label{fig:trig-eratio-algorithm-peak-diagram}
+\end{figure}
+
+Performance for the \eratio algorithm was tested with peak size values from one
+to five. The results are shown in Figure
+\ref{fig:trig-eratio-algorithm-peak-results}.
+Comparing the benchmark value of background rejection at 95\% signal efficiency,
+it is clear that a peak size of one (i.e. the same as the baseline algorithm)
+gives the best results, with performance degrading as more cells are added to
+the energy sum. This appears to be generally true for background rejection at
+all signal efficiencies. This suggests that the benefit of the fine granularity
+of each energy measurement outweighs the negative impact of any potential
+fluctuations that the increased peak size would smear out.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{eratio-peak-res.pdf}}
+  \caption{
+    Results for calculating \eratio with different peak size options.  Plots
+    show background rejection as a function of signal efficiency for each peak
+    size tested (left) and background rejection at 95\% signal efficiency as a
+    function of peak size (right).
+  }
+  \label{fig:trig-eratio-algorithm-peak-results}
+\end{figure}

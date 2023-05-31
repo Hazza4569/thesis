@@ -1,0 +1,83 @@
+%%% Algorithm Design Subsection %%%
+
+The focus for this study is on the impact of a single variable in \egamma
+discrimination, \eratio.
+\eratio is a shower-shape variable, already used in the \ac{HLT}. The definition used here is
+%
+\begin{equation}
+  \label{eqn:trig-eratio-algorithm-eratio}
+  E_\text{ratio} = \frac{E_2}{E_1} %\frac{E_1 - E_2}{E_1 + E_2},
+\end{equation}
+%
+where $E_1$ and $E_2$ are the first and second most energetic cells in Layer 1
+of the \ac{EM} calorimeter in an area around the centre of the shower.%
+\footnote{
+  This is different to the definition used in the \ac{HLT}, which instead is
+  \eratio$ = (E_1 - E_2)/(E_1+E_2)$. The simpler definition is preferred here in
+  the spirit of reducing calculation in firmware, though the two forms are a
+  transformation of one another.
+}
+
+The \eratio variable is designed to discriminate against substructure in a
+shower.  A shower with multiple distinct branches (e.g. $\pi^0\to\gamma\gamma$)
+might produce two peaks of similar energy and give an \eratio value close to
+one, whereas a shower with a single peak (as expected from \egamma clusters)
+would give an \eratio value close to zero.
+
+Calculating this variable in high-level software is straightforward and requires
+no optimisation. However, identifying the two required maxima involves a large
+number of comparisons between cell energies. An algorithm developed to run on
+hardware should be as simple as possible, therefore designing an alternate
+implementation is beneficial to minimise the impact of this algorithm on the
+latency of the \ac{GEP} system.
+
+A simple approach to finding the two highest energy cells in a cluster is to
+form a sorted list of all energies from Layer 1 cells, or at least sufficiently
+sorted to be confident in the highest two energies. Sorting algorithms are a
+very well-understood problem and heavily optimised but this approach is very
+rigid, not allowing for any tuning of the algorithm. For example, a cluster may
+have no substructure but fall on the boundary between two cells, depositing a
+similar amount in each. This would result in a high, background-like, \eratio
+value. To avoid this the algorithm could include a minimum distance between
+cells considered to be the two maxima, or try to identify minima between the
+two, this would greatly complicate a list-sorting approach.
+
+The most complete, but resource-heavy, method might consist of fitting some
+functional form to the energies as a function of $\eta$ and $\phi$ to extract
+the peak energies. This might work in software but is very computationally
+expensive, even if possible to implement in firmware it is likely not worth the
+latency it would require.
+
+The desired solution is an algorithm for calculating an \eratio-type variable
+that comes somewhere between these two options, more adaptable than the
+list-sorting approach and less resource-heavy than the peak fitting. The
+following sections explore such an algorithm:
+a baseline algorithm for finding secondary maxima in clusters in the \ac{GEP}
+is established in Section \ref{sec:trig-eratio-algorithm-initial}; parameters of
+the algorithm are tuned using simulations in Sections
+\ref{sec:trig-eratio-algorithm-peak}, \ref{sec:trig-eratio-algorithm-exclusion},
+and \ref{sec:trig-eratio-algorithm-limit}; and a summary of the results and
+recommended parameters, as well as additional adjustments that could be
+made with further studies,
+is given in Section \ref{sec:trig-eratio-algorithm-summary}.
+
+\subsubsection{Initial algorithm}
+\label{sec:trig-eratio-algorithm-initial}
+\input{\relpath{algorithm-initial.tex}}
+
+\subsubsection{Peak size}
+\label{sec:trig-eratio-algorithm-peak}
+\input{\relpath{algorithm-peak.tex}}
+
+\subsubsection{Exclusion region}
+\label{sec:trig-eratio-algorithm-exclusion}
+\input{\relpath{algorithm-exclusion.tex}}
+
+\subsubsection{Search limit}
+\label{sec:trig-eratio-algorithm-limit}
+\input{\relpath{algorithm-limit.tex}}
+
+
+%TODO details that are not included:
+% - Selection on clusters before eratio calculation applied
+% - Pileup limitations in samples used

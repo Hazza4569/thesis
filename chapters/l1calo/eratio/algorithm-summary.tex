@@ -1,0 +1,26 @@
+%%% Algorithm summary subsection %%%
+
+Given the results presented in Sections
+\ref{sec:trig-eratio-algorithm-peak}-\ref{sec:trig-eratio-algorithm-limit}, the
+most performant and resource-efficient algorithm for calculating \eratio in the
+\ac{GEP} is the baseline algorithm established in Section
+\ref{sec:trig-eratio-algorithm-initial} with an exclusion region of one cell and
+a search limit of $\Delta\eta=0.1$. No further improvement was found by varying
+the peak size. This algorithm achieves a background rejection of 3.1 for 95\%
+signal efficiency.
+
+%%% Further adjustments %%%
+
+The \eratio algorithm presented here is functionally complete and serves as an
+option for \egamma discrimination in the \ac{GEP}, but further improvements
+could be made with additional study.
+More parameters could be varied and tested for performance against simulations.
+One example is a threshold in the energy gradient between steps to allow a
+change in gradient to be identified, which might improve the response of the
+algorithm to noise or statistical fluctuations.
+
+  %TODO
+  % - more parameter options to test?
+  % - discuss improved simulation (pileup, noise) as well as other parameters
+  %   - this may need discussion beforehand to introduce the limitations of
+  %     simulations used in this study.

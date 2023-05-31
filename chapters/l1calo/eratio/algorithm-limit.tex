@@ -1,0 +1,37 @@
+%%% Search limit subsubsection %%%
+
+In the baseline \eratio algorithm, the stepwise search for secondary maxima
+extends as far as the available data allows, in this case to the edge of the,
+conservatively large, stored cluster size. To minimise the amount of processing
+required by the algorithm, and potentially improve performance by reducing
+overlap with other clusters, a limit can be placed on the distance this search
+will traverse. Since the $\phi$ range of the search is already limited to one
+cell either side of the peak, this search limit is implemented as a maximum
+distance traversed in $\eta$. This distance is calculated in pseudorapidity
+units rather than number of cells to give a consistent response across
+calorimeter regions.
+
+Performance for the \eratio algorithm with different search limit values was
+tested on simulations, with the results presented in Figure
+\ref{fig:trig-eratio-algorith-limit-result}. Distances in $\Delta\eta$ from
+0.025 up to 0.15 were tested, with 0.15 being the width of the clusters and thus
+the limit in place in the baseline algorithm. While no performance gains are
+seen by reducing the search limit, there is a plateau in performance from
+$\Delta\eta > 0.1$. This means the required cluster size, and thus the amount of
+computation required, can be reduced without degrading performance of the
+algorithm.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{eratio-limit.pdf}}
+  \caption{
+    Results for calculating \eratio after varying the search limit parameter,
+    given as a distance in $\eta$ from the seed cell.  Plots show background
+    rejection as a function of signal efficiency for each tested search limit
+    (left) and background rejection at 95\% signal efficiency as a function of
+    the search limit (right).
+  }
+  \label{fig:trig-eratio-algorith-limit-result}
+\end{figure}
+
+%TODO what was the bug changing the peak value??????

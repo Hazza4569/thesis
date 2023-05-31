@@ -1,0 +1,85 @@
+%%% Initial algorithm subsubsection %%%
+
+Identifying the two highest energy cells is done in three stages: locating the
+seed, identifying candidate secondary maxima, and comparing results.
+
+The \ac{GEP} will receive a seed location from the \ac{eFEX} identifying which
+SuperCell has the highest energy. The cells within this SuperCell are compared
+with one another to find which has the highest energy, this becomes the seed
+cell for the \eratio algorithm.
+
+The algorithm will then perform a stepwise search from the seed outwards to
+identify peaks in energy. On each step the energy gradient is calculated as
+%
+$\Delta E = E^\text{cell}_\text{next} - E^\text{cell}_\text{prev}$,
+%
+where $E^\text{cell}_\text{next}$ is the energy of the cell being stepped to,
+and $E^\text{cell}_\text{prev}$ is the energy of the cell being stepped from.
+From the first step $\Delta E$ should be negative, as the seed will have a
+higher energy than the surrounding cells, but on subsequent steps $\Delta E$ may
+become positive, marking that a minimum-energy point has been passed. If, after
+this, $\Delta E$ becomes negative again it indicates that the previous cell was
+a local maximum; in this case that cell is added to a list of candidate
+secondary maxima, and the search stops along this route. If the edge of the
+available range of cells is reached before $\Delta E$ turns positive then no
+candidate is saved. If the edge is reached after $\Delta E$ turns positive, but
+before it turns negative again, then the last cell in the range is taken to be
+the candidate.
+
+This stepwise search is done in 6 different routes from the seed: one route
+where each step from the seed is in positive $\eta$, one in negative $\eta$, two
+where the first step is in positive $\phi$ before proceeding in positive or
+negative $\eta$, and two following the same pattern with the first step in
+negative $\phi$. Figure \ref{fig:trig-eratio-algorithm-routes} cells, alongside
+a schematic depicting the peak location strategy.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.95\textwidth]{\resource{eratio-initial.pdf}}
+  \caption{
+    Diagram showing the 6 different routes in which the \eratio algorithm
+    searches for secondary maxima (left) and how the algorithm identifies
+    secondary maxima by tracking energy gradients along each step (right).
+  }
+  \label{fig:trig-eratio-algorithm-routes}
+\end{figure}
+
+Once the stepwise search is complete, up to 6 candidate secondary maxima will
+have been identified. The candidate with the largest energy is taken as the
+secondary maximum and, with the seed as the maximum, \eratio can be calculated
+using Equation \ref{eqn:trig-eratio-algorithm-eratio}.
+
+The performance of this baseline algorithm was investigated using simulations.
+Figure \ref{fig:trig-eratio-algorithm-baseline-results} shows the results,
+comparing the response in signal and background as a function of the calculated
+\eratio value and the fraction of each that would pass a given \eratio
+threshold. The background rejection as a function of signal efficiency is also
+shown, the baseline algorithm achieves a background rejection of 2.3 at 95\%
+signal efficiency.
+
+\begin{figure}[tbph]
+  \centering
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{ET20_defparams_ERplot.pdf}}
+    \vspace{-2em}\caption{} %blank captions add letter labels
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{ET20_defparams_integral.pdf}}
+    \vspace{-2em}\caption{} %blank captions add letter labels
+  \end{subfigure}
+  \\
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{ET20_defparams_effrej.pdf}}
+    \vspace{-2em}\caption{} %blank captions add letter labels
+  \end{subfigure}
+  \caption{
+    Performance of baseline \eratio algorithm on signal ($Z\to ee$) and
+    background ($JZ0W$) clusters. Plots show (a) a histogram of calculated
+    \eratio values for each cluster, (b) the integral of (a) with a grey dashed
+    line indicating the values at 95\% signal efficiency, and (c) the background
+    rejection of an \eratio threshold corresponding to a given signal
+    efficiency.
+  }
+  \label{fig:trig-eratio-algorithm-baseline-results}
+\end{figure}

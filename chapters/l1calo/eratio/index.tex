@@ -1,19 +1,29 @@
 \renewcommand\resource[1]{chapters/l1calo/eratio/resources/#1}
 \section{Performance studies of electron and photon algorithms for the Global Event Processor}
   \label{sec:trig-eratio}
-  \subsection{Introduction} \input{\relpath{intro.tex}}%\input{\relpath{qt-intro.tex}}
-  \subsection{Monte Carlo samples} \input{\relpath{samples.tex}}
-  %\subsection{Preliminary Studies} \input{\relpath{qt-prelim.tex}}
-  \subsection{Phase-II Simulation} \input{\relpath{simulation.tex}}
-  \subsection{Software development} \input{\relpath{qt-software.tex}}
-  \subsection{\eratio algorithm design} \input{\relpath{qt-eratio.tex}}
-%  \section{Conclusion} \input{\relpath{qt-conclusion.tex}}
+  %%% Rewritten sections %%%
+  \subsection{Introduction}             \input{\relpath{intro.tex}}
+  \subsection{Monte Carlo samples}      \input{\relpath{samples.tex}}
+  \subsection{Phase-II simulation}      \input{\relpath{simulation.tex}}
+  \subsection{Performance benchmarks}   \input{\relpath{benchmarks.tex}}
+  \subsection{\eratio algorithm design} \input{\relpath{algorithm.tex}}
+    \label{sec:trig-eratio-algorithm}
+  \subsection{Algorithm summary}     \input{\relpath{algorithm-summary.tex}}
+  \label{sec:trig-eratio-algorithm-summary}
+  
+
+  %%% Old sections %%%
+  %\subsection{Introduction}             \input{\relpath{qt-intro.tex}}
+  %\subsection{Preliminary Studies}      \input{\relpath{qt-prelim.tex}}
+  %\subsection{Software development}     \input{\relpath{qt-software.tex}}
+  %\subsection{\eratio algorithm design} \input{\relpath{qt-eratio.tex}}
+  %\section{Conclusion}                  \input{\relpath{qt-conclusion.tex}}
 
 % TODO:
 % + Finish end of introduction detailing content of each subsection
 % + Write section on samples [DONE]
 % + Remove preliminary studies -- anything that should be kept? [DONE, nothing kept for now]
-% + Rewrite software subsection
+% + Rewrite software subsection [DONE]
 % + Rewrite algorithm subsection
 
 % N.B.: subsections have subsections inside them which should be subsubsections
