@@ -15,6 +15,7 @@ latex:
 	dvipdf -sPAPERSIZE=a4 -dPDFSETTINGS=/prepress ${BASENAME}
 
 pdflatex:
+	./bibAdapt.sh
 	pdflatex  ${BASENAME}
 	pdflatex  ${BASENAME}
 	bibtex    ${BASENAME}

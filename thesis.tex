@@ -2,7 +2,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{tocloft}
 %
-\usepackage[smaller]{acronym}
+\usepackage[printonlyused,withpage]{acronym}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{atlasphysics}
@@ -22,6 +22,7 @@
 \usepackage[normalem]{ulem}
 \usepackage{url}
 \usepackage{xspace}
+\usepackage{stringstrings}
 %
 \usepackage[Sonny]{fncychap} %Styles: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, and Bjornstrup.
 
@@ -34,7 +35,7 @@
 \hypersetup{pdfpagelayout=TwoColumnRight,
             colorlinks,
             linkcolor=black,
-            urlcolor=black,
+            urlcolor=blue,
             citecolor=blue,
             pdftitle={\thesistitle},
             pdfauthor={\thesisauthor},
@@ -173,6 +174,8 @@
 \clearpage
 
 \chapter*{DEFINITIONS OF ACRONYMS}
+\vspace{-5em}
+\setstretch{0.25}
 \input{acronym.tex}
 
 \cleardoublepage
@@ -188,8 +191,8 @@
 \setstretch{1}
 \cleardoublepage
 \renewcommand{\bibname}{REFERENCES}
-\bibliographystyle{ieeetr}
-\bibliography{thesis,bib/trigger}
+\bibliographystyle{cookestyle}
+\bibliography{thesis,bib/all}
 
 \cleardoublepage
 \appendix

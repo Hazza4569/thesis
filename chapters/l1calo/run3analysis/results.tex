@@ -10,14 +10,14 @@ Figures \ref{fig:trig-r3anal-matchrate_CPM} and
 427885 as a function of energy, using \ac{CPM}-measured and \ac{eFEX}-measured
 energies respectively. This shows that the bulk of the mismatches come from
 low-energy objects, with a notably higher match rate at higher energies. At all
-energies though the match rate is worse here than in the earlier run.
+energies the match rate is worse here than in the earlier run.
 
 \begin{figure}[tbph]
   \centering
   \includegraphics[width=.90\textwidth]{\resource{matchrate_427885_CPM}}
   \caption{
-    Match rate for \ac{TOB}s/\ac{RoI}s as a function of energy as measured by
-    the \ac{CPM}. Objects grouped in 20 GeV bins, with the last bin including
+    Match rate for \acsp{TOB}/\acsp{RoI} as a function of energy as measured by
+    the \acs{CPM}. Objects grouped in 20 GeV bins, with the last bin including
     all overflow.
   }
   \label{fig:trig-r3anal-matchrate_CPM}
@@ -27,15 +27,15 @@ energies though the match rate is worse here than in the earlier run.
   \centering
   \includegraphics[width=.90\textwidth]{\resource{matchrate_427885_eFEX}}
   \caption{
-    Match rate for \ac{TOB}s/\ac{RoI}s as a function of energy as measured by
-    the \ac{eFEX}. Objects grouped in 20 GeV bins, with the last bin including
+    Match rate for \acsp{TOB}/\acsp{RoI} as a function of energy as measured by
+    the \acs{eFEX}. Objects grouped in 20 GeV bins, with the last bin including
     all overflow.
   }
   \label{fig:trig-r3anal-matchrate_eFEX}
 \end{figure}
 
 Figures \ref{fig:trig-r3anal-matches1} and \ref{fig:trig-r3anal-matches2}
-compare the energies recorded by the legacy and the Phase-1 systems for matched
+compare the energies recorded by the Run-2 and the Phase-1 systems for matched
 objects in the two runs. In Run 423433 it is clear that the majority of matched
 objects have approximately the same energy, with an additional cluster where in
 a few cases the \ac{eFEX}-measured energy is much lower than the
@@ -45,11 +45,11 @@ a few cases the \ac{eFEX}-measured energy is much lower than the
   \centering
   \includegraphics[width=.9\textwidth]{\resource{matcheshist_423433}}
   \caption{
-    Comparison of energies for matched \ac{TOB}s/\ac{RoI}s with the
-    energy as measured by the \ac{CPM} given on the $x$-axis and as measured by
-    the \ac{eFEX} on the $y$-axis. Contains data for all matched objects in Run
-    423433. The dashed line marks the set of points where the \ac{CPM} and
-    \ac{eFEX} energies are equal.
+    Comparison of energies for matched \acsp{TOB}/\acsp{RoI} with the
+    energy as measured by the \acs{CPM} given on the $x$-axis and as measured by
+    the \acs{eFEX} on the $y$-axis. Contains data for all matched objects in Run
+    423433. The dashed line marks the set of points where the \acs{CPM} and
+    \acs{eFEX} energies are equal.
   }
   \label{fig:trig-r3anal-matches1}
 \end{figure}
@@ -58,31 +58,31 @@ a few cases the \ac{eFEX}-measured energy is much lower than the
   \centering
   \includegraphics[width=.9\textwidth]{\resource{matcheshist_427885}}
   \caption{
-    Comparison of energies for matched \ac{TOB}s/\ac{RoI}s with the
-    energy as measured by the \ac{CPM} given on the $x$-axis and as measured by
-    the \ac{eFEX} on the $y$-axis. Contains data for all matched objects in Run
-    427885. The dashed line marks the set of points where the \ac{CPM} and
-    \ac{eFEX} energies are equal.
+    Comparison of energies for matched \acsp{TOB}/\acsp{RoI} with the
+    energy as measured by the \acs{CPM} given on the $x$-axis and as measured by
+    the \acs{eFEX} on the $y$-axis. Contains data for all matched objects in Run
+    427885. The dashed line marks the set of points where the \acs{CPM} and
+    \acs{eFEX} energies are equal.
   }
   \label{fig:trig-r3anal-matches2}
 \end{figure}
 
 In the later run, Run 427885, however, there is no longer such a strong
 correlation in energies. It seems that in general the \ac{eFEX} energies are
-measured to be some fraction of the \ac{CPM} energies -- seen by the gradient
-of the area containing the majority of objects being less than the
-equal-energies line. Once again there is another cluster of objects with very
-low \ac{eFEX} energies at high \ac{CPM} energies.
+lower than the \ac{CPM} energies -- seen by the gradient of the area containing
+the majority of objects being less than the equal-energies line. Once again
+there is another cluster of objects with very low \ac{eFEX} energies at high
+\ac{CPM} energies.
 
-So the general trends are a high but imperfect match rate; and decreased
-performance in the later run compared to the earlier run, both in terms of match
-rate of objects and energy correlation between the two systems. This information
-was fed back to people working on the systems to help them track down the root
-issues. Likely the reason for degraded performance in the later run, despite
-constant improvements to the system in the time between the two runs, is due to
-the different beam conditions. For example, the bunch trains present in Run
-427885 (but not Run 423433) could have caused issues with \ac{BCID} on
-the \ac{LATOME} modules feeding information to the \ac{eFEX}.
+The general trend is a high but imperfect match rate and decreased performance
+in the later run compared to the earlier run, both in terms of match rate of
+objects and energy correlation between the two systems.
+%
+From this information, issues in the system could be identified and solved.  In
+the case of the degraded performance for Run 427885, the different beam
+conditions in this run (bunch trains, that were not present for Run 423433) were
+deemed to have caused issues with the \ac{BCID} on the \ac{LATOME} modules
+providing the \ac{eFEX} with digitised energies from the calorimeter.
 
-[PERHAPS ANOTHER SUBSECTION HERE WITH AN UPDATE ON THE SYSTEM AND HOW THESE
-ISSUES WERE SOLVED]
+% TODO perhaps another subsection here with an update on the system and how
+% these issues were solved
