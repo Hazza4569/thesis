@@ -1,0 +1,87 @@
+% ====== Jet flavour uncertainties section ======
+\newcommand\fgluon{$f^\text{gluon}$}
+
+A significant source of systematic uncertainty in this analysis arises from
+uncertainty in the flavour of jets, in particular whether they are initiated by
+quarks or gluons. In order to minimise the impact of this uncertainty, the
+fraction of jets initiated by gluons should be measured.
+
+The gluon fraction is given by
+%
+\begin{equation*}
+  f^\text{gluon} = \frac{ N_j^\text{gluon} }
+                        { N_j^\text{gluon} + N_j^\text{udsc}},
+\end{equation*}
+%
+where $N_j^\mathrm{gluon}$ and $N_j^\mathrm{udsc}$ are the number of
+jets initiated by gluons and by up/down/strange/charm quarks respectively.
+Measuring both \fgluon and its associated uncertainty as a function of jet
+pseudorapidity and transverse momentum provides the information needed to reduce
+the jet flavour uncertainty.
+
+Uncertainty on \fgluon is from three sources: a modelling uncertainty calculated
+by finding the difference in \fgluon between two independent \ac{MC} generators,
+statistical uncertainty from the size of the \ac{MC} sample used, and an extra
+uncertainty to cover any differences in the value of \fgluon between regions.
+The third uncertainty component is necessary as, for technical reasons, only one
+\fgluon value could be provided for samples used to calculate yields in both
+the \ac{SR} and the \ac{CR}.
+
+Calculation of \fgluon is performed for the \ac{QCD} \Zy sample only, as this is
+where the jet flavour uncertainty is largest.
+
+Figure \ref{fig:vbs-fgluon-2dhists} shows the gluon fractions measured in the
+nominal and alternate \ac{MC} samples for \ac{QCD} \Zy, as well as calculations
+of each of the uncertainty components.  The statistical uncertainty was found to
+be an order of magnitude smaller than the other components and so is neglected.
+The uncertainty to cover differences between regions is calculated by finding
+the largest difference, in each bin, between \fgluon in the inclusive region
+(\ac{SR}+\ac{CR}) and either of the two sub-regions. The overall uncertainty
+used is then the per-bin quadrature sum of the generator differences and this
+inter-region difference.
+
+\begin{figure}
+  \centering
+  % ROW 1
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{fgluon_secondaryGF.pdf}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{fgluon_primaryGF.pdf}}
+    \caption{}
+  \end{subfigure}
+  \\[1em]%
+  % ROW 2
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{fgluon_GFdiff.pdf}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{fgluon_primaryGFstat.pdf}}
+    \caption{}
+  \end{subfigure}
+  \\[1em]%
+  % ROW 3
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{fgluon_SRdiff.pdf}}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.48\textwidth}
+    \includegraphics[width=\textwidth]{\resource{fgluon_CR1diff.pdf}}
+    \caption{}
+  \end{subfigure}
+  \caption{
+    Gluon fractions and uncertainties as a function of jet pseudorapidity and
+    transverse momentum. Plotted are gluon fraction in the nominal (a) and
+    alternate (b) \acs{QCD} \Zy sample \acs{MC} samples, the difference between gluon
+    fractions in these two samples (c), the statistical uncertainty on gluon
+    fractions in the alternate sample (d) (this was the larger of the
+    statistical uncertainties), and the difference between gluon fraction in the
+    \acs{SR}+\acs{CR} region and in the \acs{SR} (e) and \acs{CR} (f) regions.
+  }
+  \label{fig:vbs-fgluon-2dhists}
+\end{figure}

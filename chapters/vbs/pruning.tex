@@ -1,0 +1,144 @@
+% ====== Pruning systematic uncertainties section ======
+
+To limit the number of nuisance parameters included in the fit, a system is
+developed to rank the impact of different systematics on both the shape and
+normalisation of the $m_{jj}$ distribution. Only systematic uncertainties deemed
+to be significant are fully accounted for in the fit, and those with less impact
+are pruned.
+
+The first test for a systematic uncertainty is how uniform its effect is across
+the dijet mass spectrum -- this will indicate whether it will impact the shape
+of the $m_{jj}$ distribution. If a systematic is determined to have a
+significant impact on shape, by criteria discussed below, then it is included in
+the fit with one nuisance parameter for each bin in $m_{jj}$, allowing it to
+modify the shape in the fitting process.
+
+Any uncertainty not found to impact the shape should be assessed for how
+significant an impact it has on the overall normalisation of events. Systematic
+uncertainties with a large enough effect on the event yield will contribute one
+nuisance parameter to the fit, and have the ability to scale the overall
+normalisation. Any uncertainties with a smaller effect will be pruned, i.e. all
+pruned systematics will be added in quadrature as a single extra nuisance
+parameter to scale the overall normalisation in the fit.
+
+%% Calculating stat uncertainties
+\subsection{Calculating statistical uncertainties}
+
+In order to determine whether the effect of any systematic uncertainty, on shape
+or overall yield, is significant, the statistical uncertainty on the value of
+the systematic uncertainty must be ascertained. This statistical uncertainty
+arises from the finite size of \ac{MC} samples used to evaluate systematic
+uncertainties.
+
+The value of a systematic uncertainty on an event yield is given by
+%
+\begin{equation}
+  \sigma_\text{Norm} = \frac{ N_\text{varied} - N_\text{nominal} } {
+  N_\text{nominal} },
+  \label{eqn:vbs-prune-sigmanorm}
+\end{equation}
+%
+where $N_\text{nominal}$ is the number of events in acceptance for a nominal
+\ac{MC} sample and $N_\text{varied}$ is the number of events after the
+systematic variation has been applied. Each of $N_\text{varied}$ and
+$N_\text{nominal}$ has a statistical uncertainty. However, due to the fact that
+these variables are measuring the same set of events under different conditions,
+the two yields are highly correlated. The correlation is not known a priori, and
+so the uncertainty on $\sigma_\text{Norm}$ cannot be calculated through error
+propagation.
+
+The bootstrap method\cite{Efron1979,Efron1987} is instead used in order to
+determine statistical uncertainties while preserving correlations. This method
+relies on resampling the event set to create replica sets of events of the same
+size, with some events duplicated and some omitted. Calculating
+$\sigma_\text{Norm}$ in each replica set gives a distribution of results for
+which the standard deviation represents the statistical uncertainty on
+$\sigma_\text{Norm}$.
+
+
+%% Shape significance
+\subsection{Determining shape impact}
+
+For a systematic uncertainty that has no impact on $m_{jj}$ shape, it would be
+expected that the resulting variation would be uniform across the $m_{jj}$
+distribution. This is tested by calculating the fractional difference in yield,
+$\sigma_\text{Norm}$, and its associated statistical uncertainty in bins of
+$m_{jj}$. A chi-squared test from fitting a zeroth order polynomial to these
+values provides a test statistic which should be distributed as $\chi^2(3)$ (4
+bins minus 1 parameter for 3 degrees of freedom) under the null hypothesis of no
+shape impact. A significant shape uncertainty is therefore anything that
+deviates from this null hypothesis above a certain threshold.  An example
+$m_{jj}$ distribution and fit is shown in Figure \ref{fig:vbs-prune-mjjfit}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.95\textwidth]{\resource{shape_uncert-fit_example.pdf}}
+  \caption{
+    Binned $m_{jj}$ distribution of measured systematic uncertainty,
+    $\sigma_\text{Norm}$, for one systematic variation as labelled on the plot.
+    The dashed line shows the zeroth-order polynomial fit attempted, with the
+    indicated $\chi^2$ value demonstrating this is clearly a poor assumption and
+    this systematic does contribute an uncertainty on the $m_{jj}$ shape.
+  }
+  \label{fig:vbs-prune-mjjfit}
+\end{figure}
+
+The threshold chosen is a $p$-value of 0.05, i.e. chi-squared values
+sufficiently high that there is at most a 5\% chance that the deviation arose
+from statistical fluctuation. Uncertainties with a $p$-value below this
+threshold have the full shape treatment in the fit, with per-bin nuisance
+parameters. Figure \ref{fig:vbs-prune-shapeuncerts} shows the results of the
+chi-squared test for the largest experimental systematics in the \ac{SR}. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.85\textwidth]{\resource{shape_uncert-ewk-SR.pdf}}
+  \\[1em]
+  \includegraphics[width=.85\textwidth]{\resource{shape_uncert-qcd-SR.pdf}}
+  \caption{
+    $\chi^2$ values, representing the impact each systematic has on shape,
+    for all experimental systematic variations in the \acs{EW} (top) and
+    \acs{QCD} (bottom) samples in the \acs{SR}.
+    Only sources with $\chi^2$ above $7$ for either the up or down
+    variation are shown. The top axis gives the probabilities of uncertainties
+    arising fluctuations under the null hypothesis.
+    The largest uncertainties extend beyond the range of the $x$-axis.
+  }
+  \label{fig:vbs-prune-shapeuncerts}
+\end{figure}
+
+
+\subsection{Determining overall yield impact}
+
+Any systematic uncertainty determined to not impact the shape of the $m_{jj}$
+distribution can of course still affect the overall yield of events, and
+therefore require sufficient treatment in the fit. This could be done by
+assigning a single nuisance parameter to every remaining uncertainty, as all
+will have an effect on some scale. To reduce the number of nuisance parameters
+required however, the less significant uncertainties are pruned.
+
+In this case significance is simply determined by whether or not a systematic
+uncertainty is consistent with zero. Taking the value of the systematic, per
+Equation \ref{eqn:vbs-prune-sigmanorm}, and its statistical uncertainty or
+standard deviation, if the value is within one standard deviation of zero it is
+considered consistent with being zero.
+
+All systematic uncertainties not passing the shape significance test but not
+consistent with zero have a dedicated nuisance parameter in the fit. All
+remaining uncertainties are pruned.
+The relative change in yield from each of the largest experimental systematic
+uncertainties is shown in Figure \ref{fig:vbs-prune-scaleuncerts}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.85\textwidth]{\resource{scale_uncert-ewk-SR.pdf}}
+  \\[1em]
+  \includegraphics[width=.85\textwidth]{\resource{scale_uncert-qcd-SR.pdf}}
+  \caption{
+    Relative change in yield, $\sigma_\text{Norm}$, for all experimental
+    systematic uncertainties in the \acs{SR} for the \acs{EW} (top) and
+    \acs{QCD} (bottom) samples. Any with a value below $5\times10^{-4}$ are
+    omitted. The black bars represent the statistical uncertainty on the value.
+  }
+  \label{fig:vbs-prune-scaleuncerts}
+\end{figure}

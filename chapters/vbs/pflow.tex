@@ -1,0 +1,130 @@
+% ====== Particle-flow jet validation section ======
+
+A jet, being the name for a hadronic shower observed in the detector rather than
+an actual particle itself, can be defined in many different ways. The standard
+within \ac{ATLAS} was to use `topo' jets, formed from topological clusters of
+cells in the calorimeter \cite{Aad2017b}. More recently a move has been made to
+using particle-flow, or `PFlow', jets. PFlow jets improve on the performance of
+topo jets by using tracks found in the tracking detector near to deposits in the
+calorimeter. This allows PFlow jets to benefit from advantages that the tracker
+has over the calorimeter: superior spacial resolution and improved energy
+resolution for low momentum particles \cite{Aaboud2017a}.
+
+Whilst PFlow jets have been shown to improve on topo jets in general, they are
+not universally better in any scenario, each has its advantages. The most
+significant improvements for PFlow jets are in low $p_T$ regimes, and PFlow can
+only function in the range of the tracker ($|\eta| < 2.5$). Jets in \ac{VBS}
+events would not typically follow these criteria, they are expected to be very
+energetic and in the high-$\eta$ forward regions of the detector. This study was
+therefore performed to validate that the new PFlow jets were still a good choice
+for this analysis in spite of this logical disconnect.
+
+The procedure for comparing performance between these two jet collections is to
+investigate the difference in event yield from applying jet-based selection
+criteria with values calculated from each jet type. All non-jet selection
+criteria discussed in Section \ref{sec:vbs-selection} are applied first, then
+jet-based selection criteria are applied and the resulting yields compared. For
+simplicity, this was investigated in the signal \ac{MC} sample for Z$\to ee$
+(but not Z$\to\mu\mu$) events.
+
+Looking at the overall yield of events after each selection criterion shows that
+the two jet collections give very similar results, always equal to within 1\%.
+Table \ref{tbl:vbs-pflow-cutflow} shows these yields for the signal \ac{MC}
+sample.
+
+\begin{table}
+  \centering
+  \caption{
+    Yields and efficiencies after each jet cut, compared for both topo and PFlow
+    jets. Starting from all EW $\mathrm{Z(\to ee)}\gamma\mathrm{jj}$ events that
+    pass non-jet selection criteria.
+  }
+  \renewcommand\arraystretch{1.3}
+  \begin{tabular}{| c || c | c || c | c || c |}
+    \hline 
+    \multirow{2}{2em}{Cut} & \multicolumn{2}{c||}{Topo} &
+    \multicolumn{2}{c||}{PFlow} & \multirow{2}{5em}{Difference}\\
+    & \multicolumn{1}{c}{Yield} & Eff. & \multicolumn{1}{c}{Yield} & Eff. & \\
+    \hline\hline
+    $N_j \geq 2$
+    & 51084 & 79.7\% & 51468 & 80.3\% & +0.7\% \\
+    $p_T^j > 50~\mathrm{GeV},~|\eta_j| < 4.5$
+    & 31362 & 61.4\% & 31604 & 61.4\% & +0.8\% \\
+    $\Delta R(l,j), \Delta R(\gamma,j) > 0.4$
+    & 31359 & 99.99\% & 31552 & 99.84\% & +0.6\% \\
+    $|\Delta\eta_{jj}| > 1.0$
+    & 27127 & 86.5\% & 27293 & 86.5\% & +0.6\% \\
+    $|m_{jj}| > 150~\mathrm{GeV}$
+    & 26752 & 98.6\% & 26885 & 98.5\% & +0.5\% \\
+    \hline
+  \end{tabular}
+  \label{tbl:vbs-pflow-cutflow}
+\end{table}
+
+Differences can be further scrutinised by looking at each individual event; most
+events should result in the same decision, pass or fail, regardless of the jet
+collection chosen. This checks that the similar yields aren't merely a
+coincidence, when in fact many events pass only one selection. Figure
+\ref{fig:vbs-pflow-pies} shows these per-event differences in decisions.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{pflow-pies.pdf}}
+  \caption{
+    Impact of four of the key jet cuts on the analysis yield when applied in
+    both PFlow and topo. Events are divided into four categories based on
+    whether or not they pass the PFlow cut and whether or not they pass the topo
+    cut. Cuts are applied in the same order as presented in Table
+    \ref{tbl:vbs-pflow-cutflow}. Only events that passed the previous cut in
+    both PFlow and topo are included in the results, to decorrelate the effects
+    of each individual cut.
+  }
+  \label{fig:vbs-pflow-pies}
+\end{figure}
+
+For the vast majority of events, the two jet collections make the same
+selection, with less than 5\% of events showing differences. These differences
+can be further scrutinised by investigating the distributions in the cut
+variables for these cases; if an event passes $m_{jj} > 150$ GeV with topo jets,
+but not with PFlow jets, the PFlow $m_{jj}$ value should at least be close to
+150 GeV.
+
+\begin{figure}
+  \includegraphics[width=.5\textwidth]{\resource{pflow_n_jet_raw.pdf}}
+  \includegraphics[width=.5\textwidth]{\resource{pflow_jet_subpt_raw.pdf}}
+  \\
+  \includegraphics[width=.5\textwidth]{\resource{pflow_m_jj.pdf}}
+  \includegraphics[width=.5\textwidth]{\resource{pflow_deta_jj.pdf}}
+  \caption{
+    Distribution of events passing jet requirements for the PFlow collection
+    but not the topo collection. In each case the cut is in the same distribution
+    as the histogram being plotted. Four cuts are shown: $N_j > 2$ (top left),
+    $p_{T}^{j,2}$ ($p_{T}$ of second most energetic jet) $ > 50$ GeV (top right),
+    $m_{jj} > 150$ GeV (bottom left), $|\Delta\eta_{jj}| > 1$ (bottom right).
+  }
+  \label{fig:vbs-pflow-boundary-plots}
+\end{figure}
+
+Investigating the case where events pass selection with PFlow jets but fail with
+topo jets, results are shown in Figure \ref{fig:vbs-pflow-boundary-plots}. Here
+the four key cut variables are shown. The distributions are, largely, as
+expected, with peaks showing most values are close to the cut boundaries. It is
+notable, however, that for the two variables using multiple jets, $m_{jj}$ and
+$|\Delta\eta_{jj}|$, there are some strong outliers.
+
+On investigation, many of these outliers stem from events where previous
+selection criteria were failed with topo jets, and so there were not two jets
+available to calculate these variables. In Figure X%TODO
+this is corrected so that only events
+which pass previous cuts in both variables are considered
+
+%% TODO scrap the plots which don't enforce passing previous cut in both
+%% variables? seems more of a journey than a destination and I can still talk
+%% about pt-ordering stuff.
+%% Need to see if I have equivalent plots with this requirement... think that
+%% e.g. /home/harry/Documents/phd/zgam/code/plots/mc16e/EWK_Zyjj_ee/overlap/decor_PFlow_m_jj.pdf
+%% is what I need (this is available for all variables) but not sure how
+%% /home/harry/Documents/phd/zgam/code/plots/mc16e/EWK_Zyjj_ee/overlap/njtrim_pflow_m_jj.pdf
+%% is different. Perhaps 2nd doesn't include pT requirement (other captions
+%% claim it does though). 2nd isn't available in all variables so I think I just
+%% use the 1st.

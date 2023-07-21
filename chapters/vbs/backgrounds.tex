@@ -1,0 +1,96 @@
+% ====== Background estimation section ======
+% https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2021-038/
+
+The dominant background for this analysis, QCD \Zyjj production, suffers from
+known mismodelling in areas with high dijet mass, which is precisely the region
+of interest here. Rather than using the \ac{MC} template directly for estimating
+this background, the normalisation is corrected by comparing with data in a
+\ac{CR} enriched in this background. The centrality variable is used to separate
+the \ac{SR} ($\zeta(ll\gamma) < 0.4$) from a \ac{QCD} \ac{CR} ($\zeta(ll\gamma)
+> 0.4$). The \ac{CR} is rich in the \ac{QCD} background and has a very small
+fraction of signal events as the \ac{EW} production mechanism peaks at low
+values of centrality. Figure \ref{fig:vbs-bkg-centrality} shows the centrality
+distribution for signal and backgrounds.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{centrality_dist.pdf}}
+  \caption{
+    Centrality distribution for data and signal and background estimates pre-fit
+    (before any data corrections to \acs{QCD} \Zyjj). The dashed line marks
+    the separation between the \acs{SR} and \acs{CR}. The uncertainty band is
+    the quadrature sum of uncertainties from background estimation, \acs{MC}
+    statistics, and experimental systematics. Overflow events are included in
+    the last bin.
+    %TODO cite CONF note
+  }
+  \label{fig:vbs-bkg-centrality}
+\end{figure}
+
+The normalisation correction is calculated by fitting a normalisation factor for
+the \ac{QCD} background in the \ac{SR} and \ac{CR} simultaneously, allowing the
+overall normalisation to be adjusted according to data. The shape of the
+background is taken from \ac{MC}, but data in the \ac{CR} is used to validate
+the \ac{SR} shape and constrain correlated uncertainties.
+
+% Z+jets
+The second-largest background is from Z+jets events, and enters the final state
+when a jet is misidentified as a photon. This background includes Z+jets
+produced through both \ac{EW} and \ac{QCD} induced processes.  The rate of
+particles being misidentified is not well modelled in \ac{MC}, and so the shape
+and normalisation of this background must be corrected with a data-driven
+method.
+
+The normalisation for the Z+jets background is calculated with the
+two-dimensional sideband, or ABCD, method.
+If the region in which the background is being estimated is region A, three more
+regions are defined by inverting isolation and identification criteria on the
+reconstructed photon. Inverting the photon isolation gives region B, inverting
+identification gives region C, and inverting both criteria gives region D. These
+three control regions are used to infer the amount of Z+jets background in the
+region of interest with the relationship
+%
+\begin{equation*}
+  \newcommand\Zj{\text{Z+jets}}
+  N_A^\Zj = R\frac{N_B^\Zj \times N_C^\Zj}{N_D^\Zj},
+\end{equation*}
+%
+where $N_X^\text{Z+jets}$ is the number of Z+jets events in the given region
+calculated by subtracting background and signal leakage from the data events
+i.e.
+%
+\begin{equation*}
+  \newcommand\Zj{\text{Z+jets}}
+  N_X^\Zj = N_X^\text{data} - N_X^\text{bg} - c_X N_A^\text{sig,data},
+  ~~\text{for}~X=B,C,D.
+\end{equation*}
+%
+The correlation factor, $R$, is given by
+%
+\begin{equation*}
+  \newcommand\Zj{\text{Z+jets}}
+  R = \frac{ N_A^\Zj \times N_D^\Zj }{ N_B^\Zj \times N_C^\Zj },
+\end{equation*}
+%
+where in this case each $N_X^\text{Z+jets}$ is the
+event count %TODO< what's the word?
+observed in Z+jets \ac{MC} in this region. Also defined are signal leakage
+parameters, $c_X$, as
+\begin{equation*}
+  \newcommand\tsig{\text{sig}}
+  c_X = \frac{N_X^\tsig}{N_A^\tsig},
+  ~~\text{for}~X=B,C,D,
+\end{equation*}
+calculated from \ac{QCD} and \ac{EW} \Zy \ac{MC}.
+
+The shape of the Z+jets background is taken directly from a data control region.
+The control region should be very pure in Z+jets events, but also sufficiently
+high statistics. The chosen region is the anti-tight region, with no requirement
+on track or calorimeter isolation. This is equivalent to regions C and D
+combined but without the track isolation requirement.
+
+% tty and WZ
+The background from \tty events is estimated from \ac{MC} and cross-checked in
+an $e\mu\gamma$ \ac{CR}, which validates the use of a $k$-factor of 1.44 to
+scale the \ac{MC} normalisation. WZ$jj$ events make a minor contribution to the
+background, this is estimated solely from \ac{MC}.
