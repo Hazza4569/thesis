@@ -1,18 +1,6 @@
 % ====== Event selection section ======
 
-Events from data and simulation undergo a selection process to focus on a phase
-space that matches the desired final state. Data events are required to pass a
-trigger to be recorded, and therefore the same requirement is placed on
-simulated events for parity. In this analysis any events passing the single
-lepton or dilepton trigger are considered.
-
-For an event to be selected, first the basic objects in the desired final state
-need to be present, subject to some reconstruction criteria. There must be at
-least one photon passing isolation and identification requirements. There must
-be precisely two electrons or muons present, of the same flavour to each other
-but opposite charge, with both passing isolation and identification. At least
-two jets must have been reconstructed in the event.
-
+% TODO patch up post-AnaCom
 Additional requirements are placed on the transverse energies of these objects.
 The leading (highest energy) lepton must have $p_T > 30$ GeV, with the second
 lepton satisfying $p_T > 20$ GeV. Photons are required to have $p_T > 25$ GeV.
@@ -34,14 +22,14 @@ VBS tag jets, is applied to exploit the difference between VBS jets and
 colour-connected \ac{QCD} jets.  A requirement on the centrality of the
 $ll\gamma$ system, relative to the jets, is also used to define the signal
 region. The centrality is defined by
-
+%
 \begin{equation*}
   \zeta(ll\gamma) = \left|
                       \frac { y_{ll\gamma} - (y_{j_1} + y_{j_2})/2}
                             { y_{j_1} - y_{j_2} }
                     \right|,
 \end{equation*}
-
+%
 separating the signal region ($\zeta(ll\gamma) < 0.4$) from the control region
 for the \ac{QCD} background ($\zeta(ll\gamma) > 0.4$), explained in
-Section X. %TODO
+Section \ref{sec:vbs-backgrounds}.

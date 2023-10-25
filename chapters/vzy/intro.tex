@@ -1,0 +1,76 @@
+% VZy introduction
+
+% intro and motivation
+Triboson production of a Z boson; a photon; and an additional, hadronically
+decaying, vector boson is another production mechanism for the \Zyjj final
+state. This additional boson, denoted as a `V' boson, can be a W or a Z boson.
+Measuring this V\Zy triboson process thus constitutes an inclusive measurement
+of both W\Zy and Z\Zy triboson production.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{vzy-feynman.pdf}}
+  \caption{
+    A selection of \acs{SM} production mechanisms for the V\Zy triboson final
+    state, depicted in Feynman diagrams.
+  }
+  \label{fig:vzy-feynman}
+\end{figure}
+
+Figure \ref{fig:vzy-feynman} gives tree-level Feynman diagrams for W\Zy and Z\Zy
+production. Notably, W\Zy production is sensitive to the same \ac{QGC} and
+\ac{TGC} vertices as \ac{VBS} \Zy production. Z\Zy is more limited by the lack
+of neutral \acp{QGC} and \acp{TGC} in the \ac{SM}, but is therefore more
+sensitive to potential anomalous couplings.
+The reliance on these rare multiboson interactions means that the triboson
+process has a low cross-section, similar to that of \ac{VBS} \Zy. %cite? give a number?
+Without the distinct \ac{VBS} jet signature to select on, measuring this low
+cross-section process is challenging.
+
+% kinematics and discrimination techniques
+The two jets, here a product of a boson decay, have kinematic properties that
+distinguish them from background events, notably: a dijet mass peaked around the
+W/Z masses, small rapidity separation between the two jets,
+and an angular distribution consistent with boson decay products.
+%^TODO cite something on W/Z cos theta distributions, have a reference if
+%needed.
+Additionally, more subtle differences are also present in many other variables.
+Selecting W/Z boson decays to leptons is relatively straightforward, but the
+more limited jet resolution and more dominant jet background makes doing this in
+the hadronic decay channel more difficult.
+This analysis employs machine-learning techniques to interpret this complicated
+phase space; pushing sensitivity beyond what is achievable with a traditional
+cut-based analysis.
+
+%backgrounds
+Despite the differing jet phase space, the backgrounds for this analysis are the
+same as for the \ac{VBS} \Zy analysis. \ac{QCD} \Zyjj production is the dominant
+competing process; the key difference between this background and the signal
+is the kinematics of the jets, as both have a real Z boson and photon produced.
+%TODO give numbers on relative cross-sections.
+%e.g.
+The QCD \Zy background has a yield X times higher than the signal after applying
+selection on the Z boson and photon.
+%
+This illustrates the need for effective jet selection to manage this background.
+
+%Overall strategy/aim
+The goal of this analysis is to measure the fiducial cross-section of this rare
+process in order to compare it to the standard model expectation.
+This measurement is extracted from a template fit to the output of the
+machine-learning model. %TODO update after fit is done
+If the observed significance is sufficient, this will provide evidence for or an
+observation of this process. If the significance does not meet these thresholds,
+the measurement will be used to place limits on the rate of this process. These
+limits can be used to constrain theories that might enhance the cross-section of
+this process.
+
+%TODO section in common analysis methods about fiducial cross-sections
+%TODO section in common analysis methods explaining 3/5 sigma thresholds
+%TODO section in theory about BSM theories which affect cross-sections.
+
+% Lets cover some key points:
+% - headline motivation [above, needs expanding] [talk about rarity etc]
+% - feynman diagrams
+% - talk about jet kinematics, difference with VBS
+% - backgrounds

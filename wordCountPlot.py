@@ -7,7 +7,7 @@ def dstr(datestring):
     return mdate.datestr2num(datestring)
 
 xlow = '2022/11/01'
-xupp = '2023/02/01'
+xupp = '2023/09/01'
 # Read data and convert dates
 # (append 0-point for line coming off the edge of the graph)
 date, count = np.loadtxt('wordCountHistory').transpose()
@@ -37,22 +37,22 @@ ax.tick_params(axis='x',which='major',size=0)
 ax.tick_params(axis='y',which='major',size=6)
 ax.tick_params(axis='y',which='minor',size=3)
 # Annotations [MANUALLY ADDED]
-ax.annotate(\
-    'Added chapter headings',\
-    xy=(dstr('2022/11/20 12:00'), 50), xycoords='data',\
-    xytext=(-10,30), textcoords='offset points',\
-    arrowprops={'arrowstyle':"->"},\
-    size=12,\
-    ha='center'
-)
-ax.annotate(\
-    'Copied eratio section from MCA',\
-    xy=(dstr('2023/01/19'), 2500), xycoords='data',\
-    xytext=(-130,0), textcoords='offset points',\
-    arrowprops={'arrowstyle':"->"},\
-    size=12,\
-    ha='center', va='center'
-)
+#ax.annotate(\
+#    'Added chapter headings',\
+#    xy=(dstr('2022/11/20 12:00'), 50), xycoords='data',\
+#    xytext=(-10,30), textcoords='offset points',\
+#    arrowprops={'arrowstyle':"->"},\
+#    size=12,\
+#    ha='center'
+#)
+#ax.annotate(\
+#    'Copied eratio section from MCA',\
+#    xy=(dstr('2023/01/19'), 2500), xycoords='data',\
+#    xytext=(-130,0), textcoords='offset points',\
+#    arrowprops={'arrowstyle':"->"},\
+#    size=12,\
+#    ha='center', va='center'
+#)
 # Save figure
 plt.savefig('word_count.pdf')
 plt.savefig('word_count.png', dpi=1200)

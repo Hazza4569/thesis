@@ -90,41 +90,75 @@ but not with PFlow jets, the PFlow $m_{jj}$ value should at least be close to
 150 GeV.
 
 \begin{figure}
-  \includegraphics[width=.5\textwidth]{\resource{pflow_n_jet_raw.pdf}}
-  \includegraphics[width=.5\textwidth]{\resource{pflow_jet_subpt_raw.pdf}}
+  \includegraphics[width=.5\textwidth]{\resource{decor_pflow_n_jet_raw.pdf}}
+  \includegraphics[width=.5\textwidth]{\resource{decor_pflow_jet_subpt_raw.pdf}}
   \\
-  \includegraphics[width=.5\textwidth]{\resource{pflow_m_jj.pdf}}
-  \includegraphics[width=.5\textwidth]{\resource{pflow_deta_jj.pdf}}
+  \includegraphics[width=.5\textwidth]{\resource{decor_pflow_m_jj.pdf}}
+  \includegraphics[width=.5\textwidth]{\resource{decor_pflow_deta_jj.pdf}}
   \caption{
     Distribution of events passing jet requirements for the PFlow collection
     but not the topo collection. In each case the cut is in the same distribution
     as the histogram being plotted. Four cuts are shown: $N_j > 2$ (top left),
     $p_{T}^{j,2}$ ($p_{T}$ of second most energetic jet) $ > 50$ GeV (top right),
     $m_{jj} > 150$ GeV (bottom left), $|\Delta\eta_{jj}| > 1$ (bottom right).
+    Only events passing all prior cuts in both PFlow and topo are included.
+    For the $p_T^{j,2}$ and $m_{jj}$ plots the $x$-axis must be scaled by
+    $10^3$.
   }
   \label{fig:vbs-pflow-boundary-plots}
 \end{figure}
 
 Investigating the case where events pass selection with PFlow jets but fail with
-topo jets, results are shown in Figure \ref{fig:vbs-pflow-boundary-plots}. Here
-the four key cut variables are shown. The distributions are, largely, as
-expected, with peaks showing most values are close to the cut boundaries. It is
-notable, however, that for the two variables using multiple jets, $m_{jj}$ and
+topo jets, results for the four key cut variables are shown in Figure
+\ref{fig:vbs-pflow-boundary-plots}. The distributions are, largely, as expected,
+with peaks showing most values are close to the cut boundaries. It is notable,
+however, that for the two variables using multiple jets, $m_{jj}$ and
 $|\Delta\eta_{jj}|$, there are some strong outliers.
 
-On investigation, many of these outliers stem from events where previous
-selection criteria were failed with topo jets, and so there were not two jets
-available to calculate these variables. In Figure X%TODO
-this is corrected so that only events
-which pass previous cuts in both variables are considered
+Events falling very far from the cut boundary in PFlow when the topo variable
+fails the cut seem to indicate a significant disagreement between kinematics in
+PFlow and topo jets. It is possible however that these outliers happen when the
+$p_T$ ordering of jets varies between the two collection. Dijet variables are
+calculated using the two highest energy jets, so a small shift in $p_T$ between
+the second and third jets could cause dijet variables to be calculated with
+a different jet pair and therefore give very different results.
 
-%% TODO scrap the plots which don't enforce passing previous cut in both
-%% variables? seems more of a journey than a destination and I can still talk
-%% about pt-ordering stuff.
-%% Need to see if I have equivalent plots with this requirement... think that
-%% e.g. /home/harry/Documents/phd/zgam/code/plots/mc16e/EWK_Zyjj_ee/overlap/decor_PFlow_m_jj.pdf
-%% is what I need (this is available for all variables) but not sure how
-%% /home/harry/Documents/phd/zgam/code/plots/mc16e/EWK_Zyjj_ee/overlap/njtrim_pflow_m_jj.pdf
-%% is different. Perhaps 2nd doesn't include pT requirement (other captions
-%% claim it does though). 2nd isn't available in all variables so I think I just
-%% use the 1st.
+This hypothesis can be tested by looking at the separation between jets
+used in each event for the two collections. The variable used to measure
+this is
+%
+\begin{equation}
+  \text{min}\,\Sigma(\Delta R) = \min_{k_i\in\{(1,2),(2,1)\}}\sum_{i = 1}^2
+  \Delta R(j^\text{topo}_i, j^\text{PFlow}_{k_i}),
+  \label{eqn:vbs-pflow-minsumdr}
+\end{equation}
+%
+i.e. the sum of the two $\Delta R$ values between topo and PFlow jets, for
+whichever pairing of the jets gives the lowest value of the sum.  $\Delta R$ is
+the sum in quadrature of $\Delta\eta$ and $\Delta\phi$.  Figure
+\ref{fig:vbs-pflow-drcut} shows the distribution of this variable for events
+passing $m_{jj}$ in only PFlow. There are clearly two populations, separated at
+$\text{min}~\Sigma(\Delta R) \sim 0.5$. The lower population should contain
+events where the PFlow and topo jets are representing the same physical objects.
+Requiring $\text{min}\Sigma(\Delta R) < 0.5$ on top of the existing selection
+gives the $m_{jj}$ distribution shown in Figure \ref{fig:vbs-pflow-drcut}, where
+now all remaining events are tightly distributed around the cut boundary.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{\resource{pflow_drcut.pdf}}
+  \caption{
+    Distribution of the $\min\Sigma(\Delta R)$ variable, defined in Equation
+    \ref{eqn:vbs-pflow-minsumdr}, for events passing $m_{jj} > 150$ GeV in PFlow
+    and not topo (left); and the $m_{jj}$ distribution for these events
+    but requiring $\min\Sigma(\Delta R) < 0.5$ (right).
+  }
+  \label{fig:vbs-pflow-drcut}
+\end{figure}
+
+This study, although limited in scope, serves to demonstrate that the key jet
+variables used in this analysis perform very similarly in topo jets and PFlow
+jets. Further studies could shed light on how systematic uncertainties differ
+between collections, and which choice would give the most precise result, but
+this was considered sufficient to update to the latest \ac{ATLAS}
+recommendations.
