@@ -1,59 +1,90 @@
 % ========== Event selection section ==========
+%TODO add more detail on trigger
+%TODO back reference to reco when talking about ID/iso reqs
 
 Events from data and simulation undergo a selection process to focus on a phase
 space that matches the desired final state. Data events are required to pass a
-trigger to be recorded, and therefore the same requirement is placed on
-simulated events for parity. For both analyses, any events passing the single
-lepton or dilepton trigger are considered.
+trigger in order to be recorded, and therefore the same requirement is placed on
+simulated events for parity. For both analyses, any events passing either the
+single lepton or dilepton trigger thresholds are considered.
 
 For an event to be selected, first the basic objects in the desired final state
-need to be present, subject to some reconstruction criteria. There must be at
-least one photon passing isolation and identification requirements. There must
-be precisely two electrons or muons present, of the same flavour to each other
-but opposite charge, with both passing isolation and identification. At least
-two jets must have been reconstructed in the event.
+need to be present. There must be at least one photon passing isolation and
+identification requirements. There must be precisely two electrons or muons
+present, of the same flavour to each other but opposite charge, with both
+passing isolation and identification.
+%TODO remove this? Not part of Zy selection being presented here,
+%but certainly necessary for both analyses
+At least two jets must have been
+reconstructed in the event, as per Section \ref{sec:methods-reconstruction-jet}.
+
+% TODO overlap removal!!
 
 Further selection is applied to the lepton-photon system in order to identify
-events with a real Z boson and an \ac{ISR} photon. This \Zy selection is
+events with a real Z boson and a photon not produced from \ac{FSR}. This \Zy selection is
 detailed in Table \ref{tab:anacom-zy-selection}, and acts as a pre-selection for
 both analyses before additional jet selection is applied.
 
 \begin{table}
   \centering
-  \begin{tabular}{c}
+  \renewcommand\arraystretch{1.3}
+  \begin{tabular}{p{6em}l}
     \hline\hline
-    \Zy selection \\
+    \multicolumn{2}{c}{\Zy selection} \\
     \hline
-    $p_T^\gamma > 25$ GeV \\
-    $p_T^{l,1} > 30$ GeV \\
-    $p_T^{l,2} > 20$ GeV \\
-    $m_{ll} > 40$ GeV \\
-    $m_{ll} + m_{ll\gamma} > 182$ GeV \\
+    Photon & $N_\gamma \geq 1$ \\
+           & $|\eta_\gamma| < 2.37$ \\
+           & (excludes $1.37 < |\eta_\gamma| < 1.52$) \\
+           & $p_T^\gamma > 25$ GeV \\
+    \hline
+    Lepton & $N_l = 2$ (OSSF)\\
+           & $|\eta_e| < 2.47$ \\
+           & (excludes $1.37 < |\eta_e| < 1.52$) \\
+           & $|\eta_\mu| < 2.5$ \\
+           & $p_T^{l,1} > 30$ GeV \\
+           & $p_T^{l,2} > 20$ GeV \\
+    \hline
+    Boson  & $m_{ll} > 40$ GeV \\
+           & $m_{ll} + m_{ll\gamma} > 182$ GeV \\
+    \hline\hline
   \end{tabular}
   \caption{
     Cuts implemented for both analyses to select \Zy events. Here $p_T^{l,1}$
     denotes the $p_T$ of the leading (i.e. highest $p_T$) lepton, and
     $p_T^{l,2}$ denotes that of the sub-leading (second highest $p_T$) lepton.
+    OSSF indicates that two opposite-sign same-flavour leptons are required.
   }
   \label{tab:anacom-zy-selection}
 \end{table}
-% TODO add eta cuts, check for anything else
-% 2.37 photon and 2.47 lepton is correct btw
 
 % Discuss FSR cut
 The cut on the sum of the dilepton mass and the dilepton-photon mass, $m_{ll} +
-m_{ll\gamma}$ is imposed to select events with \ac{ISR} photons rather than
-photons from \ac{FSR}. In an \ac{FSR} event, the photon is radiated from one of
-the final state leptons. This means the two leptons and the photon all originate
-from the same Z boson, and their invariant mass should be close to the mass of
-the Z boson. The invariant mass of the dilepton system in this case would be
-less. In an \ac{ISR} event the photon is radiated before the Z boson is
-produced, so this time the dilepton mass should be close to the Z mass and the
-dilepton-photon invariant mass should be larger. Requiring the sum of these two
-masses to be greater than twice the Z mass should isolate events from this
-second instance. Figure X %TODO
-shows a two-dimensional distribution of these two invariant masses and how this
-cut selects events.
+m_{ll\gamma}$ is imposed to reject events with photons from \ac{FSR}.  In an
+\ac{FSR} event, the photon is radiated from one of the final state leptons.
+This means the two leptons and the photon all originate from the same Z boson,
+and their invariant mass should be close to the mass of the Z boson. The
+invariant mass of the dilepton system in this case would be less, and so the sum
+of these masses should be less than twice the Z mass.  In a non-\ac{FSR} event,
+the photon is radiated before or simultaneous to the Z boson production, giving
+a dilepton mass close to the Z mass and a larger dilepton-photon invariant mass.
+The sum of the masses in this instance is typically greater than twice the Z
+mass.  Figure \ref{fig:anacom-fsr-plot} shows a two-dimensional distribution of
+these two invariant masses and how this cut rejects the population of events
+with \ac{FSR} photons.
 
-% TODO add ISR vs FSR Feynman diagrams
-% TODO add FSR plot (need to make it from VZy samples :/ )
+% TODO add ISR vs FSR Feynman diagrams? Might not be needed.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.95\textwidth]{\resource{FSR_cut_plot}}
+  \caption{
+    Distribution of events as a function of $m_{ll}$ and $m_{ll\gamma}$, for
+    events in the signal sample passing the lepton and photon cuts given in
+    Table \ref{tab:anacom-zy-selection}. The dashed line shows the threshold for
+    the \acs{FSR}-rejection cut, events below the dashed line are discarded.
+  }
+  \label{fig:anacom-fsr-plot}
+\end{figure}
+
+\ac{FSR} events are rejected as the photon emission from a final state lepton
+excludes the possibility of the photon having been produced in a multiboson
+interaction, which are the focus of these analyses.

@@ -1,7 +1,6 @@
 % ====== Samples section ======
 
 % TODO check this covers everything from VZy
-% TODO make changes from Dave's feedback
 % TODO add a table to summarise samples?
 
 % TODO explain methodology of using simulations to represent theory,
@@ -14,17 +13,16 @@ simulated event samples can therefore be used for each.
 2.6.5 \cite{madgraph5amc}.  This sample is at \ac{LO} accuracy (order
 $\alpha_\text{EW}^4$) with the NNPDF3.1 \ac{LO} \ac{PDF} set \cite{NNPDF3dot1}.
 Parton showering, hadronisation, and underlying event activity are added through
-\pythia 8.240 \cite{pythia8dot2} (with ``dipoleRecoil'' enabled).
+\pythia 8.240 \cite{pythia8dot2}.
 
 The dominant background process is \ac{QCD} production of \Zyjj. The nominal
 sample used for this process is produced with \madgraphfiveamc 2.3.3
-\cite{madgraph5amc} using the NNPDF3.0 \ac{NLO} \ac{PDF} set \cite{NNPDF3dot0},
-this includes all diagrams at order $\alpha_s^2\alpha_\text{EW}^2$ with up to
-two additional partons in the final state, where one parton may be at \ac{NLO}.
+\cite{madgraph5amc} using the NNPDF3.0 \ac{NLO} \ac{PDF} set \cite{NNPDF3dot0}.
+Diagrams up to order $\alpha_s^2\alpha_\text{EW}^2$ are included.
 
 Additional samples for \ac{QCD} \Zyjj are generated to evaluate uncertainties.
 A sample made with \sherpa 2.2.4 \cite{sherpa2dot2} at \ac{LO} accuracy, with up
-to three additional parton emissions, is used to measure generator differences.
+to three additional parton emissions, is used to assess generator differences.
 The NNPDF3.0 \ac{NNLO} \ac{PDF} set is used for this sample, in conjunction with
 a dedicated parton shower tuning developed by the \sherpa authors.
 %
@@ -34,7 +32,9 @@ NNPDF3.0 \ac{NNLO} \ac{PDF} set.  One of the five samples has a nominal value
 for the merging and resummation scales and the other four have an up or down
 variation for either.
 
-%TODO interference sample?
+Interference between \ac{EW} and \ac{QCD} \Zy production is estimated at \ac{LO}
+using \madgraphfiveamc. 2.3.3 with the NNPDF3.0 \ac{LO} PDF set, including
+contributions order $\alpha_S\alpha_\text{EW}^3$ to the amplitude.
 
 The Z+jets background, in which a jet is misidentified as a photon, is estimated
 with a data-driven method. A \ac{MC} sample for this process is necessary to
@@ -49,7 +49,7 @@ set of tuned parameters.
 
 A \tty sample is generated at \ac{LO} accuracy with \madgraphfiveamc and
 the NNPDF2.3 \ac{LO} \ac{PDF} set \cite{NNPDF2dot3}.
-The WZ background has both a \ac{QCD} and \ac{EW} component; with samples from
+The WZ background has both a \ac{QCD} and \ac{EW} component produced with
 \sherpa 2.2.2 \cite{sherpa2dot2}
 at \ac{NLO}, with NNPDF3.0 \ac{NNLO} \ac{PDF} set, and
 \madgraphfiveamc 2.6.2 \cite{madgraph5amc}

@@ -1,42 +1,13 @@
 % ====== Systematic uncertainties section ======
 
-[This will largely be common between the two analyses, could be moved to
-analysis methods chapter]
-
-This analysis considers uncertainties from data statistics and from systematics.
-Systematic uncertainties come from a variety of sources both theoretical and
-experimental.
-
-Experimental systematic uncertainties cover uncertainties in energy scale and
-resolution of jets, photons, and electrons; momentum scale and resolution of
-muons; scale factors used to reproduce trigger, reconstruction, identification,
-and isolation efficiencies from data; suppression of pile-up jets; and flavour
-tagging.
-
-Theoretical sources of systematic uncertainty come from the choice of scale,
-choice of \ac{PDF} set, modelling, non-closure between \ac{MC} generators,
-choice of parton showering and underlying event model, and \ac{EW}-\ac{QCD}
-interference. Uncertainty due to scale choice is calculated by varying the
-default values of renormalisation and factorisation scales in the nominal QCD
-\Zy \ac{MC} sample. Evaluating uncertainty in \ac{PDF} set choice is done using
-the eigenvalues of the \ac{PDF} set, for the signal and \ac{QCD} \Zy background.
-Uncertainty on modelling of the \ac{QCD} \Zy process comes from choice of
-merging (CKKW) and resummation (QSF) scale, these are calculated using the
-samples described in Section \ref{sec:methods-samples}. For the \ac{QCD} \Zy
-background, the difference between the nominal and alternate samples is taken as
-a non-closure uncertainty. For the \ac{EW} signal, parton showering and
-underlying event uncertainties are calculated by comparing the default \pythia
-hadronisation to an alternate with \herwig. The interference between \ac{EW} and
-\ac{QCD} \Zy production is not included in either the signal or background, but
-instead taken as an additional uncertainty.
-
-Further systematic uncertainties from limited statistics in \ac{MC} samples and
-in data \acp{CR} are also considered.
-
-These detailed systematics are used for both the signal and \ac{QCD} \Zy
-background.  A selection of the largest groups of uncertainties are shown in the
-\ac{SR} as a function of $m_{jj}$ for both \ac{EW} and \ac{QCD} \Zyjj production
-in Figure \ref{fig:vbs-uncertainties-syst-overview}.
+The systematic uncertainties used in this analysis are discussed in Section
+\ref{sec:methods-systematics}. Figure \ref{fig:vbs-uncertainties-syst-overview}
+illustrates the relative effect of the largest groups of systematics is shown on
+both \ac{EW} and \ac{QCD} \Zyjj production, as a function of $m_{jj}$.
+The uncertainty on the normalisation of the Z+jets fake photon background is
+calculated following the prescription in Section
+\ref{sec:methods-backgrounds-zjets-uncertainty} and determined to be 35\%
+\cite{VBSZy-CONF}.
 
 \begin{figure}
   \centering
@@ -52,9 +23,45 @@ in Figure \ref{fig:vbs-uncertainties-syst-overview}.
   \label{fig:vbs-uncertainties-syst-overview}
 \end{figure}
 
-%TODO somewhere (analysis methods section detailing fake photon ABCD?)
-%describe uncertainty estimation for Z+jets
-%perhaps add a note here to reference that section 'described in Section X'
-Uncertainties on the Z+jets background normalisation are calculated based on the
-two-dimensional sideband method, and total 35\%. The \tty and WZ$jj$ backgrounds
-are both assigned flat uncertainties, of 15\% and 20\% respectively.
+% OLD: (keep figure)
+%This analysis considers uncertainties from data statistics and from systematics.
+%Systematic uncertainties come from a variety of sources both theoretical and
+%experimental.
+%
+%Experimental systematic uncertainties cover uncertainties in energy scale and
+%resolution of jets, photons, and electrons; momentum scale and resolution of
+%muons; scale factors used to reproduce trigger, reconstruction, identification,
+%and isolation efficiencies from data; suppression of pile-up jets; and flavour
+%tagging.
+%
+%Theoretical sources of systematic uncertainty come from the choice of scale,
+%choice of \ac{PDF} set, modelling, non-closure between \ac{MC} generators,
+%choice of parton showering and underlying event model, and \ac{EW}-\ac{QCD}
+%interference. Uncertainty due to scale choice is calculated by varying the
+%default values of renormalisation and factorisation scales in the nominal QCD
+%\Zy \ac{MC} sample. Evaluating uncertainty in \ac{PDF} set choice is done using
+%the eigenvalues of the \ac{PDF} set, for the signal and \ac{QCD} \Zy background.
+%Uncertainty on modelling of the \ac{QCD} \Zy process comes from choice of
+%merging (CKKW) and resummation (QSF) scale, these are calculated using the
+%samples described in Section \ref{sec:methods-samples}. For the \ac{QCD} \Zy
+%background, the difference between the nominal and alternate samples is taken as
+%a non-closure uncertainty. For the \ac{EW} signal, parton showering and
+%underlying event uncertainties are calculated by comparing the default \pythia
+%hadronisation to an alternate with \herwig. The interference between \ac{EW} and
+%\ac{QCD} \Zy production is not included in either the signal or background, but
+%instead taken as an additional uncertainty.
+%
+%Further systematic uncertainties from limited statistics in \ac{MC} samples and
+%in data \acp{CR} are also considered.
+%
+%These detailed systematics are used for both the signal and \ac{QCD} \Zy
+%background.  A selection of the largest groups of uncertainties are shown in the
+%\ac{SR} as a function of $m_{jj}$ for both \ac{EW} and \ac{QCD} \Zyjj production
+%in Figure \ref{fig:vbs-uncertainties-syst-overview}.
+%
+%%TODO somewhere (analysis methods section detailing fake photon ABCD?)
+%%describe uncertainty estimation for Z+jets
+%%perhaps add a note here to reference that section 'described in Section X'
+%Uncertainties on the Z+jets background normalisation are calculated based on the
+%two-dimensional sideband method, and total 35\%. The \tty and WZ$jj$ backgrounds
+%are both assigned flat uncertainties, of 15\% and 20\% respectively.

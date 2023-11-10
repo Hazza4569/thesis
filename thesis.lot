@@ -3,8 +3,11 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Cuts implemented for both analyses to select $\text {Z}\gamma $\xspace events. Here $p_T^{l,1}$ denotes the $p_T$ of the leading (i.e. highest $p_T$) lepton, and $p_T^{l,2}$ denotes that of the sub-leading (second highest $p_T$) lepton. OSSF indicates that two opposite-sign same-flavour leptons are required. \relax }}{41}{table.caption.55}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Yields and efficiencies after each jet cut, compared for both topo and PFlow jets. Starting from all EW $\mathrm {Z(\to ee)}\gamma \mathrm {jj}$ events that pass non-jet selection criteria. \relax }}{41}{table.caption.56}
+\contentsline {table}{\numberline {6.1}{\ignorespaces Summary of event selection criteria defining the \acs {VBS} analysis region. This region is further subdivided by additional criteria on $\zeta (ll\gamma )$. \relax }}{53}{table.caption.64}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Yields and efficiencies after each jet cut, compared for both topo-cluster and particle-flow jets. Starting from all EW Z($\to ee$)$\gamma jj$ events that pass the $\text {Z}\gamma $\xspace selection. Efficiencies given are for the individual cut, relative to the yield from the previous cut. The difference is given as percentage increase from the topo-cluster to the particle-flow yields. The third cut is overlap removal between jets and leptons or photons. \relax }}{54}{table.caption.65}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces Summary of event selection criteria defining the $\text {VZ}\gamma $\xspace analysis region. \relax }}{74}{table.caption.78}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

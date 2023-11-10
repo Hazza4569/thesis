@@ -1,0 +1,162 @@
+% ========== Object reconstruction section ==========
+%TODO label WPs used for e/y/mu ID/isolation (loose,medium,tight) and cite.
+
+A reconstruction procedure is applied in order to match signals in the detector
+to the corresponding physics object that created them, and to calculate the
+kinematic properties of the incident particles.
+The procedure used is different for any class of physics object. This section
+discusses the details of the reconstruction for each of the objects used in the
+two presented analyses: photons, electrons, muons, and jets.
+
+%Explain hits&tracks and clusters&topoclusters
+
+\subsection{Photons}
+\label{sec:methods-reconsruction-photon}
+
+% Signature
+Photon reconstruction covers two scenarios: unconverted photons where the photon
+passes through the tracker and deposits its energy in the calorimeter, or
+converted photons where the photon converts into an $e^+e^-$ pair inside the
+tracker.
+The signature for an unconverted photon is an \ac{EM} cluster with $E_T > 1.5$
+GeV and no associated
+track (due to the photon being electrically neutral). The signature for a
+converted photon is two opposite-sign electron candidates with tracks from the
+same vertex, within the tracking system, consistent with a massless particle.
+These signatures are considered as photon candidates.
+
+% Energy calculation and calibration
+Transverse energies are calculated by combining candidate photon \ac{EM}
+clusters with any further clusters within a $0.075\times0.125$
+($\eta\times\phi$) area centred on the candidate cluster. Energy measurements
+are corrected for scale and resolution effects due to variation in detector
+response across $\eta$-$\phi$ and data-\ac{MC} differences
+\cite{EGamCalibration2019}. Systematic uncertainties are included in the results
+to account for uncertainties from these corrections.
+
+% Identification
+Jets can often produce similar signatures to photons, and so additional
+requirements are placed on the calorimeter shower shape to discriminate against
+these `fake photons'. The desired prompt photons typically result in more
+collimated clusters contained within the \ac{EM} calorimeter, whereas fake
+photons produce broader showers and leakage into the hadronic calorimeter.
+An identification selection, consisting of a set of cuts on shower-shape
+variables, is derived to minimise photon fakes.
+% TODO cite a source for photon ID?
+
+% Isolation
+\newcommand\ptcone{$p_T^{\text{cone},20}$\xspace}
+\newcommand\etcone{$E_T^{\text{cone},20}$\xspace}
+Additionally, photons must be considered isolated. Non-prompt photons will
+typically appear nearby other activity in the detector. Prompt photons can be
+selected by ensuring that photon candidates are isolated in a region with little
+activity around them. Two variables are used to define the isolation:
+\ptcone and \etcone.
+\ptcone is the sum of transverse momenta of all $p_T > 1$ GeV tracks originating from the
+\ac{PV}, within a cone of $\Delta R < 0.2$ around the direction of the photon.
+\etcone is the sum of \ac{EM} cluster transverse energies within the same cone,
+minus the energy of the photon.
+Cuts are defined on these variables as a function of the photon $p_T$:
+\ptcone $<0.05\cdot p_T^\gamma$ (track isolation) and \etcone $<0.065\cdot
+p_T^\gamma$ (calorimeter isolation).
+
+Systematics uncertainties are included in the measurements to account of the efficiencies of photon
+identification and isolation \cite{PhotonIDIsoEff2016}.
+
+
+\subsection{Electrons}
+
+% Signature and energy
+The basic signature to seed an electron is an \ac{EM} cluster with $E_T>1$ GeV
+with an associated track that has hits in at least four silicon layers. As with
+photons, the energy for an electron candidate is calculated by summing the
+energy of the seed cluster with any additional clusters in a $0.075\times0.125$
+($\eta\times\phi$) area, as well as any clusters matched to the same track as
+the seed. Energy scale and resolution effects are accounted for in the same
+manner as for photons, and included in systematic uncertainties.
+
+%Identification and Isolation
+Electron candidates are also subject to identification and isolation
+requirements, to minimise the impact of fakes. Identification is based on both
+\ac{EM} shower shape in the calorimeter and transition radiation in the
+\ac{TRT}. Similarly to the photon, isolation is determined in both the tracker
+and calorimeter by requiring the energy or momenta within a cone around the seed
+is below a threshold. The details of both identification and isolation of
+electrons are discussed in Reference \cite{ElectronIDIso2019}.
+
+
+\subsection{Muon}
+
+% Basic signature
+Muon candidates are seeded from tracks in either the \ac{MS} or \ac{ID}.  A seed
+track in the \ac{MS} must be matched to a track in the \ac{ID}, and a seed track
+in the \ac{ID} must be matched to at least three hits in the \ac{MS}.
+% More complex requirements
+Muon candidates are only considered here within the acceptance of the \ac{ID}
+($|\eta| < 2.5$). Candidates must produce three hits in at least two \ac{MS}
+stations, or in only one station for muons with $|\eta|<0.1$.
+%TODO explain what a MS station is in detector chapter
+% Energy
+The transverse momentum of the muon is calculated from a combined track fit of the
+tracks/hits in the \ac{ID} and \ac{MS} and the corresponding energy loss in the
+calorimeters.
+
+% Isolation
+Muons must also be isolated to select prompt muons from, e.g., boson decays
+rather than those from hadronic sources. Muon isolation is given by the total
+$p_T$ in a cone around the muon divided by the muon $p_T$. As with electrons and
+photons, this is calculated in both the \ac{ID} and the calorimeter.
+
+Data-MC comparisons are used to measure the efficiency and
+resolution of muon reconstruction, accounted for in systematic uncertainties
+\cite{MuonReco2021}.
+
+
+\subsection{Jets}
+\label{sec:methods-reconstruction-jet}
+
+% What is a jet? How does it represent a quark/gluon?
+A jet is a physics object representing a localised grouping of hadrons, rather
+than a single particle. These hadronic showers can be initiated by quarks or
+gluons radiated from the hard scatter in the collision, since these free partons
+will hadronise before interacting with any elements of the detector. Jets are
+thus used as a reconstruction-level analogue of a quark or gluon produced in a
+physics process.
+
+% Jet algorithms
+Reconstructing a jet requires use of a jet clustering algorithm in order to
+combine clusters and tracks in the detector to collect all the particles likely
+to have been produced by the incident hadron. Jet reconstruction in \ac{ATLAS}
+uses the anti-$k_t$ jet clustering algorithm \cite{antikt}, with a distance
+parameter of $R=0.4$.
+
+% Jet collections
+A jet can be reproduced differently depending on the information given as input
+to the clustering algorithm. A `jet collection' is the name used for jets
+produced from a certain set of inputs. The baseline jet collection used in the
+two presented analyses is `particle-flow' jets, in the \ac{VBS} analysis
+`topo-cluster' jets are also considered.
+
+% Topo jets
+Topo-cluster jets are formed using only calorimeter information, passing topo
+clusters as input to the clustering algorithm. Topo clusters, or topological
+clusters, are a pileup-resistant formulation of a calorimeter cluster: with
+cells added to a cluster based on whether the measured energy exceeds a
+threshold determined by the expected noise in that cell. Since only calorimeter
+information is used to create the jets, topo-cluster jets rely heavily on the
+resolution of the calorimeter \cite{Aad2017b}.
+
+%PFlow jets
+Particle-flow jets are an alternative jet collection created by using
+`particle-flow objects' as input to the clustering algorithm. A particle-flow
+object is a combination of calorimeter topo clusters and \ac{ID} tracks, with
+calorimeter deposits produced by charged particles removed to avoid
+energy/momentum double-counting, designed to represent a single particle.
+Combining calorimeter and tracker information allows for improved resolution at
+lower energies compared to topo-cluster jets \cite{Aaboud2017a}.
+
+% Uncertainties
+Systematic uncertainties are included to account for effects on the energy and
+resolution of jets from detector calibration, properties of the jet such as
+quark/gluon flavour composition, and data-\ac{MC} differences
+\cite{JESUncerts2017}.

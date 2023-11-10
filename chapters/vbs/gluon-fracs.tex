@@ -1,31 +1,46 @@
 % ====== Jet flavour uncertainties section ======
 \newcommand\fgluon{$f^\text{gluon}$\xspace}
 
-A significant source of systematic uncertainty in this analysis arises from
-uncertainty in the flavour of jets, in particular whether they are initiated by
-quarks or gluons. In order to minimise the impact of this uncertainty, the
-fraction of jets initiated by gluons should be measured.
+The uncertainties associated with the flavour composition and response of the
+jets in this analysis make a significant contribution to the result. This
+section presents measures taken to reduce these uncertainties and in turn
+improve the precision of the final measurement.
 
-The gluon fraction is given by
+These jet flavour uncertainties, as discussed in Section
+\ref{sec:methods-systematics-jet-flavour}, can be reduced by specifying the
+expected fraction of jets initiated by quarks and gluons in the analysis phase
+space.
+
+The gluon fraction is defined as
 %
 \begin{equation*}
   f^\text{gluon} = \frac{ N_j^\text{gluon} }
                         { N_j^\text{gluon} + N_j^\text{udsc}},
 \end{equation*}
 %
-where $N_j^\mathrm{gluon}$ and $N_j^\mathrm{udsc}$ are the number of
-jets initiated by gluons and by up/down/strange/charm quarks respectively.
+where $N_j^\mathrm{gluon}$ and $N_j^\mathrm{udsc}$ are the number of jets
+initiated by gluons and by up/down/strange/charm quarks respectively. A given
+jet in a \ac{MC} event is determined to be quark- or gluon-initiated from the
+truth record.
 Measuring both \fgluon and its associated uncertainty as a function of jet
-pseudorapidity and transverse momentum provides the information needed to reduce
-the jet flavour uncertainty.
+pseudorapidity and transverse momentum, for events passing the analysis
+selection, provides the information needed to reduce the jet flavour
+uncertainty.
+%TODO define 'truth record' in theory discussion of \ac{MC}
 
-Uncertainty on \fgluon is from three sources: a modelling uncertainty calculated
-by finding the difference in \fgluon between two independent \ac{MC} generators,
-statistical uncertainty from the size of the \ac{MC} sample used, and an extra
-uncertainty to cover any differences in the value of \fgluon between regions.
-The third uncertainty component is necessary as, for technical reasons, only one
-\fgluon value could be provided for samples used to calculate yields in both
-the \ac{SR} and the \ac{CR}.
+This calculation is performed on events in the \ac{QCD} \Zy \ac{MC} sample, in
+the inclusive analysis region (defined by Table \ref{tab:vbs-selection}) and its
+subregions, the \ac{SR} and the \ac{QCD} \ac{CR}. This study is not necessary
+for other samples as the uncertainties have a lesser impact on the final
+measurement.
+
+Uncertainty on \fgluon arises from three sources: a modelling uncertainty
+calculated by comparing the \fgluon values obtained from two independent \ac{MC}
+generators, statistical uncertainty resulting from the size of the \ac{MC}
+sample used, and an additional uncertainty to cover any variations in the value
+of \fgluon between regions. The third uncertainty component is necessary due to
+technical limitations, which allowed only one \fgluon value to be provided for
+samples used to calculate yields in both the \ac{SR} and the \ac{CR}.
 
 Calculation of \fgluon is performed for the \ac{QCD} \Zy sample only, as this is
 where the jet flavour uncertainty is largest.
@@ -40,7 +55,7 @@ the largest difference, in each bin, between \fgluon in the inclusive region
 used is then the per-bin quadrature sum of the generator differences and this
 inter-region difference.
 
-\begin{figure}
+\begin{figure}[tbhp]
   \centering
   % ROW 1
   \begin{subfigure}{.48\textwidth}
@@ -85,3 +100,5 @@ inter-region difference.
   }
   \label{fig:vbs-fgluon-2dhists}
 \end{figure}
+
+%TODO something on the impact of this? Not sure I have the data to hand

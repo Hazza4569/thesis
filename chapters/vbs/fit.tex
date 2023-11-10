@@ -4,7 +4,7 @@ The signal strength, $\mu_\text{EW}$, is used to parametrise the fiducial
 cross-section for the signal process, $\sigma^\text{EW}$, where
 %
 \begin{equation*}
-  \mu_\text{EW} = \sigma^\text{EW}_\text{meas} / \sigma^\text{EW}_\text{exp},
+  \mu_\text{EW} = \sigma^\text{EW}_\text{meas} / \sigma^\text{EW}_\text{SM},
 \end{equation*}
 %
 i.e. the ratio of the measured cross-section to the \ac{SM} expectation. This
@@ -14,12 +14,10 @@ performed on $m_{jj}$ distributions in the \ac{SR} and \ac{CR} simultaneously.
 normalisations for the signal and \ac{QCD} \Zy background allowed to float in
 the fit.
 
-The bin size of the $m_{jj}$ distribution used for the fit is chosen to optimise
-the statistical significance of data in each bin. Electron and muon channels are
-treated together, using the sum of events from both for all aspects of the fit.
-Likelihood functions are built for each bin of the $m_{jj}$ distribution in both
-the \ac{SR} and \ac{CR} using a Poisson distribution, and these are all combined
-to form a single extended likelihood
+Electron and muon channels are treated together, using the sum of events from
+both for all aspects of the fit.  Likelihood functions are built for each bin of
+the $m_{jj}$ distribution in both the \ac{SR} and \ac{CR} using a Poisson
+distribution, and these are all combined to form a single extended likelihood
 
 Systematic uncertainties are included in the fit as Gaussian nuisance
 parameters. The effect of each uncertainty on the normalisation and shape of the
@@ -30,16 +28,19 @@ parameters needed.
 The fit extracts the value of the signal strength for the signal process,
 $\mu_\text{EW}$. From this a significance of the measurement, under the null
 hypothesis of $\mu_\text{EW}=0$, can be extracted using the likelihood-ratio
-test. If the significance is greater than five standard deviations of a
-Gaussian, it is considered to be observed as an excess over the background-only
-hypothesis. The value of the signal strength can also be used to give a
-measurement of the fiducial cross-section of the process, given the of the
-\ac{SM} expectation of this cross-section, calculated from the nominal \ac{MC}:
+test. If the significance is greater five standard deviations, \ac{EW} \Zy
+production is considered to be observed. The value of the signal strength can
+also be used to give a measurement of the fiducial cross-section of the process,
+given the of the \ac{SM} expectation of this cross-section, calculated from the
+nominal \ac{MC}:
 %
 \begin{equation*}
-  \sigma_\text{EW}^\text{exp} = 4.73
+  \sigma^\text{EW}_\text{SM} = 4.73
   \pm 0.01 \, (\text{stat.})
   \pm 0.15 \, (\acs{PDF})
   ^{+0.23} _{-0.22} \, (\text{scale})
   ~\text{fb}.
 \end{equation*}
+
+%TODO define fiducial cross-section/fiducial region
+%TODO define fiducial selection for each analysis?

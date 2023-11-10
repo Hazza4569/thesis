@@ -1,0 +1,106 @@
+% ========== VZy Event selection section ==========
+
+Events in data and simulation, from the samples discussed in Section
+\ref{sec:methods-samples}, undergo selection to create an analysis region
+sensitive to \VZy triboson production. This section discusses an initial
+pre-selection applied to samples and the additional requirements used
+to define the signal sample. Measures to further refine the analysis region are
+discussed in Section \ref{sec:vzy-bdt}.
+
+% Uses Zy selection from anacom
+
+\subsection{Analysis region definition}
+
+A selection is applied to events to impose a loose triboson-like phase space,
+before more precise signal and control regions are defined with the help of the
+\ac{BDT} discriminant discussed in Section \ref{sec:vzy-bdt}.
+
+The \Zy selection defined in Section \ref{sec:methods-selection} is first
+applied to events. Events are then required to have at least two jets, each with
+rapidity $|y_j| < 4.4$. The leading jet must have a transverse momentum of at
+least 40 GeV, and the sub-leading jet at least 30 GeV. The invariant mass of the
+dijet system must satisfy $m_{jj} < 150$ GeV, and the rapidity separation of the
+jets $|\Delta y|_{jj} < 2$. These cuts are summarised in Table
+\ref{tab:vzy-selection}.
+
+\begin{table}
+  \centering
+  \renewcommand\arraystretch{1.3}
+  \begin{tabular}{p{6em}l}
+    \hline\hline
+    \multicolumn{2}{c}{\VZy selection} \\
+    \hline
+    \Zy system & \Zy selection (Table \ref{tab:anacom-zy-selection}) \\
+    \hline
+    Jet & $N_j \geq 2$ \\
+        & $|y_j| < 4.4$ \\
+        & $p_T^{j,1} > 40$ GeV \\
+        & $p_T^{j,2} > 30$ GeV \\
+    \hline
+    Dijet system & $m_{jj} < 150$ GeV \\
+                 & $|\Delta y_{jj}| < 2$ \\
+    \hline\hline
+  \end{tabular}
+  \caption{
+    Summary of event selection criteria defining the \VZy analysis region.
+  }
+  \label{tab:vzy-selection}
+\end{table}
+
+% Justify cut values
+Many of these jet variables are later employed by the \ac{BDT} to refine
+selection but adding loose preselection reduces complexity at no cost to
+performance, see Section \ref{sec:vzy-bdt} for a more detailed discussion.
+The $m_{jj}$ cut ensures that this analysis is orthogonal to the \ac{VBS} \Zy
+analysis (which uses a cut of $m_{jj} > 150$ GeV), and is also compatible with
+the expected signal values of $m_{jj} \sim m_W,m_Z$.
+
+These cuts define the full analysis region, further cuts on the \ac{BDT} output
+and $m_{jj}$ are used to define the \ac{SR} and \acp{CR}, discussed in Section
+X.  %TODO -- what section are these discussed in?
+
+% Dyjj made BDT cleaner -- discuss in BDT section, doesn't make much sense here.
+
+\subsection{\acs{EW} \VZy definition}
+\label{sec:vzy-selection-vzy}
+
+Triboson \VZy production forms a subset of the processes under the umbrella of
+\ac{EW} \Zyjj production. Only interactions where the two jets are a product of
+a boson decay should contribute to the signal process. Other forms of \ac{EW}
+\Zyjj production, such as the diagrams in Figures \ref{fig:vbs-vbsfeynman} and
+\ref{fig:vbs-nonvbsfeynman}, should ideally be considered as a source of
+background.
+
+\newcommand\mjjtruth{\ensuremath{m_{jj}^\text{truth}}\xspace}
+\newcommand\partonid{\texttt{PartonTruthLabelID}\xspace}
+This analysis defines two samples as orthogonal subsets of the \ac{EW} \Zyjj
+production sample detailed in Section \ref{sec:methods-samples}: \ac{EW} \VZy
+(the signal sample) and \ac{EW} \Zyjj background (or the \ac{EW}
+background). These samples are separated using truth information.
+
+Two variables are used to test if the jets are products of a W or Z boson decay:
+\mjjtruth, the invariant mass of the dijet system calculated at truth level, and
+\partonid, which indicates the flavour of the parton initiating each
+jet\footnote{
+  This variable informs on whether the parton is a quark or a gluon and the
+  quark flavour (e.g. up, down, strange, etc.) but does not distinguish between
+  a quark and an anti-quark, that information was not available in the sample.
+}.
+The constraint $74 \leq \mjjtruth \geq 99$ GeV is applied for events included in
+the \VZy sample, chosen as it contains 95\% of the combined W and Z boson
+lineshape and so should select 95\% of W/Z($\to$jj) events. Events included in
+\VZy are also required to have {\partonid} values compatible with quark flavours
+from a W or Z decay, i.e. both jets are quark-initiated and either both the same
+flavour (e.g. both up quarks as in Z$\to u\bar{u}$) or one up-type and one
+down-type quark (e.g. an up and a strange quark as in W$\to u\bar{s}$). Any
+events failing either of these cuts are included in the \ac{EW} background
+sample.
+% 95% of WZ combined lineshape (approx integral gave 0.9406)
+
+This selection is not 100\% efficient and as such there is some
+cross-contamination between the samples. Nevertheless, applying this truth
+selection increases the probability that any event considered signal contains
+the physics processes of interest, direct multiboson interactions.  Of the
+events passing the preselection in Table \ref{tab:vzy-selection} for the full
+\ac{EW} \Zyjj sample, 31\% are accepted to the \VZy signal sample and the
+remaining 69\% make up the \ac{EW} background.
