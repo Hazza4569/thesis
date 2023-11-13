@@ -27,7 +27,7 @@ largest signal-background discrepancies.
 
 % m_jj and cos_theta_CS_jj show cuttable differences
 
-\begin{figure}
+\begin{figure}[tbp]
   \includegraphics[width=.49\textwidth]{\resource{EWvQCD/m_jj.pdf}}
   \includegraphics[width=.49\textwidth]{\resource{EWvQCD/cos_theta_CS_jj.pdf}}
   \\
@@ -156,7 +156,7 @@ differences in jet kinematics, and therefore placing selection requirements on
 jet-based kinematic variables. A number of variables are considered, with the
 full list given in Table \ref{tab:vzy-bdt-variables}.
 
-\newcommand\ptbalance{\ensuremath{p^T_\text{balance}}\xspace}
+\newcommand\ptbalance{\ensuremath{p_T^\text{balance}}\xspace}
 
 \begin{table}[!p]
   \centering
@@ -178,13 +178,13 @@ full list given in Table \ref{tab:vzy-bdt-variables}.
     $y_{jj}$ &
     Rapidity of the $jj$ system.
     \\
-    $p^T_{j,1}$ &
+    $p_T^{j,1}$ &
     Transverse momentum of the leading jet in the event.
     \\
-    $p^T_{j,2}$ &
+    $p_T^{j,2}$ &
     Transverse momentum of the sub-leading jet in the event.
     \\
-    $p^T_{jj}$ &
+    $p_T^{jj}$ &
     Transverse momentum of the $jj$ system.
     \\
     \ptbalance &
@@ -250,8 +250,8 @@ full list given in Table \ref{tab:vzy-bdt-variables}.
 The variable \ptbalance is given by the equation
 
 \begin{equation}
-  \ptbalance = \frac{ (p^T_{jj} - p^T_{ll\gamma}) }
-                    { (p^T_{jj} + p^T_{ll\gamma}) }.
+  \ptbalance = \frac{ (p_T^{jj} - p_T^{ll\gamma}) }
+                    { (p_T^{jj} + p_T^{ll\gamma}) }.
   \label{eqn:vzy-bdt-ptbalance}
 \end{equation}
 
@@ -285,17 +285,17 @@ before the phase space becomes too constrained.
   \includegraphics[width=.48\textwidth]{\resource{integral_pT_j2_gt_fix.pdf}}
   \includegraphics[width=.48\textwidth]{\resource{rejection_pT_j2_gt_fix.pdf}}
   \caption{
-    Distributions to identify a cut on $p^T_{j,2}$. Shown are fraction of events
-    for each sample that are above a given threshold value in $p^T_{j,2}$ (left)
+    Distributions to identify a cut on $p_T^{j,2}$. Shown are fraction of events
+    for each sample that are above a given threshold value in $p_T^{j,2}$ (left)
     and background rejection as a function of the signal efficiency achievable
-    using the same $p^T_{j,2}$ threshold (right).
+    using the same $p_T^{j,2}$ threshold (right).
   }
   \label{fig:vzy-bdt-rejection}
 \end{figure}
 
 Figure \ref{fig:vzy-bdt-rejection} shows the background rejection against signal
-efficiency for $p^T_j{j,2}$, which is the variable chosen to apply a cut on
-first. A cut of $p^T_{j,2} > 35$ GeV is chosen, with a signal efficiency of 74\%
+efficiency for $p_T^j{j,2}$, which is the variable chosen to apply a cut on
+first. A cut of $p_T^{j,2} > 35$ GeV is chosen, with a signal efficiency of 74\%
 and a background rejection factor of 2.6.
 
 Continuing this process, the most performant selection found consisted of five
@@ -316,7 +316,7 @@ passing this selection is 1.2 standard deviations.
     \hline\hline
     Cut-based selection \\
     \hline
-    $p^T_{j,2} > 35 GeV$ \\
+    $p_T^{j,2} > 35 GeV$ \\
     $|\Delta y_{jj}| < 1.5$ \\
     $\Delta R(ll\gamma, jj) > 3.0$ \\
     $\Delta\phi(ll\gamma, jj) > 2.8$ \\
@@ -354,6 +354,7 @@ below.
 %What to write?
 % Input variable optimisation
 \subsubsection{Input variable selection}
+\label{sec:vzy-bdt-variables}
 
 The benefit of the \ac{BDT} is its ability to handle many input variables and
 generate a phase space sensitive to the signal. However, giving too many
@@ -400,7 +401,7 @@ variable importance is calculated.
     Rank & Variable       & Relative importance\\
     \hline
     1  & $|\Delta y_{jj}|$          & $7.46\times10^{-2}$ \\
-    2  & $p^T_{j,2}$                & $7.27\times10^{-2}$ \\
+    2  & $p_T^{j,2}$                & $7.27\times10^{-2}$ \\
     3  & $\Delta\phi_{jj}$          & $7.24\times10^{-2}$ \\
     4  & $m_{j,2}$                  & $7.06\times10^{-2}$ \\
     5  & \ptbalance                 & $7.05\times10^{-2}$ \\
@@ -408,9 +409,9 @@ variable importance is calculated.
     7  & $y_{j,2}$                  & $6.32\times10^{-2}$ \\
     8  & $\Delta\phi(ll\gamma, jj)$ & $6.15\times10^{-2}$ \\
     9  & $\cos\theta_\text{CS}(jj)$ & $6.10\times10^{-2}$ \\
-    10 & $p^T_{j,1}$                & $5.76\times10^{-2}$ \\
+    10 & $p_T^{j,1}$                & $5.76\times10^{-2}$ \\
     11 & $y_{j,1}$                  & $5.70\times10^{-2}$ \\
-    12 & $p^T_{jj}$                 & $5.68\times10^{-2}$ \\
+    12 & $p_T^{jj}$                 & $5.68\times10^{-2}$ \\
     13 & $\Delta R(ll\gamma,jj)$    & $5.68\times10^{-2}$ \\
     14 & $m_{j,1}$                  & $5.60\times10^{-2}$ \\
     15 & $\log{\zeta(ll\gamma)}$    & $5.48\times10^{-2}$ \\
@@ -442,8 +443,73 @@ shows the effect of the logarithm.
 % Training cuts
 \subsubsection{Preselection and training cuts}
 
-% Hyper-parameter optimisation
-% Results and comparison to  cut-based
+Another route to improving performance of the \ac{BDT} is constraining the phase
+space to further simplify the signature the \ac{BDT} is trying to identify. Even
+in cases where there is no performance increase, reducing the phase space
+without significant loss in signal efficiency is still beneficial as it can help
+to reduce the impact of systematic uncertainties. It also improves the
+interpretability of the analysis phase space; cuts on simple kinematic variables
+are much more easily understood than a cut on a \ac{BDT} output.
+
+Two types of selection are used for this purpose: preselection applied to all
+events, including those input to the \ac{BDT}, and training cuts applied only
+to events when provided to the \ac{BDT} for training. Preselection will narrow
+the whole analysis phase space whilst training cuts give the \ac{BDT} a more
+focused view of the signal and background.
+
+Three preselection cuts are applied, on top of the baseline selection for these
+studies given in Table \ref{tab:vzy-bdt-preliminaryselection}. Minimum jet
+transverse momentum is included for both leading and sub-leading jets. Each is
+set to the highest value that did not degrade the sensitivity of the \ac{BDT}:
+$p_T^{j,1} > 40$ GeV and $p_T^{j,2} > 30$ GeV. This reduces the impact of
+any systematic uncertainties that behave poorly for low-$p_T$ jets.
+A requirement is also placed on the rapidity difference $|\Delta y_{jj}|$.
+Artefacts were found in the \ac{BDT} response for background events with
+high $|\Delta y_{jj}|$; a cut of $|\Delta y_{jj}| < 2$ was found to remove these
+issues and have no impact on sensitivity.
+
+A training cut is made on the dijet mass, $m_{jj}$, to focus on a more
+signal-rich region. Applying a training cut of $60 < m_{jj} < 115$ GeV was found
+to improve \ac{BDT} performance. Tighter mass window cuts were tested and no
+further improvements were found.  This cut is only applied for training the
+\ac{BDT}, and not as a preselection cut, to preserve its use for defining
+\acp{CR}.
+
+\subsubsection{Hyper-parameter optimisation}
+% TODO revisit section after BDT theory written
+
+A \ac{BDT} implementation has hyper-parameters that instruct it on how to build
+decision trees during training, as discussed in Section [theory:BDT].
+%TODO update reference
+\newcommand\ntrees{\ensuremath{N_\text{trees}}\xspace}
+\newcommand\ncuts{\ensuremath{N_\text{cuts}}\xspace}
+\newcommand\dmax{\ensuremath{d_\text{max}}\xspace}
+\newcommand\boostbeta{\ensuremath{\beta}\xspace}
+Four hyper-parameters were investigated to optimise performance of the \ac{BDT}
+used for this analysis: the number of cuts tested across the range of a variable
+when splitting nodes, \ncuts; the number of trees in the forest, \ntrees; the
+maximum allowed depth of each decision tree, \dmax; and the \boostbeta
+parameter which controls the rate of learning by modifying the boost weights.
+
+Each parameter was tested in turn, training and testing the \ac{BDT} to evaluate
+overtraining and sensitivity through the same procedure as in Section
+\ref{sec:vzy-bdt-variables}. Values for \ncuts between 2 and 500 were tested and
+the greatest sensitivity was achieved with $\ncuts=90$, with no significant
+overtraining. Numbers of trees between 300 and 1500 were tested, with optimal
+sensitivity obtained for $\ntrees=850$. The \dmax hyper-parameter was tested
+for values from 1 to 9 and the sensitivity was found to increase for increasing
+\dmax. However, deeper trees also became more prone to overtraining. A value
+of $\dmax=3$ was chosen as the best balance between sensitivity and
+overtraining. The boost \boostbeta parameter was tested with a range of values
+between 0 and 1, $\boostbeta=0.5$ was chosen with the best sensitivity and no
+significant overtraining.
+
+\subsubsection{Overall performance}
+
+With all of the optimisations made, the best significance obtained for events
+passing a \ac{BDT} cut is 1.5 standard deviations. This represents a sizeable
+improvement over the 1.2 standard deviations obtained with the cut-based
+approach, and motivates use of the \ac{BDT} in this analysis.
 
 % TODO write BDT section in theory
 % Include something on overtraining?
