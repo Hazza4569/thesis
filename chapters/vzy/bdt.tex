@@ -40,16 +40,22 @@ largest signal-background discrepancies.
   \caption{
     Kinematic distributions, comparing \acs{EW} V\Zy production (red) to \acs{QCD}
     \Zyjj production (blue). Generated from the corresponding \ac{MC} samples
-    with V\Zy preselection applied.
+    with V\Zy preselection applied. Events are normalised to compare the shape
+    of distributions between the two samples.
   }
   \label{fig:vzy-bdt-ewvqcd}
 \end{figure}
 
 Building a cut-based selection with sensitivity to the signal is difficult, more
 advanced methods might push the background rejection further. This section
-explores two methods for defining a signal-sensitive phase space for the
-analysis: a cut-based approach and a \ac{BDT}, a machine learning classifier
-introduced in Section [BDT section in theory chapter]. %TODO
+explores and compares two methods for defining a signal-sensitive phase space
+for the analysis: a cut-based approach and a \ac{BDT}, a machine learning
+classifier introduced in Section [BDT section in theory chapter]. %TODO
+
+The dijet mass variable is excluded from being used for selection in either of
+these methods. This allows it to be used to define \acp{CR} with a low signal
+purity in order to validate background estimates with comparisons to data. For
+more detail on the definition and use of these \acp{CR}, see Section X. %TODO
 
 These initial investigations were performed before many details of the analysis
 were established and so have a unique phase space, detailed below.
@@ -69,6 +75,12 @@ same as discussed in Section \ref{sec:methods-selection}.
 \begin{table}
   \centering
   \renewcommand\arraystretch{1.3}
+  \caption{
+    Selection for events used in background rejection studies for the \VZy
+    triboson analysis. This is the same as the \Zy selection in Table
+    \ref{tab:anacom-zy-selection} but with a looser photon $p_T$ cut and no
+    \ac{FSR} cut.
+  }
   \begin{tabular}{p{6em}l}
     \hline\hline
     \multicolumn{2}{c}{Background rejection studies preselection} \\
@@ -88,25 +100,353 @@ same as discussed in Section \ref{sec:methods-selection}.
     Boson  & $m_{ll} > 40$ GeV \\
     \hline\hline
   \end{tabular}
-  \caption{
-    Selection for events used in background rejection studies for the \VZy
-    triboson analysis. This is the same as the \Zy selection in Table
-    \ref{tab:anacom-zy-selection} but with a looser photon $p_T$ cut and no
-    \ac{FSR} cut.
-  }
-  \label{tab:anacom-zy-selection}
+  \label{tab:vzy-bdt-preliminaryselection}
 \end{table}
 
+\subsection{Comparison metric}
+\label{sec:vzy-bdt-significance}
+
+A metric is needed in order to evaluate the performance of a given selection.
+Since the desired selection will be one that grants the most sensitivity to the
+\VZy signal, a significance of the signal considering a background-only
+hypothesis is used. This will emulate the significance calculation used for the
+final measurement, though much simplified as it deals with only a single
+background and no systematic uncertainties. Whilst the significances given here
+are not comparable to that from a full measurement, they are comparable with
+each other and will indicate which selection generates more sensitivity to the
+signal process.
+
+\newcommand\nobsi{\ensuremath{n_\text{obs}^i}\xspace}
+As the $m_{jj}$ distribution is not used for selection, it is used here to
+calculate significance with a binned likelihood method. Consider $n_b^i$ as the
+number of background events in bin $i$, and $n_s^i$ the number of signal events,
+from the relevant \ac{MC} samples after selection.  The likelihood of observing
+\nobsi events in bin $i$ is given by a Poisson distribution with a mean of
+$n_b^i + \mu\cdot n_s^i$, where $\mu$ is a signal strength parameter with
+$\mu=0$ for the background-only hypothesis or $\mu=1$ for alternate hypothesis
+with signal included. The likelihood, $\mathcal{L}$, of observing the set of
+$\{\nobsi\}$ in each bin is then the product of each of the per-bin likelihoods.
+
+Constructing the likelihood ratio
+\begin{equation*}
+  \mathscr{\lambda} = \frac{ \mathcal{L}( \{\nobsi\} ; \mu=0 ) }
+                           { \mathcal{L}( \{\nobsi\} ; \mu=1 ) },
+\end{equation*}
+enables a likelihood-ratio test, with the test statistic $-2\ln\lambda$
+distributed as $\chi^2(1)$ \cite{Wilks1938}, to calculate the significance of
+observing $\{\nobsi\}$.
+
+To obtain integer values for \nobsi from the \ac{MC} prediction, as required by
+the use of the Poisson distribution, random toy experiments are run. For each
+experiment, \nobsi is picked at random from a Poisson distribution with mean
+$n_b^i + n_s^i$. Running 1000 of these experiments, calculating the significance
+for each, and taking the mean of the results gives an estimate for the
+significance.
+
+These significances are calculated for each selection tested, given as a number
+of standard deviations.
+%TODO somewhere in theory will have some discussion of significances and
+%hypothesis testing. Might have to reduce or adjust this section once that is
+%written.
+
+\subsection{Selection variables}
+
+Building a selection to reject the \ac{QCD} \Zy background relies on identifying
+differences in jet kinematics, and therefore placing selection requirements on
+jet-based kinematic variables. A number of variables are considered, with the
+full list given in Table \ref{tab:vzy-bdt-variables}.
+
+\newcommand\ptbalance{\ensuremath{p^T_\text{balance}}\xspace}
+
+\begin{table}[!p]
+  \centering
+  \renewcommand\arraystretch{1.3}
+  \caption{
+    Variables considered for selection to reject \ac{QCD} \Zy events for the
+    \VZy triboson analysis.
+  }
+  \begin{tabular}{c|p{10cm}}
+    \hline\hline
+    Variable & Definition \\
+    \hline
+    $y_{j,1}$ &
+    Rapidity of the leading jet in the event.
+    \\
+    $y_{j,2}$ &
+    Rapidity of the sub-leading jet in the event.
+    \\
+    $y_{jj}$ &
+    Rapidity of the $jj$ system.
+    \\
+    $p^T_{j,1}$ &
+    Transverse momentum of the leading jet in the event.
+    \\
+    $p^T_{j,2}$ &
+    Transverse momentum of the sub-leading jet in the event.
+    \\
+    $p^T_{jj}$ &
+    Transverse momentum of the $jj$ system.
+    \\
+    \ptbalance &
+    Relative difference between transverse momenta of the $jj$ and $ll\gamma$
+    systems, given by Equation \ref{eqn:vzy-bdt-ptbalance}.
+    \\
+    $N_j$ &
+    Number of jets in the event, reconstructed with a minimum $p_T$ of 25 GeV.
+    \\
+    $N_j^\text{gap}$ &
+    Number of jets, satisfying $p_T > 25$ GeV found in the rapidity region
+    between the two leading jets.
+    \\
+    $m_{j,1}$ &
+    Mass of the leading jet in the event.
+    \\
+    $m_{j,2}$ &
+    Mass of the sub-leading jet in the event.
+    \\
+    $m(ll\gamma jj)$ &
+    Mass of the triboson system.
+    \\
+    $|\Delta y_{jj}|$ &
+    Absolute rapidity difference between the two leading jets.
+    \\
+    $\Delta\phi_{jj}$ &
+    Smallest difference between the azimuthal angles of the two leading jets.
+    \\
+    $\Delta R_{jj}$ &
+    $\Delta R$ value between the two leading jets.
+    \\
+    $|\Delta y(ll\gamma, jj)|$ &
+    Absolute rapidity difference between the $ll\gamma$ and $jj$ systems.
+    \\
+    $\Delta\phi(ll\gamma, jj)$ &
+    Smallest difference between the azimuthal angles of the $ll\gamma$ and $jj$
+    systems.
+    \\
+    $\Delta R(ll\gamma, jj)$ &
+    $\Delta R$ value between the $ll\gamma$ and $jj$ systems.
+    \\
+    $\Delta R_\text{min}(\gamma, j)$ &
+    Minimum $\Delta R$ value between any photon and jet in the event.
+    \\
+    $\cos{\theta^*(jj)}$ &
+    Cosine of $\theta^*(jj)$, the angle of the leading jet in the dijet
+    centre-of-mass frame relative to the direction of motion of the $jj$ system.
+    \\
+    $\cos{\theta_\text{CS}(jj)}$ &
+    Cosine of $\theta_\text{CS}(jj)$, the angle between the two jets in the
+    Collins-Soper frame \cite{Collins1977}. Jet charge information isn't
+    available so the angle is taken relative to the leading jet.
+    \\
+    $\zeta(ll\gamma)$ &
+    Centrality of the $ll\gamma$ system, given by Equation
+    \ref{eqn:vbs-selection-centrality}.
+    \\
+    \hline\hline
+  \end{tabular}
+  \label{tab:vzy-bdt-variables}
+\end{table}
+
+The variable \ptbalance is given by the equation
+
+\begin{equation}
+  \ptbalance = \frac{ (p^T_{jj} - p^T_{ll\gamma}) }
+                    { (p^T_{jj} + p^T_{ll\gamma}) }.
+  \label{eqn:vzy-bdt-ptbalance}
+\end{equation}
 
 % Section describing cut-based selection optimisation
 \subsection{Cut-based background rejection}
 % See plots here, from old codebase
 % /mnt/naf/code/VZy-prep/extract_VZy/build/signifscan_nomjj2_SR1.pdf
 
+The task at hand is to find a set of cuts to make, on variables from Table
+\ref{tab:vzy-bdt-variables}, in order to maximise sensitivity to the signal
+process. Truly optimising this, finding the best value for each cut given the
+values of every other cut, is a many-dimensional problem with no reasonable
+solution. Instead an iterative approach is taken: find the best cut on each
+variable individually, take the variable with the cut gives the best improvement
+in sensitivity and add it to the selection, then re-test all other cuts on the
+new subset of events.
+
+Identifying the `best' cut to make at any stage is a little subjective. For
+instance, when applying the first cut, the selection that would result in the best
+significance for the signal sample is likely too aggressive to allow for
+multiple effective cuts afterwards. The method used is to calculate background
+rejection ($1/$fraction of background events passing a cut) as a function
+of signal efficiency (fraction of signal events passing a cut) for each
+variable. By eye, these distributions can then be scanned to identify a possible
+cut which gives large background rejection but maintains a high signal
+efficiency. This allows for multiple variables to be included in the selection
+before the phase space becomes too constrained.
+
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=.48\textwidth]{\resource{integral_pT_j2_gt_fix.pdf}}
+  \includegraphics[width=.48\textwidth]{\resource{rejection_pT_j2_gt_fix.pdf}}
+  \caption{
+    Distributions to identify a cut on $p^T_{j,2}$. Shown are fraction of events
+    for each sample that are above a given threshold value in $p^T_{j,2}$ (left)
+    and background rejection as a function of the signal efficiency achievable
+    using the same $p^T_{j,2}$ threshold (right).
+  }
+  \label{fig:vzy-bdt-rejection}
+\end{figure}
+
+Figure \ref{fig:vzy-bdt-rejection} shows the background rejection against signal
+efficiency for $p^T_j{j,2}$, which is the variable chosen to apply a cut on
+first. A cut of $p^T_{j,2} > 35$ GeV is chosen, with a signal efficiency of 74\%
+and a background rejection factor of 2.6.
+
+Continuing this process, the most performant selection found consisted of five
+cuts, listed in Table \ref{tab:vzy-bdt-cutbased}. Using the method described in
+Section \ref{sec:vzy-bdt-significance}, the significance calculated for events
+passing this selection is 1.2 standard deviations.
+
+\begin{table}[tbh]
+  \centering
+  \renewcommand\arraystretch{1.3}
+  \caption{
+    Selection derived for baseline cut-based version of the analysis. Cuts are
+    applied to the \VZy signal sample and the \ac{QCD} \Zy background for events
+    passing the preliminary selection given in Table
+    \ref{tab:vzy-bdt-preliminaryselection}.
+  }
+  \begin{tabular}{c}
+    \hline\hline
+    Cut-based selection \\
+    \hline
+    $p^T_{j,2} > 35 GeV$ \\
+    $|\Delta y_{jj}| < 1.5$ \\
+    $\Delta R(ll\gamma, jj) > 3.0$ \\
+    $\Delta\phi(ll\gamma, jj) > 2.8$ \\
+    $\ptbalance > -0.1$ \\
+    \hline\hline
+  \end{tabular}
+  \label{tab:vzy-bdt-cutbased}
+\end{table}
+
+
 % Section describing BDT optimisation
 \subsection{\acs{BDT} for background rejection}
 
+The cut-based selection provides a baseline performance against which to
+evaluate a \ac{BDT}-based selection. The \ac{BDT} can take many variables as
+input and determine how likely an event is to be signal or background based on
+the value of those variables, having first learned how the variables are
+distributed differently between signal and background events.
+
+The first step is to train a \ac{BDT} to identify these differences between
+signal and background. Once trained, the \ac{BDT} is tested on an independent
+set of events to evaluate its performance and test for overtraining.
+To accommodate this train-test cycle, the signal and background samples are each
+split evenly into two, one half used for training and the other for testing.
+
+%TODO remove this note:
+[Overtraining will be discussed in theory section]
+% Something to fill in the gap here?
+
+Several aspects of the \ac{BDT} are tuned to improve performance: the input
+variables used by the \ac{BDT}, preselection applied to events before training,
+and hyper-parameters of the \ac{BDT} itself. These are discussed in the sections
+below.
+
+%What to write?
+% Input variable optimisation
+\subsubsection{Input variable selection}
+
+The benefit of the \ac{BDT} is its ability to handle many input variables and
+generate a phase space sensitive to the signal. However, giving too many
+variables to the \ac{BDT} creates an overly complex model and allows for
+overtraining. Many iterations of input variables were tested to find a set that
+is sufficiently small to prevent overtraining but with enough variables to allow
+the \ac{BDT} to maximise the sensitivity.
+
+For each set of variables tested, a simple overtraining check is used. For a
+cut on the \ac{BDT} output resulting in a background rejection factor of 10, the
+corresponding signal efficiency is compared between the training sample and the
+test sample. Overtraining would result in a higher signal efficiency in the
+training sample than in the test sample. A requirement that the test sample
+signal efficiency is within $10\%$ of the training sample is used to mitigate
+overtraining in the \ac{BDT} model.
+
+Sensitivity attained by a \ac{BDT} trained on a given variable set is evaluated
+by calculating the significance through the method discussed in Section
+\ref{sec:vzy-bdt-significance}. To do this, a cut must first be placed on the
+\ac{BDT} output. The value chosen for this cut will affect the sensitivity, so
+in each instance many cut values are tested and the highest significance is
+taken to represent the sensitivity of the \ac{BDT}.
+
+After using these tests to compare many combinations of variables, the most
+performant set was chosen.  The final set of 16 input variables is shown in
+Table \ref{tab:vzy-bdt-ranking} ranked by their `importance' as determined by
+the \ac{BDT}. See section [BDT section in theory chapter] for details on how
+variable importance is calculated.
+
+  %TODO add this (more detail?) to theory section
+%Variable importance is based on the number of times that variable
+%is used to split nodes in the decision tree, the separation gain from each
+%split, and the number of events in the split nodes \cite{TMVAguide}.
+
+\begin{table}[tbh]
+  \centering
+  \renewcommand\arraystretch{1.2}
+  \caption{
+    Ranking of variables used by the \ac{BDT} to discriminate between signal and
+    background for the \VZy analysis.
+  }
+  \begin{tabular}{lp{4cm}r}
+    \hline \hline
+    Rank & Variable       & Relative importance\\
+    \hline
+    1  & $|\Delta y_{jj}|$          & $7.46\times10^{-2}$ \\
+    2  & $p^T_{j,2}$                & $7.27\times10^{-2}$ \\
+    3  & $\Delta\phi_{jj}$          & $7.24\times10^{-2}$ \\
+    4  & $m_{j,2}$                  & $7.06\times10^{-2}$ \\
+    5  & \ptbalance                 & $7.05\times10^{-2}$ \\
+    6  & $\Delta R_\text{min}(y,j)$ & $6.50\times10^{-2}$ \\
+    7  & $y_{j,2}$                  & $6.32\times10^{-2}$ \\
+    8  & $\Delta\phi(ll\gamma, jj)$ & $6.15\times10^{-2}$ \\
+    9  & $\cos\theta_\text{CS}(jj)$ & $6.10\times10^{-2}$ \\
+    10 & $p^T_{j,1}$                & $5.76\times10^{-2}$ \\
+    11 & $y_{j,1}$                  & $5.70\times10^{-2}$ \\
+    12 & $p^T_{jj}$                 & $5.68\times10^{-2}$ \\
+    13 & $\Delta R(ll\gamma,jj)$    & $5.68\times10^{-2}$ \\
+    14 & $m_{j,1}$                  & $5.60\times10^{-2}$ \\
+    15 & $\log{\zeta(ll\gamma)}$    & $5.48\times10^{-2}$ \\
+    16 & $y_{jj}$                   & $4.96\times10^{-2}$ \\
+    \hline\hline
+  \end{tabular}
+  \label{tab:vzy-bdt-ranking}
+\end{table}
+%todo mention log of centrality
+
+The logarithm of the centrality, $\zeta(ll\gamma)$, is taken rather than the
+centrality itself as it extends to very high values. The method of binning
+variables employed by the \ac{BDT} left little available discrimination power
+with the original form of the variable. Figure \ref{fig:vzy-bdt-centrality}
+shows the effect of the logarithm.
+
+\begin{figure}[tbhp]
+  \centering
+  \includegraphics[width=.48\textwidth]{\resource{EWvQCD/Zy_centrality.pdf}}
+  \includegraphics[width=.48\textwidth]{\resource{EWvQCD/log_Zy_centrality.pdf}}
+  \caption{
+    Distribution of centrality, $\zeta(ll\gamma)$, both without (left) and with
+    (right) the logarithm applied. Normalised events are shown for the \VZy
+    signal sample and the \ac{QCD} \Zy background.
+  }
+  \label{fig:vzy-bdt-centrality}
+\end{figure}
+
+% Training cuts
+\subsubsection{Preselection and training cuts}
+
+% Hyper-parameter optimisation
+% Results and comparison to  cut-based
+
 % TODO write BDT section in theory
+% Include something on overtraining?
 % sources:
 %http://dx.doi.org/10.1016/j.nima.2004.12.018
 %https://arxiv.org/abs/2206.09645

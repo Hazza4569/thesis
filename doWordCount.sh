@@ -4,7 +4,6 @@ let wc=0
 # picked up by default due to custom input commands)
 for file in {thesis,chapters/*/*{,/*}}.tex; do
     count=`perl wordCount/texcount.pl -sum -merge -q -0 $file`
-    echo ${count%%[^0-9]*}
     let wc+=${count%%[^0-9]*}
 done
 # subtract of acronym file (counted in thesis.tex but contains only commands)
