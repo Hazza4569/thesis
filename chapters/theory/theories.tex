@@ -1,0 +1,227 @@
+% Go into subsections below on different sub-QFTs of the SM.
+\subsection{Quantum electrodynamics}
+
+\acronymused{QED}
+Quantum electrodynamics (QED) describes electromagnetic interactions
+between charged particles.  As a gauge theory respecting local $U(1)$
+transformations it introduces a single massless gauge boson, the photon. When
+formulated as a \ac{QFT}, \ac{QED} must therefore describe fermions, photons,
+and the interactions between them.  The \ac{QED} Lagrangian can be built from
+three terms:
+\newcommand\LQED{\ensuremath{\Lden_\text{QED}}\xspace}
+\newcommand\LDirac{\ensuremath{\Lden_\text{Dirac}}\xspace}
+\newcommand\LEM{\ensuremath{\Lden_\text{EM}}\xspace}
+\newcommand\Lint{\ensuremath{\Lden_\text{int}}\xspace}
+%
+\begin{equation*}
+  \LQED = \LDirac + \LEM + \Lint.
+\end{equation*}
+%
+
+The \LDirac term describes the dynamics of a fermion under Dirac theory. This is
+given by
+%
+\begin{equation*}
+  \LDirac = \overline{\psi}(i\gamma^\mu\partial_\mu - m)\psi,
+\end{equation*}
+where $\psi$ is a Dirac spinor, a four-component fermion field representing
+up-down and particle-antiparticle states for a fermion of mass $m$. The
+$\gamma^\mu$ are a set of matrices accounting for fermion spin, these are
+commonly absorbed into the covariant derivative using the Feynman slash
+notation, $\gamma^\mu\partial_\mu \to \slashed{\partial}$.
+
+Maxwell's equations provide the terms \LEM and \Lint, describing the kinematics
+of the photon and their interaction with charged fermions:
+%
+\begin{align*}
+  \LEM  &= -\frac14 F^{\mu\nu}F_{\mu\nu} = -\frac14 (F_{\mu\nu})^2, \\
+  \Lint &= -J^\mu A_\mu = -q\overline{\psi}\gamma^\mu\psi A_\mu.
+\end{align*}
+%
+Here $A_\mu$ is the electromagnetic vector potential; $F_{\mu\nu}$ is the
+electromagnetic field tensor, given by
+\begin{equation}
+  F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu;
+  \label{eqn:theory-theories-qed-fieldstrength}
+\end{equation}
+and $J^\mu = q\overline{\psi}\gamma^\mu\psi$ is a conserved current, satisfying
+$\partial_\mu J^\mu = 0$, for a fermion of charge $q$.
+
+Combining these, and simplifying by defining a gauge covariant derivative
+\begin{equation}
+  D_\mu = \partial_\mu - iQA_\mu,
+  \label{eqn:theory-theories-qed-covariant}
+\end{equation}
+gives the full \ac{QED} Lagrangian:
+%
+\begin{equation*}
+  \LQED = \overline{\psi}(i\slashed{D} - m)\psi
+                   - \frac14 (F_{\mu\nu})^2.
+  \label{eqn:theory-theories-qed-lagrangian}
+\end{equation*}
+
+This result could instead be obtained by starting from the Dirac Lagrangian and
+enforcing local gauge invariance through the covariant derivative transformation
+in Equation \ref{eqn:theory-theories-qed-covariant}. The form of Equation
+\ref{eqn:theory-theories-qed-lagrangian} is recovered with the inclusion of the
+\LEM term, which is the only locally gauge invariant formulation of a kinetic
+term for the field $A_\mu$. Its invariance can be demonstrated from the local
+gauge invariance of the commutator $[D_\mu,D_\nu]$, given
+\begin{equation}
+  \begin{split}
+    [D_\mu,D_\nu] &= iq(\partial_\mu A_\nu - \partial_\nu A_\mu)\\
+                  &= iqF_{\mu\nu}.
+  \end{split}
+  \label{eqn:theory-theories-qed-covariant-commutator}
+\end{equation}
+%
+This technique for deriving field tensors from potentials will be relevant in
+discussion of other theories. For the complete derivation of \LQED through the
+requirement of gauge invariance, see \cite[pp.482-6]{Peskin1995}.
+
+% Local or global U(1)? What is the difference??
+% U(1) transformation is transformation by a Unitary 1x1 matrix -- a phase
+% change
+%
+% Gauge-fixing term citation: \cite[p.205]{Aitchson2013}
+
+\subsection{Yang-Mills theory}
+
+The \ac{QED} theory corresponds to a $U(1)$ gauge symmetry, and
+as such is Abelian. Constructing a non-Abelian gauge theory respecting $SU(n)$
+symmetries is more complex, but generically solved by the Yang-Mills theory
+\cite{Yang1954}.
+
+For generators of the Lie algebra $T^a$ and structure constant $f^{abc}$,
+a gauge covariant derivative can be defined by
+\begin{equation*}
+  D_\mu = \partial_\mu - igT^a A^a_\mu,
+\end{equation*}
+where a vector field $A^a_\mu$ is required for each generator of the $SU(n)$
+group, and $g$ is a coupling constant. Here the exponents $a,b,c$ index the
+generators of the Lie algebra, whilst $\mu,\nu$ index space-time dimensions, as
+per convention. 
+
+This gauge covariant derivative is a generalisation of the Abelian form, given in
+Equation \ref{eqn:theory-theories-qed-covariant}, and acts on an $n$-plet,
+$\psi$, of spinors, $\psi_i$, rather than on a single spinor as in the \ac{QED}
+case. The generators of $SU(n)$ serve to transform $\psi_i$ into one-another
+through abstract rotations.
+
+In analogy to the Abelian case in Equation
+\ref{eqn:theory-theories-qed-covariant-commutator}, the commutator is used to
+define a set of field strength tensors: the commutator
+\begin{equation*}
+  [D_\mu, D_\nu] = -igF^a_{\mu\nu}T^a
+\end{equation*}
+holds for a field strength satisfying
+\begin{equation*}
+  F^a_{\mu\nu}T^a = \partial_\mu A^a_\nu T^a - \partial_\nu A^a_\mu T^a
+                  - ig[A^a_\mu T^a, A^b_\nu T^b].
+\end{equation*}
+%
+This shows explicitly that for an Abelian symmetry group, with $[T^a,T^b]=0$,
+the form of Equation \ref{eqn:theory-theories-qed-fieldstrength} is recovered.
+For non-Abelian gauge theories, however, the additional term is introduced, with
+dependence on the potentials from other gauge fields. This is known as a
+`nonlinear' term, and represents self-interaction of gauge fields.
+
+Substituting in the general form for the commutator of $SU(n)$ generators given
+in Equation \label{eqn:theory-symmetry-gen-commutator}, the general form of a
+field strength for such a non-Abelian gauge theory is given by
+\begin{equation}
+  F^a_{\mu\nu} = \partial_\mu A^a_\nu - \partial_\nu A^a_\mu
+               + gf^{abc}A^b_\mu A^c_\nu.
+  \label{eqn:theory-theories-ym-fieldstrength}
+\end{equation}
+%
+This leads to the Yang-Mills Lagrangian, the most general renormalisable
+Lagrangian for a theory respecting $SU(n)$ symmetry expressed in terms of these
+field strengths,
+\begin{equation}
+  \Lden_\text{YM} = \overline{\psi}(i\slashed{D} - m)\psi -\frac{1}{4} (F^a_{\mu\nu})^2.
+  \label{eqn:theory-theories-ym-lagrangian}
+\end{equation}
+
+A more detailed derivation for the Yang-Mills theory can be found in Reference
+\cite[pp.486-91]{Peskin1995}.
+
+
+\subsection{Quantum chromodynamics}
+
+The strong force, or \ac{QCD}, is modelled by a non-Abelian gauge theory. The
+fundamental particles that \ac{QCD} acts on are quarks.
+A charge is attached to quarks that works as the electric charge in \ac{QED},
+but to describe the observed dynamics of the strong force this charge comes in
+three flavours. This charge is known as colour charge, and the three flavours
+are red, green, and blue.
+
+Transformation of a quark from one quark to another acts as a gauge symmetry in
+the theory; if all red quarks became green, green became blue, and blue became
+red the predictions of the theory would remain unchanged. This rotation of
+colour charge is described perfectly by the $SU(3)$ symmetry.
+
+\ac{QCD} can therefore be constructed as a Yang-Mills theory under $SU(3)$,
+with the Lagrangian following that of Equation
+\ref{eqn:theory-theories-ym-lagrangian}. Given that the $SU(3)$ group has 8
+generators, the theory of \ac{QCD} relies on 8 gauge bosons to mediate
+interactions. These bosons are called gluons, and the 8 varieties are
+represented as different colour combinations of the gluons.
+
+%Asymptotic freedom
+It can be shown that the coupling constant (appearing
+\ref{eqn:theory-theories-ym-fieldstrength}) for \ac{QCD} is actually not a
+constant, and is dependent on the energy scale of interactions \cite{PDG2022}.
+For high energies (i.e. large distance scales) the coupling strength tends to
+zero, leading to `asymptotic freedom'. Quarks can only exist as free particles
+in the high energy limit, whereas at and below energies of $\sim1$ GeV the
+coupling strengths are sufficiently high that quarks are exclusively confined in
+composite particles, hadrons.
+
+
+\subsection{The electroweak theory}
+
+%747
+The \ac{EW} theory describes the weak interaction, and also supersedes \ac{QED}
+as it is unifies the weak and \ac{EM} forces.  It combines the local $U(1)$
+invariance of \ac{QED} with the symmetry of the weak interaction under local
+$SU(2)$ transformations. The gauge covariant derivative for the theory is given
+by
+%
+\begin{equation*}
+  D_\mu = \partial_\mu - igT^a W^a_\mu - \frac12 ig'B_\mu,
+\end{equation*}
+where $a$ indexes the 3 generators of the $SU(2)$ algebra, $T^a$, and their
+corresponding gauge fields, $W^a_\mu$. The field $B_\mu$ is required for
+invariance under $U(1)$ symmetry.
+
+The corresponding field strengths are then
+\begin{equation*}
+  \begin{split}
+  W^a_{\mu\nu} &= \partial_\mu W_\nu - \partial_\nu W_\mu
+               + g \varepsilon^{abc}W^b_\mu W^c_\nu \\
+  B_{\mu\nu}   &= \partial_\mu B_\nu - \partial_\nu B_\mu \\
+  \end{split}
+\end{equation*}
+
+To treat this as a conventional Yang-Mills theory would result in four massless
+gauge bosons, three corresponding to the three $W^a_\mu$ fields mediating the
+weak interaction, and one from the $B_\mu$ field mediating \ac{EW} interactions.
+The weak interaction being mediated by massless bosons would result in
+asymptotic freedom of weakly interacting particles, as seen in \ac{QCD}; this is
+not what is observed experimentally, so this Yang-Mills theory cannot form a
+complete description of the interaction.
+
+The missing ingredient is the Higgs mechanism, spontaneous \ac{EW} symmetry
+breaking. When the Higgs field takes a non-zero vacuum expectation value,
+a rotated set of the potentials $W^a_\mu$ and $B_\mu$ appears in the Lagrangian
+instead, resulting in gauge fields:
+\begin{equation*}
+  \begin{split}
+    W_\mu^\pm &= \frac1{\sqrt2} (W_\mu^1 \mp iW_\mu^2) \\
+    Z_\mu     &= \frac1{\sqrt{g^2 + g'^2}}( gW_\mu^3 - g' B_\mu ) \\
+    A_\mu     &= \frac1{\sqrt{g^2 + g'^2}}( g'W_\mu^3 + g B_\mu ), \\
+  \end{split}
+\end{equation*}
+%
+

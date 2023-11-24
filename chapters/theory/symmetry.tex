@@ -1,0 +1,80 @@
+% ========== SYMMETRY SECTION ==========
+
+\subsection{Lie groups}
+
+Lie groups, and their corresponding Lie algebras, are used to define the
+symmetries obeyed by a given theory. Lie groups represent a set of
+transformations that can be applied to a state, and are used to represent
+symmetries in theories when transformations between these states should be
+invariant.  Two types of group are prominent in particle physics theory: unitary
+ans special unitary groups.  A unitary group of degree $n$, denoted $U(n)$, is
+the infinite group of all unitary $n\times n$ matrices under matrix
+multiplication.  A special unitary group of degree $n$, $SU(n)$, is a subgroup
+of the corresponding unitary group and contains all $n\times n$ matrices with a
+determinant of 1. An $SU(n)$ group has $n^2-1$ members, or `generators'.
+
+Of interest to the theories discussed here are the groups $U(1)$, $SU(2)$, and
+$SU(3)$. The $U(1)$ group contains all complex numbers with a magnitude of 1; a
+$U(1)$ transformation is equivalent to a change in complex phase. As complex
+numbers commute, $U(1)$ forms an Abelian group.
+
+The $SU(2)$ group contains three $2\times 2$ matrices, $T^a$, which may be
+expressed in terms of the Pauli spin matrices as $T^a = \sigma^a/2$. The
+generators of $SU(2)$ are non-commutative, with the commutator
+\begin{equation*}
+  [T^a,T^b] = i \varepsilon^{abc} T^c,
+\end{equation*}
+where $\varepsilon^{abc}$ is the totally antisymmetric Levi-Civita tensor;
+the $SU(2)$ group is therefore non-Abelian.
+
+More generally, the commutator for generators of an $SU(n)$ algebra are given by
+\begin{equation}
+  [T^a,T^b] = if^{abc}T^{c},
+  \label{eqn:theory-symmetry-gen-commutator}
+\end{equation}
+where $f^{abc}$ is a totally antisymmetric tensor specifying the structure
+constants of the Lie algebra. For the $SU(2)$ definition given above,
+$f^{abc}=\varepsilon^{abc}$.
+
+The third group of interest is $SU(3)$; this group is also non-Abelian and
+contains 8 generators, which in this instance are $3\times 3$ matrices. A
+typical basis for the generators of $SU(3)$ would give structure constant values
+\begin{equation*}
+  \begin{split}
+    f^{123} &= 1, \\
+    f^{147} = f^{246} = f^{257} = f^{345} = -f^{367} = -f^{156} &= \frac12,
+    \hspace{10em}\\
+    f^{458} = f^{678} &= \frac{\sqrt{3}}2, \\
+  \end{split}
+\end{equation*}
+%
+with all over elements equal to zero \cite{gellmann1961}.
+
+\subsection{Gauge transformations}
+
+A gauge, in theoretical particle physics, is an abstract frame of reference that
+often manifests as a mathematical simplification made by modifying fields or
+operators, known as a gauge transformation. These transformations lead to a
+deeper symmetry required in theories: if a gauge transformation is allowed
+within a theory then it must not affect the observables of the theory, the
+theory must be symmetric under these transformations. This gauge symmetry is a
+core concept of modern \acp{QFT}, and such gauge-symmetric \acp{QFT} are known
+as gauge theories.
+
+A gauge transformation can local or global. A global gauge transformation is
+where the parameter controlling the transformation is constant across
+space-time. Local transformations are a more general case where the parameter is
+a function of spatial coordinates and can vary between locations.
+
+The transformations between allowed gauges in a theory form a Lie group. For
+each generator in the Lie group a gauge field is introduced. Inclusion of these
+gauge fields in the Lagrangian ensure that the theory is invariant under gauge
+transformations. If a theory is local gauge invariant, these gauge fields can
+vary across space-time and allow for interactions between particles in the
+theory; this is how forces are introduced in gauge theories. The quanta of a
+gauge field in a \ac{QFT} is called a gauge boson.
+
+For an example of constructing a \ac{QFT} satisfying local gauge invariance see
+Reference \cite[pp.242-3]{Thomson2013}.
+
+% Work out difference between global and local gauge

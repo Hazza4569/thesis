@@ -1,0 +1,61 @@
+% ========== SYSTEMATIC UNCERTAINTIES SECTION ==========
+
+This analysis considers the sources of systematic uncertainty discussed in
+Section \ref{sec:methods-systematics}. As well as being applied to the signal
+and \ac{QCD} \Zy background, full experimental and theory systematic
+uncertainties are applied for the \ac{EW} \Zyjj background. A different pruning
+procedure is used here to the \ac{VBS} analysis, and is discussed below.
+
+%Largest uncertainties
+
+\subsection{Pruning}
+Given the large number of systematic uncertainties, a pruning procedure is
+implemented in order to reduce the number of nuisance parameters necessary in
+the fit. The pruning used for this analysis is less detailed than the one used
+for the \ac{VBS} \Zy analysis, it does not rely on statistical uncertainties on
+the estimates of systematic uncertainties.
+
+Pruning is done individually in each of the four regions used in the fit.
+The impact of each uncertainty on the normalisation and shape of the signal
+rarity distribution is considered; shape and normalisation impact are decoupled
+such that either can be removed if the effect is small. As a result, there are
+four outcomes for each systematic uncertainty: it is retained in full with
+normalisation and shape effect, its shape effect is dropped but normalisation
+kept, its normalisation effect is dropped but shape effect retained, or the
+uncertainty is dropped entirely.
+
+If the normalisation effect of an uncertainty is retained in the fit, one
+nuisance parameter is included which allows the uncertainty estimate to be
+adjusted by the fit, changing the overall normalisation for the associated
+background or signal estimate. When the shape effect of a systematic uncertainty
+is used in the fit, per-bin nuisance parameters are used which allow the yield
+in each bin to be adjusted by the fit; these per-bin parameters are constrained
+so as not to affect the overall uncertainty.
+
+The threshold for dropping a normalisation component of an uncertainty is set at
+$0.2\%$, i.e.  the normalisation is dropped from the fit if its estimated effect
+on the overall normalisation of the sample is less than 0.2\% of the yield. The
+threshold for dropping a shape component is also set at 99.8\%. In this case the
+is a threshold in the probability of the uncertainty having a different shape
+to the nominal distribution. The probability is calculated through the
+Kolmogorov-Smirnov (KS) test \cite{Kolmogoroff1933,Smirnov1939,Massey1951}; the
+$p$-value given by the test represents compatibility between the nominal and
+systematic varied distributions. If the $p$-value is greater than 0.998 (99.8\%)
+then the differences are considered sufficiently small and the shape component
+is dropped.
+
+The results of the pruning performed are shown in Figure
+\ref{fig:vzy-systematics-prune}, where for each sample, region, and background
+the treatment of each systematic uncertainty is indicated.
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[height=.9\textheight]{\resource{Pruning.pdf}}
+  \caption{
+    Pruning results for systematics in the \VZy analysis. The colours indicate
+    whether a systematics shape and normalisation uncertainty components were
+    each retained for the fit or dropped, for each sample and region used in the
+    fit.
+  }
+  \label{fig:vzy-systematics-prune}
+\end{figure}
