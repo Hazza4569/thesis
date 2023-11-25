@@ -86,6 +86,7 @@ requirement of gauge invariance, see \cite[pp.482-6]{Peskin1995}.
 % Gauge-fixing term citation: \cite[p.205]{Aitchson2013}
 
 \subsection{Yang-Mills theory}
+\label{sec:theory-theories-ym}
 
 The \ac{QED} theory corresponds to a $U(1)$ gauge symmetry, and
 as such is Abelian. Constructing a non-Abelian gauge theory respecting $SU(n)$
@@ -180,13 +181,14 @@ composite particles, hadrons.
 
 
 \subsection{The electroweak theory}
+\label{sec:theory-theories-ew}
 
 %747
 The \ac{EW} theory describes the weak interaction, and also supersedes \ac{QED}
 as it is unifies the weak and \ac{EM} forces.  It combines the local $U(1)$
 invariance of \ac{QED} with the symmetry of the weak interaction under local
-$SU(2)$ transformations. The gauge covariant derivative for the theory is given
-by
+$SU(2)$ transformations, and thus is described by $SU(2)\times U(1)$ symmetry.
+The gauge covariant derivative for the theory is given by
 %
 \begin{equation*}
   D_\mu = \partial_\mu - igT^a W^a_\mu - \frac12 ig'B_\mu,
@@ -206,22 +208,41 @@ The corresponding field strengths are then
 
 To treat this as a conventional Yang-Mills theory would result in four massless
 gauge bosons, three corresponding to the three $W^a_\mu$ fields mediating the
-weak interaction, and one from the $B_\mu$ field mediating \ac{EW} interactions.
+weak interaction, and one from the $B_\mu$ field mediating \ac{EM} interactions.
 The weak interaction being mediated by massless bosons would result in
 asymptotic freedom of weakly interacting particles, as seen in \ac{QCD}; this is
 not what is observed experimentally, so this Yang-Mills theory cannot form a
 complete description of the interaction.
 
-The missing ingredient is the Higgs mechanism, spontaneous \ac{EW} symmetry
-breaking. When the Higgs field takes a non-zero vacuum expectation value,
-a rotated set of the potentials $W^a_\mu$ and $B_\mu$ appears in the Lagrangian
-instead, resulting in gauge fields:
+The missing ingredient is  spontaneous \ac{EW} symmetry breaking through the
+Higgs mechanism. When the Higgs field takes a non-zero vacuum expectation value,
+a rotated set of the potentials, $W^a_\mu$ and $B_\mu$, appears in the
+Lagrangian instead, resulting in gauge fields:
 \begin{equation*}
   \begin{split}
-    W_\mu^\pm &= \frac1{\sqrt2} (W_\mu^1 \mp iW_\mu^2) \\
-    Z_\mu     &= \frac1{\sqrt{g^2 + g'^2}}( gW_\mu^3 - g' B_\mu ) \\
-    A_\mu     &= \frac1{\sqrt{g^2 + g'^2}}( g'W_\mu^3 + g B_\mu ), \\
+    W_\mu^\pm &= \frac1{\sqrt2} (W_\mu^1 \mp iW_\mu^2), \\
+    Z_\mu     &= \frac1{\sqrt{g^2 + g'^2}}( gW_\mu^3 - g' B_\mu ), \\
+    A_\mu     &= \frac1{\sqrt{g^2 + g'^2}}( g'W_\mu^3 + g B_\mu ). \\
   \end{split}
 \end{equation*}
 %
+The $W^\pm_\mu$ and $Z_\mu$ fields have mass terms in the Lagrangian, with
+masses parametrised by
+\begin{equation*}
+  m_W = \frac{gv}2, \,\,\, m_Z = \frac{\sqrt{g^2 + g'^2}v}2,
+\end{equation*}
+where $v$ is the vacuum expectation value.
 
+This converts the previous form of the theory with four massless bosons to a
+description with three massive bosons, the two charged W bosons and the
+neutral Z boson, and one massless boson, which is identified as the photon.
+
+Due to the non-Abelian $SU(2)$ symmetry group used to build this theory, we
+see self-interaction terms arising in the Lagrangian, as explained in Section
+\ref{sec:theory-theories-ym}. The resulting interactions are discussed in
+Section \ref{sec:theory-sm}.
+
+Another result of the Higgs mechanism is the introduction of a massive scalar
+boson, the Higgs boson.  A detailed description of the Higgs mechanism is beyond
+the scope of this thesis, but Reference \cite{Peskin1995} explains the form of
+equations given here as well as giving much more detail on the topic.
