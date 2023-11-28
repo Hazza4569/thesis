@@ -1,0 +1,42 @@
+% ========== MONTE CARLO PREDICTIONS ==========
+
+The \ac{SM} is tested by comparing its predicted cross-sections for a set of
+measurable physics processes with the rate observed in data. To isolate
+processes of interest, this is often done in complicated phase spaces and
+differentially across distributions, so calculating the predicted cross-sections
+is quite complex.
+
+\acused{MC}
+The solution to this problem is to generate Monte Carlo (MC) events representing
+the \ac{SM} prediction. For a given final state (i.e. the set of particles
+produced in the interaction) a sample of events is generated for each
+contributing process, containing particles with random kinematic properties
+generated in such a way that the overall distribution matches the expectation
+from the model. If all processes are accounted for, taking the sum of events
+from all of these samples in a certain final state and phase space, the
+yield of \ac{MC} events should match the yield of data events.
+
+%Talk about specific generators
+Production of \ac{MC} samples is a very complicated process and there are
+several implementations of the process commonly used in the field, known as
+\ac{MC} generators. Generators discussed in this thesis include \madgraph
+\cite{madgraph5amc}, \sherpa \cite{sherpa2dot2}, \pythia \cite{pythia8dot2},
+and \powheg \cite{powheg}.
+
+% physics process > hadronisation
+After the initial generation of an event in its simplest form, with only
+fundamental particles in the final state, a few additional steps are needed to
+create something comparable to what can be observed in experiments. The first
+step is hadronisation: taking free partons in the final state and simulating the
+effects of the strong force confining these into hadrons. This will involve
+repeated emission and reabsorption of gluons, with many additional quarks
+created along the way. The result is a collimated stream of hadronic particles
+that could be observed in a detector.
+
+After hadronisation, further steps are taken to match simulations to results for
+a specific experiment; these are discussed in Section [detector:simulation].
+%TODO update reference
+
+% What is a tune?
+% TODO Truth record < discuss in detector section, kinda only makes sense if compared
+% to reco
