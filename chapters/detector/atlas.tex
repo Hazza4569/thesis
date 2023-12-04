@@ -1,0 +1,356 @@
+% ========== THE ATLAS DETECTOR SECTION ==========
+
+% Overview
+\acsfirst{ATLAS} (\acl{ATLAS}) is one of the four detectors built around interaction
+points at the \ac{LHC}. The \ac{ATLAS} detector is the largest of the four, and
+designed as a general-purpose detector to measure as many different processes as
+possible. In order to do this, it surrounds the interaction point almost
+entirely; full angular acceptance would allow any event to be fully
+reconstructed from its detected decay products. The detector itself is built of
+several sub-detectors, each dedicated to measuring specific properties of
+particles. Each of these sub-detectors is discussed in detail below.
+Figure \ref{fig:detector-atlas-atlas} gives an overview of the \ac{ATLAS}
+detector and its components.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{\resource{atlas-schematic.pdf}}
+  \caption{
+    Cut-away view of the \acs{ATLAS} detector. Dimensions and components of the
+    detector are labelled. \cite{ATLASpaper}
+  }
+  \label{fig:detector-atlas-atlas}
+\end{figure}
+
+\subsection{Coordinate system}
+A specific coordinate system is used to describe the \ac{ATLAS} detector and
+interactions within it. The $z$-axis runs along the beamline, the $x$-axis
+points, in the positive direction, towards the centre of the \ac{LHC} ring, and
+the $y$-axis points vertically upwards. The azimuthal angle, $\phi$, is measured
+around the beamline in the $x$-$y$ plane and the polar angle, $theta$, is
+measured from the beam axis. A pseudorapidity coordinate, $\eta$, is defined as
+\begin{equation*}
+  \eta = -\ln\tan(\theta/2).
+\end{equation*}
+Transverse momentum, $p_T$, and transverse energy, $E_T$, are used to define the
+momentum or energy in the $x$-$y$ plane, transverse to the beamline.
+
+The set of coordinates $p_T$, $\eta$, and $\phi$ are typically preferred to
+describe the kinematics of objects in the detector as they are invariant under
+Lorentz boosts along the beamline\footnote{
+  Pseudorapidity itself is not invariant, but transforms additively under
+  Lorentz boosts; differences in pseudorapidity are therefore Lorentz invariant.
+}.
+Without this Lorentz invariance, differences in kinematics between events could
+be introduced depending on the relative momenta of the colliding partons.
+
+Angular differences between objects are typically expressed in terms of the
+quantity $\Delta R = \sqrt{\Delta\eta^2 + \Delta\phi^2}$.
+
+% Subdetectors:
+\subsection{Inner detector}
+
+The innermost detector system, known as the \ac{ID} or tracker, contains three
+sub-detectors designed to track the location of charged particles, to measure
+their momentum based on the curvature of their tracks. This is enabled by a
+solenoid magnet which surrounds the \ac{ID}, generating a 2 T magnetic field in
+order to curve the tracks of charged particles travelling through.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.9\textwidth]{\resource{tracker-schematic.jpg}}
+  \caption{
+    Diagram showing the components of the inner detector. The IBL label
+    represents the insertable B-layer, the innermost part of the pixel detector
+    which was added between Run 1 and Run 2.  The $r$ values label radial
+    distances from the centre of the beam pipe. \cite{ATLAS2017densetracking}
+  }
+  \label{fig:detector-atlas-tracker}
+\end{figure}
+
+% hits and tracks, general?
+As particles travel through the components of the \ac{ID}, `hits' are registered
+for each location where the particle is detected. Hits across the tracker are
+fitted to reconstruct the track of the particle. The momentum of this particle
+is calculated from the radial arc of this track, and the sign of its charge is
+deduced from the direction of the curve. Extrapolating the track towards its
+origin allows it to be associated with a specific collision vertex location on
+the beamline.
+
+% ref figure
+Figure \ref{fig:detector-atlas-tracker} shows a cross-section of the \ac{ID} and
+its sub-detectors. From the beamline outwards, these are: the pixel detector,
+the \ac{SCT}, and the \ac{TRT}. Each of these are detailed below. The pixel and
+\ac{SCT} both cover an acceptance of $|\eta| < 2.5$ while the \ac{TRT} has an
+acceptance of $|\eta| < 2$.
+
+%Pixel
+The closest component to the beamline is the pixel detector. The pixel detector
+is designed to measure particles as close to the beamline as possible, with very
+high granularity and precision. The detector is made up of 1968 silicon sensor
+modules, with a combined total of $8.6\times10^7$ pixels across all sensors
+\cite{IBLTDR}. The nominal pixel size is $50\times400~\mu$m (in $r\phi\times z$)
+and 250 $\mu$m thick, with some variation in different regions
+\cite{ATLASpaper}. As a charged particle passes through a pixel on the sensors
+it ionises the atoms in the silicon, creating electron-hole pairs; these charges
+are collected to generate a signal indicating a hit in that pixel.
+
+%SCT
+The next component out, along the path of a particle, is the \ac{SCT}.
+The \ac{SCT} uses silicon strip sensors, which operate on the same principles as
+the pixels. These strips have typical dimensions of $80\mu\text{m}\times6.4$cm
+with a thickness of 285 $\mu$m \cite{ATLASpaper}. The \ac{SCT} consists of four
+layers, where each layer has two sets of strips back-to-back with a relative
+angle of 40 mrad between the strips. The rotation between strips within a layer
+improves resolution along the long axis of the strip. In the barrel strips are
+placed with their long axis parallel to the beamline (in the $z$-direction) and
+in the end-caps strips are placed in the $r$-direction.
+
+%TRT
+The last \ac{ID} component encountered by incident particles is the \ac{TRT}.
+The \ac{TRT} is composed of $3.7\times10^5$ straw detectors, with a diameter of
+4 mm and a length of 144 cm (barrel region) or 37 cm (end-cap region).  In the
+barrel region straws are placed parallel to the beamline. In the end-cap region
+straws are arranged radially in wheels.  The straw detectors contain a
+gold-plated tungsten wire surrounded by a xenon-carbon dioxide-oxygen gas
+mixture. The space between straws is filled with a polymer fibre. Charged
+particles crossing the boundaries between materials emit transition radiation,
+dependent on their $\gamma = E/m$, which is ionises atoms in the gas mixture and
+gives a readout on the wire. This gives hits for tracking particles but also
+provides information on the $E/m$ ratio of the incident particle; this is used
+for identification of electrons.
+
+%  > momentum resolution?
+
+\subsection{Calorimeters}
+
+The \ac{ATLAS} detector has two distinct calorimeter systems: the \ac{LAr}
+calorimeter and the tile hadronic calorimeter. These are both sampling
+calorimeters, employing alternating absorbing and active layers to induce
+\ac{EM} or hadronic showers and measure the energies of shower products,
+respectively. Figure \ref{fig:detector-atlas-calo} shows the location of the
+calorimeter components in the context of the detector.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.95\textwidth]{\resource{calo-schematic.jpg}}
+  \caption{Cut-away view of the \acs{ATLAS} calorimeters, with each component
+  labelled. \cite{Pequenao2008a}}
+  \label{fig:detector-atlas-calo}
+\end{figure}
+
+% LAr
+The \ac{LAr} calorimeter has four components, the barrel, the \ac{EM} end-cap
+(\acsfirst{EMEC}), the hadronic end-cap (\acsfirst{HEC}), and the forward
+calorimeter (\acsfirst{FCal}).
+All of these components use liquid argon in the active layers, where low-energy
+shower particles will ionise argon atoms and produce a charge which is collected
+in order to measure the deposited energy. The barrel and \ac{EMEC} use lead for
+the absorbing layers, the \ac{HEC} uses copper absorbers, and the \ac{FCal} has
+a combination of copper and tungsten.
+
+The \ac{LAr} barrel and \ac{EMEC} each have three layers of calorimeter cells of
+differing sizes. These sizes vary by region, but Figure
+\ref{fig:detector-atlas-accordion} shows the layout in the centre of the barrel.
+There is also an additional `presampler' layer in front of these three layers.
+The full specification for calorimeter cell granularity is given in Reference
+\cite[p.9]{ATLASpaper}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.8\textwidth]{\resource{accordion.pdf}}
+  \caption{
+    Diagram showing layout of calorimeter cells in the barrel of the \acs{LAr}
+    calorimeter. The $X_0$ units measure \ac{EM} radiation lengths. \cite{ATLASpaper}
+  }
+  \label{fig:detector-atlas-accordion}
+\end{figure}
+
+The first of these calorimeter layers in the barrel for $|\eta|<1.4$ consists of
+strips of cells with very high $\eta$ granularity. This provides more precise
+determination of the shape of \ac{EM} showers in the calorimeter.
+
+% Tile cal
+The tile hadronic calorimeter uses scintillating plastic tiles for the active
+layers and steel absorbing layers. The tile barrel and extended barrel combined
+give coverage of $|\eta| < 1.7$. The barrel and extended barrel are each divided
+into three layers longitudinally, and have a total thickness of 7.4 hadronic
+interaction lengths. 
+Between the tile, \ac{HEC}, and \ac{FCal}, hadronic calorimetry acceptance is
+$|\eta| < 4.9$.
+% Probably more to say?
+
+\subsection{Muon spectrometer}
+
+The outermost component of the \ac{ATLAS} detector is the \ac{MS}.
+Muons will likely pass through the calorimeters without significant energy loss
+and, due to their larger mass, relying on the \ac{ID} alone is imprecise for
+measuring their momentum and identifying them. The muon spectrometer solves this
+problem, adding additional tracking for muons in an acceptance of $|\eta| <
+2.7$.
+
+A large toroidal magnet system is used to curve the tracks of muons passing
+through the \ac{MS}, allowing tracking systems to measure their momentum.
+Tracking information is primarily provided by the \ac{MDT} and \ac{CSC} systems.
+The \ac{RPC} and \ac{TGCm} detectors add to this, but also provide
+triggering capabilities. These systems are shown in the context of the detector
+in Figure \ref{fig:detector-atlas-ms}.
+% Muon figure
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.9\textwidth]{\resource{ms-schematic.jpg}}
+  \caption{
+    Cut-away view of the \acs{ATLAS} detector with muon spectrometer components
+    labelled.
+    \cite{Pequenao2008b}
+  }
+  \label{fig:detector-atlas-ms}
+\end{figure}
+
+The \acp{MDT} provide tracking across the full acceptance of the \ac{MS}, with
+multiple layers of \acp{MDT} in both the barrel and the end-caps. These function
+similarly to the straw detectors of the \ac{TRT}, with a tungsten-rhenium wire
+surrounded by an argon-methane-nitrogen gas mixture.
+
+In the most radiation-prone region, the inner section of the most central
+end-cap layers, \acp{CSC} are used in place of \ac{MDT}. The \acp{CSC} cover
+pseudorapidities $2 < |\eta| < 2.7$. These are multiwire proportional counters
+with cathodes segmented into strips, and benefit from higher granularity than
+the \acp{MDT}.
+
+The \acp{RPC} are placed in the barrel region and consists of two resistive plates
+separated by a 2 mm gas-filled gap. In the end-cap region, \acp{TGCm} are used;
+these are similar to \acp{CSC} but designed with a faster readout suitable for
+triggering. Both the \ac{RPC} and \ac{TGCm} are used to give real-time readout
+of track information for the trigger. They also give a measurement of the
+`second coordinate', the coordinate orthogonal to what the \ac{MDT} or \ac{CSC}
+are designed to measure in the same region.
+
+\subsection{Trigger and data acquisition}
+
+Running at maximum capacity, the \ac{ATLAS} detector measures an event every 25
+ns, i.e. a rate of 40 MHz, and in the majority of events no `interesting'
+physics happens. 
+There is no realistic way to read out the data from every
+single event at this rate, but even if this was possible it would create an
+inflated storage requirement for events that will probably never be used for
+physics studies.
+
+The trigger is the solution to this problem; events are quickly processed to
+determine if they have any signatures that might indicate the presence of
+interesting physics processes. This is done in two stages: a low-level hardware
+trigger (the Level-1 trigger) to make very fast but loose selection on events,
+reducing the input rate to around 100 kHz, and then a high-level trigger
+(\acsfirst{HLT}) which uses more information and more complex reconstruction to
+reduce the rate further down to 1 kHz.
+
+To adjust how events are accepted and to manage the output rate, a trigger
+`menu' is used; this gives the set of requirements for events to pass the
+trigger in a given run, for both Level 1 and the \ac{HLT}.
+
+The trigger works in tandem with the data acquisition system, responsible for
+reading out events passing trigger selections. This is done with front-end
+hardware read-out devices that collect the detector information and process it
+after receiving accept signals from the trigger systems. The entire trigger and
+data acquisition (\acsfirst{TDAQ}) system is summarised in Figure
+\ref{fig:detector-atlas-tdaq-tdaq}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=.9\textwidth]{\resource{tdaq.pdf}}
+  \caption{
+    Diagram showing components and data-flow of the \acs{ATLAS} Run-2 \acs{TDAQ}
+    system. \cite{ATLAStrigops2020}
+  }
+  \label{fig:detector-atlas-tdaq-tdaq}
+\end{figure}
+
+\subsubsection{Level-1 trigger}
+
+The Level-1 trigger system is built of three main components: L1Calo, L1Muon,
+and L1Topo. Each of these are built from bespoke hardware modules designed to
+perform the necessary algorithms as quickly as possible to keep up with the rate
+of input data.
+
+L1Calo takes input from the calorimeters to give triggers for \ac{EM} objects
+and jets. From both the \ac{LAr} and tile calorimeters, the energies in each
+trigger tower (a $0.1\times0.1$ area in $\eta\times\phi$) are sent to a
+\ac{PPM}. The \ac{PPM} sends these energies to two modules: the \ac{CP} and
+\ac{JEP}. The \ac{CP} analyses a $4\times4$ area of trigger towers to calculate
+energies and isolations for \egamma or $\tau$ candidates. The \ac{JEP} employs a
+similar process over larger areas and with lower granularity, in order to
+calculate energies of jet candidates and estimate missing transverse energy. For
+each event, L1Calo sends a set of `threshold bits' to the \ac{CTP} indicating
+multiplicities and energies of different objects with respect to trigger menu
+thresholds \cite{Achenbach2008}.
+
+L1Muon uses tracking information from the \ac{RPC} and \ac{TGC} to make a rough
+estimate of transverse momentum of muons. Any set of two or more hits that are
+consistent with a track originating at the interaction point are considered as
+candidate muons. Comparing the calculated $p_T$ of these muons to the menu
+thresholds gives a trigger decision for the event.
+
+Taking input from both L1Calo and L1Muon, L1Topo calculates topological
+variables with a more holistic view of the event. These calculations include
+quantities such as invariant masses of or angular separation between multiple
+objects, and allow to trigger on more complex signatures.
+
+For events passing the Level-1 trigger threshold, \acp{RoI} are passed to the
+\ac{HLT} in order to seed more complex trigger calculations.
+
+\subsubsection{High-level trigger}
+
+The \ac{HLT} runs algorithms in software on a dedicated server farm, afforded
+looser timing constraints due the reduced input rate from the Level-1 trigger.
+Algorithms are grouped into `chains', with each chain seeded by a Level-1
+\ac{RoI}. Algorithms that require less processing time are typically run earlier
+in the chain to enable faster rejection of bad events.
+
+Events are organised into `streams' where each stream contains events that pass
+a set of trigger chains. These streams give events that will pass the trigger
+and be saved for offline processing. The main stream (\verb|physics_Main|)
+will consist of events passing the trigger menu. A subset of accepted events are
+sent to an express stream which is sent for immediate offline reconstruction to
+test data quality.
+
+% Luminosity measurement
+\subsection{Luminosity}
+
+The luminosity recorded by the \ac{ATLAS} detector is measured to understand
+what fraction of the delivered \ac{LHC} luminosity is recorded by the detector.
+The precision of this measurement also has an impact on the precision of physics
+measurements. There are multiple methods of luminosity measurement employed by
+\ac{ATLAS} but the primary measurement is made with the LUCID detector
+\cite{Avoni2018}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.95\textwidth]{\resource{intlumivstimeRun2DQall.pdf}}
+  \caption{
+    Integrated luminosity as a function of time for Run 2. Shown are the total
+    luminosity delivered by the \acs{LHC}, the luminosity recorded by
+    \ac{ATLAS}, and the amount satisfying requirements to be used for physics
+    analyses.
+    \cite{ATLASdq2020}
+  }
+  \label{fig:detector-atlas-lumi-lumi}
+\end{figure}
+
+The LUCID detector consists of two stations 17m along the beam pipe either side
+of the interaction point. Each station uses a set of Cherenkov tubes to detect
+protons displaced through inelastic scattering. The number of detected protons
+should be proportional to the number of interactions per bunch crossing, on
+average, and thus proportional to the integrated luminosity; this is
+calibrated using van der Meer scans. For the Run-2 integrated luminosity, the
+measurement from LUCID and other sources has an uncertainty of 1.7\%
+\cite{ATLASlumi2019}.
+
+The total integrated luminosity recorded by \ac{ATLAS} throughout Run 2 is shown
+in Figure \ref{fig:detector-atlas-lumi-lumi}. This marks the total luminosity
+delivered by the \ac{LHC}, the amount of that recorded by \ac{ATLAS}, and the
+amount which is `good for physics'. The differences in these amounts are due to
+down-time in the detector or its subsystems. Events are only marked good for
+physics if all systems were functional, within accepted tolerances, during
+data-taking. The deficit in \ac{ATLAS} recorded luminosity from the total
+delivered represents inefficiencies in data acquisition.

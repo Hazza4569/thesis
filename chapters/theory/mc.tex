@@ -4,7 +4,9 @@ The \ac{SM} is tested by comparing its predicted cross-sections for a set of
 measurable physics processes with the rate observed in data. To isolate
 processes of interest, this is often done in complicated phase spaces and
 differentially across distributions, so calculating the predicted cross-sections
-is quite complex.
+is quite complex. Real measurements are also subject to the limitations and
+effects of the detector; for accurate comparisons to be made between data and
+predictions, these need to be accounted for.
 
 \acused{MC}
 The solution to this problem is to generate Monte Carlo (MC) events representing
@@ -18,25 +20,77 @@ yield of \ac{MC} events should match the yield of data events.
 
 %Talk about specific generators
 Production of \ac{MC} samples is a very complicated process and there are
-several implementations of the process commonly used in the field, known as
+several implementations commonly used in the field, known as
 \ac{MC} generators. Generators discussed in this thesis include \madgraph
 \cite{madgraph5amc}, \sherpa \cite{sherpa2dot2}, \pythia \cite{pythia8dot2},
-and \powheg \cite{powheg}.
+\powheg \cite{powheg}, and \herwig \cite{herwigpp}.
 
-% physics process > hadronisation
-After the initial generation of an event in its simplest form, with only
-fundamental particles in the final state, a few additional steps are needed to
-create something comparable to what can be observed in experiments. The first
-step is hadronisation: taking free partons in the final state and simulating the
-effects of the strong force confining these into hadrons. This will involve
-repeated emission and reabsorption of gluons, with many additional quarks
-created along the way. The result is a collimated stream of hadronic particles
-that could be observed in a detector.
+These generators are used to simulate the hard scatter, the interaction
+responsible for creating the desired final state. In order to match the
+simulation to the conditions under which the process is initiated, the generator
+must use a \ac{PDF} set determined from data under the same conditions.
 
-After hadronisation, further steps are taken to match simulations to results for
-a specific experiment; these are discussed in Section [detector:simulation].
-%TODO update reference
+Simulating a single physics process does not give a complete picture of a real
+detector event, however. This is the core of the hard scatter, the primary high
+energy collision in the event, but several additional steps must be taken:
+parton showering, applied to any strongly interacting particles; hadronisation,
+converting these showers into composite hadrons; adding the `underlying event',
+all of the activity expected in the collision from sources other than the hard
+scatter; and detector simulation, accounting for effects of particles being
+measured by the detector.
 
-% What is a tune?
-% TODO Truth record < discuss in detector section, kinda only makes sense if compared
-% to reco
+% parton showering and hadronisation: pythia and herwig
+For each parton from the hard-scatter process, a shower of \ac{QCD} activity is
+produced from repeated strong interactions. This continually creates more, lower
+energy, partons until the energies reach a regime where confinement effects
+become relevant. Confining the shower products into colourless hadrons is
+handled by a hadronisation model, such as string fragmentation
+\cite{Andersson1983}. Both parton showering and hadronisation are incorporated
+into \ac{MC} event generators. Some generators, such as \sherpa, will simulate
+the hard-scatter process, parton showering, and hadronisation all in one. In
+other cases the hard-scatter process is created with one generator, e.g.
+\madgraph, and then another generator is used to add parton showering and
+hadronisation to it, e.g. \pythia or \herwig.
+
+% what is the underlying event? Modelling issues => 
+% tuning parameters to data to match underlying event description
+Underlying event is a term used to describe everything happening around the hard
+scatter in collisions; this includes spectator and pileup interactions, as
+introduced in Section \ref{sec:theory-pp}.
+%This includes interactions from pileup collisions, other
+%proton-proton collisions in the event besides the one that produced the hard
+%scatter, and spectator interactions, i.e. interactions between partons in the
+%same protons as the hard scatter.
+Modelling the underlying event is very dependent on the specific conditions
+under which the collisions are happening.  This is mitigated by tuning certain
+parameters of the model to match data; different `tunes' are available from data
+collected under different conditions.  For \ac{MC} samples, underlying event
+modelling is typically handled by the same generators as the parton showering
+and hadronisation.
+
+% detector simulation
+Having simulated the hard scatter, parton showering, hadronisation, and the
+underlying event, the particles and their kinematics should be established. The
+remaining step is determining how this event would be detected in an experiment,
+if it were from a real collision. For the \acs{ATLAS} detector (introduced in
+Section \ref{sec:detector-atlas}) this is done using \geantfour \cite{geant4,
+ATLASsim1}.
+
+% truth and reco information in MC samples
+A distinction is made between information from \ac{MC} samples before and after
+detector simulation. Simulated events before detector simulation is applied are
+known as `truth' events, they contain only the physics processes and are not
+subject to any inefficiencies or misidentification of the simulated detector.
+Events completing the full simulation chain are known as reconstructed \ac{MC}
+events. These are typically linked so that the truth properties (or `truth
+record') of reconstructed \ac{MC} events are accessible. Analysis is typically
+done using reconstructed \ac{MC} events, but in certain cases making
+distinctions based on truth information is necessary.
+
+% Link into my analyses?
+Events simulated in the manner discussed here are used extensively for the two
+analyses presented in this thesis (as well as for studies presented in Chapter
+\ref{sec:trig}). The signal process and all backgrounds in the final state have
+dedicated \ac{MC} simulation samples generated in order to model the kinematics
+of events. Generation of these specific samples is discussed in Section
+\ref{sec:methods-samples}.
