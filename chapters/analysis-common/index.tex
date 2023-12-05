@@ -1,12 +1,16 @@
 \renewcommand\relpath[1]{chapters/analysis-common/#1}
 \renewcommand\resource[1]{chapters/analysis-common/resources/#1}
 
-\section{Introduction}
 \input{\relpath{intro.tex}}
+
+\section{Data and blinding strategy}
+\label{sec:methods-data}
+\input{\relpath{data.tex}}
 
 \section{Simulated event samples}
 \label{sec:methods-samples}
 \input{\relpath{samples.tex}}
+%TODO: revamp (include intro to what simulations are used for)
 
 \section{Object reconstruction}
 \label{sec:methods-reconstruction}
@@ -16,6 +20,10 @@
 \label{sec:methods-selection}
 \input{\relpath{selection.tex}}
 
+\section{Boosted decision trees}
+\label{sec:methods-bdt}
+% TODO
+
 \section{Background estimation}
 \label{sec:methods-backgrounds}
 \input{\relpath{backgrounds.tex}}
@@ -23,3 +31,8 @@
 \section{Systematic uncertainties}
 \label{sec:methods-systematics}
 \input{\relpath{systematics.tex}}
+% TODO: add full list
+
+\section{Statistical inference}
+\label{sec:methods-stats}
+% TODO
