@@ -1,0 +1,157 @@
+% ========== BOOSTED DECISION TREES SECTION ==========
+
+% Some sort of intro, ML discriminant etc.
+Boosted decision trees ({\acsfirst{BDT}}s) are a machine learning technique used
+commonly in particle physics due to their ability to discriminate between
+populations (e.g. signal and background) through supervised training. This means
+that they can be fed events from \ac{MC} simulations labelled as either signal
+or background, learn the features which distinguish the two populations, and
+create a discriminant that can be applied to any other event. The \ac{BDT} can
+therefore use this discriminant to determine how likely a data event is to be
+signal or background.
+
+\subsection{Decision trees}
+\label{sec:methods-bdt-trees}
+
+The basic element of a \ac{BDT} is a decision tree. Given a sample of events, a
+decision tree is built by splitting the events into two sub-samples (or
+branches) by making a cut on a kinematic variable. These branches can then be
+further split by making additional cuts, each cut splitting events in two based
+on whether they fall above or below the cut threshold. Given knowledge of
+whether each event is signal or background, the cuts can be chosen to give the
+optimal separation at each step. The result will be that each branch has either
+a higher signal or background purity than the one before it.
+
+Each of the final subsets of events in the tree are called leaves. Each leaf
+will either have a majority of signal events, and thus be a signal leaf, or
+background events, and so is a background leaf. The decision tree gives an
+output for each event, either signal or background depending on which leaf it is
+placed in. Events in signal leaves have an output of $+1$ and events in
+background leaves are assigned $-1$.
+
+This process can be adjusted by controlling certain parameters related to the
+tree's construction, known as hyperparameters. For instance, when searching for
+an optimal cut on a particular variable, there will be some granularity for cut
+values that are tested. This leads to an \ncuts hyperparameter, the number of
+potential cut values tested. There must also be a stopping condition for when to
+stop splitting the branches. Specifying a maximum depth for the tree, \dmax,
+achieves this.
+
+This process alone is similar to optimising a simple cut-based analysis, and
+does not typically provide a strong classifier. Decision trees can however be
+enhanced through boosting.
+
+\subsection{Boosting}
+
+Boosting is a process in which decision trees are built iteratively, with
+events reweighted after building each tree in order to focus on areas where the
+decision tree performed poorly. This is typically done for of order 1000
+decision trees. For \acp{BDT} used here, boosting is achieved with an algorithm
+called `AdaBoost' (adaptive boosting), described below \cite{TMVAguide}.
+
+Initially, all events are assigned a weight of one. A decision tree is built
+from these events using the method in Section \ref{sec:methods-bdt-trees}, this
+is the first iteration. The misclassification rate, or error rate, in this tree
+is determined as
+\begin{equation*}
+  \varepsilon = \frac{ \sum_{i\in\{x^\text{mis}\}} w_i }
+                     { \sum_{i\in\{x\}} w_i },
+\end{equation*}
+where $w_i$ is the weight for event $i$, $\{x\}$ is the set of all events, and
+$\{x^\text{mis}\}$ is the set of misclassified events. An event is determined to
+have been misclassified if it falls in a leaf of the opposite type, i.e. a
+signal event in a background leaf or vice versa.
+
+This error rate is used to calculate the boost weight for this iteration,
+\begin{equation*}
+  \alpha = \left( \frac{1-\varepsilon}{\varepsilon} \right) ^\beta,
+\end{equation*}
+where $\beta$ is an adjustable hyperparameter. This boost weight is used to
+increase, or boost, the weight of each misclassified event in this iteration;
+their current weights are multiplied by $\alpha$.
+The next iteration begins by constructing a new decision tree, considering the
+modified event weights. The process then repeats, recalculating the error rate
+and the boost weight and boosting misclassified events.
+
+% beta and N_trees
+The $\beta$ hyperparameter typically has a value of 1, but can be decreased to
+reduce the impact of each training iteration. The number of trees, \ntrees, can
+also be adjusted as a hyperparameter to tune the response of the \ac{BDT}.
+
+\subsection{Training and testing}
+
+% training and testing
+A \ac{BDT} is trained on a set of signal and background events in order to build
+its set of decision trees, which it can then use to classify further events.
+An independent set of signal and background events are typically used to test
+the \ac{BDT} classification.
+
+% Overtraining
+A common problem with \ac{BDT} classifiers is overtraining. Overtraining
+typically occurs when the model is too complicated relative to the size of the
+training sample. Model complexity is linked to the number of input variables and
+the number and size of decision trees.
+The result is that the \ac{BDT} will misidentify statistical fluctuations
+in the signal and background as features of the sample.
+
+Overtraining can be identified as a reduced performance on the independent
+test sample compared to on the training sample. Some amount of overtraining is
+inevitable but it should normally be mitigated; though there is nothing
+inherently wrong with overtraining a \ac{BDT} model, it will limit
+discrimination power. If a \ac{BDT} suffers from overtraining, it can be
+countered by either increasing the size of the training sample or decreasing the
+model complexity.
+
+\subsection{BDT output}
+
+Once trained, each event evaluated by the \ac{BDT} is given a score,
+calculated from the output of each individual decision tree:
+\begin{equation*}
+  y(x_i) = \frac1{\ntrees} \sum_k^{\ntrees} \log(\alpha_k)h_k(x_i)
+\end{equation*}
+where $y(x_i)$ is the \ac{BDT} score for the $i$\textsuperscript{th} event,
+$h_k(x_i)$ is the output of the $k$\textsuperscript{th} decision tree for the
+$i$\textsuperscript{th} event, and $\alpha_k$ is the boost weight for the
+$k^\textsuperscript{th}$ decision tree.
+
+Lower values of this \ac{BDT} score indicate an event is background-like,
+whereas higher values indicate it is signal-like. This variable can be used
+directly to represent the \ac{BDT} response for events, but
+transformations of this \ac{BDT} score can be more useful for identifying
+signal-rich regions if the signal-background separation is not clear in the
+\ac{BDT} score distribution itself.
+
+Figure \ref{fig:methods-bdt-score} shows the \ac{BDT} score distribution for a
+\ac{BDT} training in Chapter \ref{sec:vzy}. This distribution is difficult to
+place a signal-enriching cut on, and motivates the use of an alternate \ac{BDT}
+response distribution.
+
+\begin{figure}[tbh]
+  \centering
+  \includegraphics[width=\textwidth]{\resource{overtrain.pdf}}
+  \caption{
+    Example \acs{BDT} score distribution, from training and test data used for
+    the semileptonic \VZy analysis. Signal and background events are as defined
+    in Section \ref{sec:vzy-bdt}.
+  }
+  \label{fig:methods-bdt-score}
+\end{figure}
+
+The relevant variable for this thesis is known as the signal rarity. The signal
+rarity distribution is defined through an integral over the probability density
+of the background events used in training, such that the distribution of
+background events in signal rarity is flat. A formal definition is given in
+Reference \cite{TMVAguide}. Signal rarity takes values from 0 to 1, higher
+values give more signal-like events. This distribution is used for the \ac{BDT}
+response in the semileptonic \VZy analysis (e.g. Figure
+\ref{fig:vzy-srcr-cutdists}).
+
+\subsection{Variable importance}
+
+When training a \ac{BDT}, some variables are typically found to be more
+discriminating than others. Variables are assigned an `importance' score based
+on the number of times they are used to make cuts while creating decision trees,
+the separation gain from each cut, and the number of events in the branch
+\cite{TMVAguide}. When selecting variables with which to train a decision tree,
+ranking input variables by their importance is very useful; Section
+\ref{sec:vzy-bdt-variables} discusses this process.

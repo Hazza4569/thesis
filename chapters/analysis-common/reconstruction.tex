@@ -1,5 +1,4 @@
 % ========== Object reconstruction section ==========
-%TODO label WPs used for e/y/mu ID/isolation (loose,medium,tight) and cite.
 
 A reconstruction procedure is applied in order to match signals in the detector
 to the corresponding physics object that created them, and to calculate the
@@ -8,7 +7,11 @@ The procedure used is different for any class of physics object. This section
 discusses the details of the reconstruction for each of the objects used in the
 two presented analyses: photons, electrons, muons, and jets.
 
-%Explain hits&tracks and clusters&topoclusters
+Each of these physics objects are built from more intermediate `detector
+objects', which are groups of signals in the relevant sub-detectors. These are
+clusters in the calorimeters, and hits and tracks in the
+\ac{ID} and \ac{MS}. These detector objects are defined in Section
+\ref{sec:detector-atlas}.
 
 \subsection{Photons}
 \label{sec:methods-reconsruction-photon}
@@ -41,27 +44,47 @@ these `fake photons'. The desired prompt photons typically result in more
 collimated clusters contained within the \ac{EM} calorimeter, whereas fake
 photons produce broader showers and leakage into the hadronic calorimeter.
 An identification selection, consisting of a set of cuts on shower-shape
-variables, is derived to minimise photon fakes.
-% TODO cite a source for photon ID?
+variables, is derived to minimise photon fakes. Photons for these analyses are
+required to meet the identification criteria for the `tight' working point
+defined in reference \cite{ATLASegamPerf2019}.
 
 % Isolation
 \newcommand\ptcone{$p_T^{\text{cone},20}$\xspace}
 \newcommand\etcone{$E_T^{\text{cone},20}$\xspace}
-Additionally, photons must be considered isolated. Non-prompt photons will
-typically appear nearby other activity in the detector. Prompt photons can be
+Photons are also required to be considered isolated, to reduce backgrounds such
+as photons produced as parts of hadronic or \ac{EM} showers. These non-prompt photons
+will typically appear nearby other activity in the detector. Prompt photons can be
 selected by ensuring that photon candidates are isolated in a region with little
 activity around them. Two variables are used to define the isolation:
 \ptcone and \etcone.
-\ptcone is the sum of transverse momenta of all $p_T > 1$ GeV tracks originating from the
+Here \ptcone is the sum of transverse momenta of all $p_T > 1$ GeV tracks originating from the
 \ac{PV}, within a cone of $\Delta R < 0.2$ around the direction of the photon.
-\etcone is the sum of \ac{EM} cluster transverse energies within the same cone,
+The \etcone variable is the sum of \ac{EM} cluster transverse energies within the same cone,
 minus the energy of the photon.
 Cuts are defined on these variables as a function of the photon $p_T$:
 \ptcone $<0.05\cdot p_T^\gamma$ (track isolation) and \etcone $<0.065\cdot
-p_T^\gamma$ (calorimeter isolation).
+p_T^\gamma$ (calorimeter isolation). This corresponds to the `FixedCutLoose'
+criteria defined in Reference \cite{ATLASegamPerf2019}.
 
-Systematics uncertainties are included in the measurements to account of the efficiencies of photon
-identification and isolation \cite{PhotonIDIsoEff2016}.
+Figure \ref{fig:methods-reconstruction-photonIDeff} shows the efficiency for
+photon identification in Run 2, which for high-$p_T$ ($\gtrsim 40$)
+loosely-isolated photons is greater than 90\%.
+
+\begin{figure}[tbh]
+  \centering
+  \includegraphics[width=.8\textwidth]{\resource{photonID.pdf}}
+  \caption{
+    Efficiencies for identification of photons in Run 2 of the \acs{ATLAS}
+    detector, as a function of transverse energy.
+    Shown are the values for loosely-isolated unconverted photons in
+    the central region of the detector \cite{ATLASphotonID2021}.
+  }
+  \label{fig:methods-reconstruction-photonIDeff}
+\end{figure}
+
+Systematic uncertainties are included in the measurements to account for
+uncertainties in the efficiencies of photon identification and isolation
+\cite{PhotonIDIsoEff2016}.
 
 
 \subsection{Electrons}
@@ -69,11 +92,11 @@ identification and isolation \cite{PhotonIDIsoEff2016}.
 % Signature and energy
 The basic signature to seed an electron is an \ac{EM} cluster with $E_T>1$ GeV
 with an associated track that has hits in at least four silicon layers. As with
-photons, the energy for an electron candidate is calculated by summing the
-energy of the seed cluster with any additional clusters in a $0.075\times0.125$
-($\eta\times\phi$) area, as well as any clusters matched to the same track as
-the seed. Energy scale and resolution effects are accounted for in the same
-manner as for photons, and included in systematic uncertainties.
+photons, the transverse energy for an electron candidate is calculated by
+summing the energy of the seed cluster with any additional clusters in a
+$0.075\times0.125$ ($\eta\times\phi$) area, as well as any clusters matched to
+the same track as the seed. Energy scale and resolution effects are accounted
+for in the same manner as for photons, and included in systematic uncertainties.
 
 %Identification and Isolation
 Electron candidates are also subject to identification and isolation
@@ -84,6 +107,24 @@ and calorimeter by requiring the energy or momenta within a cone around the seed
 is below a threshold. The details of both identification and isolation of
 electrons are discussed in Reference \cite{ElectronIDIso2019}.
 
+Electrons used for these analyses are required to match the `medium'
+identification working point defined in Reference \cite{ATLASegamPerf2019}. The
+efficiency of this and other working points is shown in Figure
+\ref{fig:methods-reconstruction-electronIDeff}. The isolation selection
+electrons are required to pass is given by the `FCLoose' criteria in Reference
+\cite{ATLASegamPerf2019}.
+
+\begin{figure}[tbh]
+  \centering
+  \includegraphics[width=.8\textwidth]{\resource{electronID.pdf}}
+  \caption{
+    Efficiencies for identification of electrons in Run 2 of the \acs{ATLAS}
+    detector, as a function of transverse energy. 
+    Loose, medium, and tight working points for electron identification are
+    shown in different colours. \cite{ATLASegamEffs2023}.
+  }
+  \label{fig:methods-reconstruction-electronIDeff}
+\end{figure}
 
 \subsection{Muon}
 
@@ -95,17 +136,36 @@ in the \ac{ID} must be matched to at least three hits in the \ac{MS}.
 Muon candidates are only considered here within the acceptance of the \ac{ID}
 ($|\eta| < 2.5$). Candidates must produce three hits in at least two \ac{MS}
 stations, or in only one station for muons with $|\eta|<0.1$.
-%TODO explain what a MS station is in detector chapter
 % Energy
 The transverse momentum of the muon is calculated from a combined track fit of the
 tracks/hits in the \ac{ID} and \ac{MS} and the corresponding energy loss in the
 calorimeters.
+This corresponds to the `medium' identification working point defined in
+Reference \cite{MuonReco2021}.
 
 % Isolation
-Muons must also be isolated to select prompt muons from, e.g., boson decays
+Muons must also be isolated to preferentially select prompt muons from, e.g., boson decays
 rather than those from hadronic sources. Muon isolation is given by the total
 $p_T$ in a cone around the muon divided by the muon $p_T$. As with electrons and
 photons, this is calculated in both the \ac{ID} and the calorimeter.
+
+Efficiencies for reconstructing and identifying muons with this procedure exceed
+98\% for tracks satisfying $0.1 < |\eta| < 2.5$ \cite{MuonReco2021}. Figure
+\ref{fig:methods-reconstruction-muonEff} shows the efficiency as a function of
+muon transverse momentum.
+
+\begin{figure}[tbh]
+  \centering
+  \includegraphics[width=.9\textwidth]{\resource{muonID.pdf}}
+  \caption{
+    Efficiencies for reconstructing and identifying muons in Run 2 of the \acs{ATLAS}
+    detector, as a function of transverse momentum. 
+    Loose, medium, and tight working points for muon identification are
+    shown in different colours. \cite{MuonReco2021}.
+  }
+  \label{fig:methods-reconstruction-muonEff}
+\end{figure}
+
 
 Data-MC comparisons are used to measure the efficiency and
 resolution of muon reconstruction, accounted for in systematic uncertainties
@@ -117,46 +177,75 @@ resolution of muon reconstruction, accounted for in systematic uncertainties
 
 % What is a jet? How does it represent a quark/gluon?
 A jet is a physics object representing a localised grouping of hadrons, rather
-than a single particle. These hadronic showers can be initiated by quarks or
-gluons radiated from the hard scatter in the collision, since these free partons
+than a single particle. These localised groupings of hadrons can be formed by quarks or
+gluons radiated from the hard scatter, since the initially quasi-free partons
 will hadronise before interacting with any elements of the detector. Jets are
 thus used as a reconstruction-level analogue of a quark or gluon produced in a
-physics process.
+hard-scatter interaction.
 
 % Jet algorithms
 Reconstructing a jet requires use of a jet clustering algorithm in order to
 combine clusters and tracks in the detector to collect all the particles likely
 to have been produced by the incident hadron. Jet reconstruction in \ac{ATLAS}
 uses the anti-$k_t$ jet clustering algorithm \cite{antikt}, with a distance
-parameter of $R=0.4$.
+parameter of $R=0.4$. This algorithm is chosen for its infrared and collinear
+safety; in short, the same set of jets would be constructed from an event if
+additional soft emissions or collinear splittings are added \cite{Salam2010}. It
+also produces geometrically-regular conical jets which are convenient to work
+with experimentally.
 
 % Jet collections
-A jet can be reproduced differently depending on the information given as input
-to the clustering algorithm. A `jet collection' is the name used for jets
-produced from a certain set of inputs. The baseline jet collection used in the
-two presented analyses is `particle-flow' jets, in the \ac{VBS} analysis
-`topo-cluster' jets are also considered.
+The definition of a jet is dependent on the clustering algorithm used and on the
+information given as input to this algorithm.
+A `jet collection' is the name
+used for jets produced from a certain set of inputs. The baseline jet collection
+used in the two presented analyses is `particle-flow' jets, in the \ac{VBS}
+analysis `topo-cluster' jets are also considered. These are both defined through
+the anti-$k_t$ algorithm, but the set of objects on which the algorithm acts is
+different.
 
 % Topo jets
-Topo-cluster jets are formed using only calorimeter information, passing topo
-clusters as input to the clustering algorithm. Topo clusters, or topological
-clusters, are a pileup-resistant formulation of a calorimeter cluster: with
-cells added to a cluster based on whether the measured energy exceeds a
-threshold determined by the expected noise in that cell. Since only calorimeter
-information is used to create the jets, topo-cluster jets rely heavily on the
-resolution of the calorimeter \cite{Aad2017b}.
+Topo-cluster jets are formed using only calorimeter information, passing
+topo-clusters as input to the clustering algorithm. Topo clusters, or
+topological clusters, are a pileup-resistant formulation of a calorimeter
+cluster: with cells added to a cluster based on whether the measured energy
+exceeds a threshold determined by the expected noise in that cell. Since only
+calorimeter information is used to create the jets, topo-cluster jets rely
+heavily on the granularity and performance of the calorimeter \cite{Aad2017b}.
 
 %PFlow jets
 Particle-flow jets are an alternative jet collection created by using
 `particle-flow objects' as input to the clustering algorithm. A particle-flow
-object is a combination of calorimeter topo clusters and \ac{ID} tracks, with
+object is a combination of calorimeter topo-clusters and \ac{ID} tracks, with
 calorimeter deposits produced by charged particles removed to avoid
 energy/momentum double-counting, designed to represent a single particle.
 Combining calorimeter and tracker information allows for improved resolution at
 lower energies compared to topo-cluster jets \cite{Aaboud2017a}.
 
 % Uncertainties
-Systematic uncertainties are included to account for effects on the energy and
-resolution of jets from detector calibration, properties of the jet such as
+Systematic uncertainties are included to account for effects on the energy scale
+and resolution of jets from detector calibration, properties of the jet such as
 quark/gluon flavour composition, and data-\ac{MC} differences
 \cite{JESUncerts2017}.
+
+\subsection{Overlap removal}
+
+Once the above objects are reconstructed, they are only used in the analyses if
+they survive overlap removal. This procedure takes the lists of each set of
+object and removes candidates based on their proximity to other objects. This
+procedure is known as `overlap removal' (\acsfirst{OR}).
+
+First, jet candidates are removed if $\Delta R(j,e) < 0.2$ or $\Delta
+R(j,\gamma) < 0.4$ for any $e$ or $\gamma$. Lepton candidates are subsequently
+removed if $\Delta R(l,j) < 0.4$ for any remaining jet. Photon candidates are
+removed if $\Delta R(\gamma,l) < 0.4$ and electrons removed if $\Delta R(\mu,e)
+< 0.2$.
+
+\begin{sloppypar}
+This process avoids double-counting of energies across multiple objects.  Jet
+\ac{OR} avoids fake jets that are reconstructed from a prompt electron or photon
+signal and also avoids cases where near-coincident leptons and jets might bias
+each other's reconstruction. Muon-electron \ac{OR} avoids reconstructing
+electrons from muon bremsstrahlung, meanwhile photon-lepton \ac{OR} is simply an
+additional isolation precaution \cite{Adams2015}.
+\end{sloppypar}

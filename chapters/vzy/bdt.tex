@@ -348,7 +348,7 @@ split evenly into two, one half used for training and the other for testing.
 
 Several aspects of the \ac{BDT} are tuned to improve performance: the input
 variables used by the \ac{BDT}, preselection applied to events before training,
-and hyper-parameters of the \ac{BDT} itself. These are discussed in the sections
+and hyperparameters of the \ac{BDT} itself. These are discussed in the sections
 below.
 
 %What to write?
@@ -383,11 +383,6 @@ performant set was chosen.  The final set of 16 input variables is shown in
 Table \ref{tab:vzy-bdt-ranking} ranked by their `importance' as determined by
 the \ac{BDT}. See section [BDT section in theory chapter] for details on how
 variable importance is calculated.
-
-  %TODO add this (more detail?) to theory section
-%Variable importance is based on the number of times that variable
-%is used to split nodes in the decision tree, the separation gain from each
-%split, and the number of events in the split nodes \cite{TMVAguide}.
 
 \begin{table}[tbh]
   \centering
@@ -474,17 +469,13 @@ further improvements were found.  This cut is only applied for training the
 \ac{BDT}, and not as a preselection cut, to preserve its use for defining
 \acp{CR}.
 
-\subsubsection{Hyper-parameter optimisation}
+\subsubsection{Hyperparameter optimisation}
 % TODO revisit section after BDT theory written
 
-A \ac{BDT} implementation has hyper-parameters that instruct it on how to build
+A \ac{BDT} implementation has hyperparameters that instruct it on how to build
 decision trees during training, as discussed in Section [theory:BDT].
 %TODO update reference
-\newcommand\ntrees{\ensuremath{N_\text{trees}}\xspace}
-\newcommand\ncuts{\ensuremath{N_\text{cuts}}\xspace}
-\newcommand\dmax{\ensuremath{d_\text{max}}\xspace}
-\newcommand\boostbeta{\ensuremath{\beta}\xspace}
-Four hyper-parameters were investigated to optimise performance of the \ac{BDT}
+Four hyperparameters were investigated to optimise performance of the \ac{BDT}
 used for this analysis: the number of cuts tested across the range of a variable
 when splitting nodes, \ncuts; the number of trees in the forest, \ntrees; the
 maximum allowed depth of each decision tree, \dmax; and the \boostbeta
@@ -495,7 +486,7 @@ overtraining and sensitivity through the same procedure as in Section
 \ref{sec:vzy-bdt-variables}. Values for \ncuts between 2 and 500 were tested and
 the greatest sensitivity was achieved with $\ncuts=90$, with no significant
 overtraining. Numbers of trees between 300 and 1500 were tested, with optimal
-sensitivity obtained for $\ntrees=850$. The \dmax hyper-parameter was tested
+sensitivity obtained for $\ntrees=850$. The \dmax hyperparameter was tested
 for values from 1 to 9 and the sensitivity was found to increase for increasing
 \dmax. However, deeper trees also became more prone to overtraining. A value
 of $\dmax=3$ was chosen as the best balance between sensitivity and

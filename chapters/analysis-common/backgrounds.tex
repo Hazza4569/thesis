@@ -5,27 +5,38 @@ The two presented analyses share a common set of background processes. Due to
 the differing phase space, estimation of the \ac{QCD} \Zy background is
 different for each analysis. The remaining backgrounds however follow the same
 estimation procedure for both analyses. This section discusses the procedure for
-the common backgrounds: Z+jets, \tty, and WZ$jj$.
+the common backgrounds: Z+jets, \tty, and \WZjj.
 
+\subsection{Monte Carlo backgrounds}
+
+The background from \tty events is estimated from \ac{MC} with a \ac{NLO}
+$k$-factor of 1.44 applied, calculated in Reference \cite{ATLAStty2019}.
+A conservative normalisation uncertainty of 15\% is applied to this background
+estimate.
+
+Events from \WZjj make a minor contribution to the background, this is
+estimated solely from \ac{MC}. Again a simple normalisation uncertainty is
+applied, here a value of 20\% is chosen.
 
 \subsection{Fake photon estimation}
 \label{sec:methods-backgrounds-fakephoton}
 
-Background from Z+jets events overlaps the analysis final state when a jet is
+Background from Z+jets events mimics the analysis final state when a jet is
 misidentified as a photon. Fake photons such as these are not well modelled in
-\ac{MC}, and so the shape and normalisation of this background must be
+\ac{MC}, and so the shape and normalisation of this background is
 calculated with a data-driven method.
 
 \subsubsection{Normalisation}
+
 The ABCD method is used to estimate the normalisation for this process. This is
 done by establishing three orthogonal control regions adjacent to the region of
 interest (e.g. the \ac{SR}). Cuts in two different variables, here the photon
 identification and isolation, are used to define these regions, as demonstrated
-by Figure \ref{fig:anacom-background-crs}.
-The region of interest is labelled as region A, inverting the photon calorimeter
-isolation gives region B, inverting identification gives region C, and inverting
-both criteria gives region D. Track isolation is still required for the photon
-in all regions.
+by Figure \ref{fig:anacom-background-crs}.  The region of interest is labelled
+as region A, inverting the photon calorimeter isolation selection gives region
+B, inverting the identification criteria gives region C, and inverting both
+gives region D.  Track isolation is still required for the photon in all
+regions.
 
 \begin{figure}[h]
   \centering
@@ -61,6 +72,8 @@ i.e.
   ~~\text{for}~X=B,C,D.
 \end{equation*}
 %
+Background subtraction is performed for any background without a prompt Z boson
+and photon, in this case \tty and \WZjj.
 The correlation factor, $R$, is given by
 %
 \begin{equation*}
@@ -73,16 +86,18 @@ The correlation factor, $R$, is given by
 \end{equation*}
 %
 where in this case each \nxzj{X}{MC} is the event yield observed in
-Z+jets \ac{MC} in this region. Also defined are signal leakage parameters,
+Z+jets \ac{MC} in this region. Uncorrelated identification and isolation
+requirements gives $R=1$, so the calculated value should be close to this.
+Also defined are signal leakage parameters,
 $c_X$, as
 \begin{equation*}
   \newcommand\tsig{\text{sig}}
   c_X = \frac{N_{X,\text{MC}}^\tsig}{N_{A,\text{MC}}^\tsig},
   ~~\text{for}~X=B,C,D,
 \end{equation*}
-calculated from \ac{QCD} and \ac{EW} \Zy \ac{MC}. Signal leakage represents any
-prompt photon events entering the \acp{CR}, hence both \ac{EW} and \ac{QCD} \Zy
-production are considered as signal in this instance.
+calculated from \ac{QCD} and \ac{EW} \Zy \ac{MC}. Signal leakage represents
+prompt photon events that enter the \acp{CR}, hence both \ac{EW} and \ac{QCD}
+\Zy production are considered as `signal' in this instance.
 
 
 \subsubsection{Shape}
@@ -96,36 +111,36 @@ combined but without the track isolation requirement.
 \subsubsection{Uncertainties}
 \label{sec:methods-backgrounds-zjets-uncertainty}
 
-Several components of the normalisation for this background estimate have
+Several components of the normalisation of this background estimate have
 associated uncertainties. These are propagated to the final normalisation and
-included as a systematic uncertainty on results.
+included as a systematic uncertainty on the results.
 
 % N_X
-The \ac{MC} background subtraction is subject to the uncertainty on the
-subtracted backgrounds. As this is predominantly from \tty, a 15\% uncertainty
-is used on the total subtracted background.
+The \ac{MC} background subtraction is subject to any uncertainty on the
+subtracted backgrounds. As this is predominantly from \tty, the 15\% \tty
+uncertainty is used on the total subtracted background.
 
 % c_X
 The signal leakage fractions, $c_X$, are split into two components, \ac{EW} and
-\ac{QCD}, representing the leakage from each source of prompt photons.  To get
+\ac{QCD}, representing the leakage from each source of prompt photons.  To find
+the
 uncertainty on the \ac{QCD} leakage fraction it is first calculated with both
 the nominal and alternate sample. The difference between the calculated leakage
 fractions is combined with the \ac{MC} statistical uncertainty on the nominal
-sample to get the total \ac{QCD} uncertainty. The \ac{EW} leakage fraction is a
+sample to calculate the total \ac{QCD} uncertainty. The \ac{EW} leakage fraction is a
 minor contribution to the total leakage fraction, and so the uncertainty is
 taken as 50\%, combined with the \ac{MC} statistical uncertainty.
 
 % R
 The correlation factor, R, has an uncertainty calculated from data-\ac{MC}
 comparisons in complementary regions where the photon fails track isolation
-requirements. The correlation factor is re-calculated for both data and \ac{MC}
+requirements.
+The correlation factor is re-calculated for both data and \ac{MC}
 with the track isolation requirement inverted. The difference between these two
 $R$ values is combined with the \ac{MC} statistical uncertainty on the nominal
 $R$ value to give its uncertainty.
+This assumes the data-\ac{MC} agreement is consistent between these
+complementary regions and the primary ABCD regions. Inverting the track
+isolation selection ensures a fake-rich data sample which should be comparable
+to the Z+jets \ac{MC} sample.
 
-\subsection{Monte Carlo backgrounds}
-
-The background from \tty events is estimated from \ac{MC} and cross-checked in
-an $e\mu\gamma$ \ac{CR}, which validates the use of a $k$-factor of 1.44 to
-scale the \ac{MC} normalisation. WZ$jj$ events make a minor contribution to the
-background, this is estimated solely from \ac{MC}.

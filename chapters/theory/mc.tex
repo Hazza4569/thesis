@@ -8,15 +8,15 @@ is quite complex. Real measurements are also subject to the limitations and
 effects of the detector; for accurate comparisons to be made between data and
 predictions, these need to be accounted for.
 
-\acused{MC}
-The solution to this problem is to generate Monte Carlo (MC) events representing
-the \ac{SM} prediction. For a given final state (i.e. the set of particles
-produced in the interaction) a sample of events is generated for each
+The solution to this problem is to generate Monte Carlo (\acsfirst{MC}) events
+representing the \ac{SM} prediction. For a given final state (i.e. the set of
+particles produced in the interaction) a sample of events is generated for each
 contributing process, containing particles with random kinematic properties
 generated in such a way that the overall distribution matches the expectation
 from the model. If all processes are accounted for, taking the sum of events
-from all of these samples in a certain final state and phase space, the
-yield of \ac{MC} events should match the yield of data events.
+from all of these samples in the desired phase space gives an estimate for the
+\ac{SM} prediction; this is then compared to data to see if the measurement
+agrees with the theory.
 
 %Talk about specific generators
 Production of \ac{MC} samples is a very complicated process and there are
@@ -53,6 +53,13 @@ the hard-scatter process, parton showering, and hadronisation all in one. In
 other cases the hard-scatter process is created with one generator, e.g.
 \madgraph, and then another generator is used to add parton showering and
 hadronisation to it, e.g. \pythia or \herwig.
+
+% merging and resummation scales
+The models used to simulate these processes are not calculable from first
+principles and have parameters that can be adjusted to best describe observed
+physics. These parameters include merging and resummation scales, describing the
+merging of jets from the parton shower and the hard scatter event and the
+resummation of soft gluon emissions \cite{sherpa2dot2}.
 
 % what is the underlying event? Modelling issues => 
 % tuning parameters to data to match underlying event description

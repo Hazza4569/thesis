@@ -4,12 +4,12 @@ Many sources of uncertainty are considered for processes estimated in the
 presented analyses. The subsections below cover uncertainties from theoretical
 and experimental sources which are considered for \ac{EW} and \ac{QCD} \Zyjj
 production processes.
-Smaller backgrounds from \ac{MC} estimates use a simple overall uncertainty on
-the normalisation: 15\% for \tty and 20\% for WZ$jj$. The Z+jets background has
-a normalisation uncertainty calculated per-analysis considering the
-contributions detailed in Section
-\ref{sec:methods-backgrounds-zjets-uncertainty}. Limited statistics in \ac{MC}
-samples also contributes uncertainties to all processes.
+
+Smaller sources of background, Z+jets, \tty, and \WZjj, are all assigned a
+single normalisation uncertainty, as detailed in Section
+\ref{sec:methods-backgrounds}.
+Limited statistics in \ac{MC} samples also contributes uncertainties to all
+processes.
 
 All systematic uncertainties are included as nuisance parameters in the fit used
 for each analysis, and the final impact of each uncertainty is adjusted
@@ -25,19 +25,20 @@ showering and underlying event model, and \ac{EW}-\ac{QCD} interference.
 
 % > PDF
 Evaluating uncertainty in \ac{PDF} set choice is done by reweighting events
-using a number of replica \ac{PDF} sets. Taking the standard deviation of yields
+using a number of replica \ac{PDF} sets, chosen in agreement with the PDF4LHC
+recommendations \cite{Butterworth2016}. Taking the standard deviation of yields
 under each of these weights gives the \ac{PDF} uncertainty on the event yield. 
 
 % > Scale
 Uncertainty due to scale choice is calculated by varying the default values of
 renormalisation and factorisation scales in the nominal QCD \Zy \ac{MC} sample.
-Dedicated samples (as discussed in Section \ref{sec:methods-samples}) are used
-to evaluate the effect of varying these two values. The per-bin envelope of all
-deviations is taken as the scale uncertainty.
+Each scale value is independently varied up and down by a factor 2.
+The per-bin envelope of all deviations from combinations of these variations
+is taken as the scale uncertainty.
 
 % > QCD modelling
 \ac{QCD} modelling uncertainty can be calculated conservatively by comparing
-predictions from different generators or, more precisely, by evaluating the
+predictions from different generators or, alternatively, by evaluating the
 effect of merging and resummation scales. Generator differences are calculated
 by taking the difference in event yields predicted by the nominal and alternate
 \ac{QCD} \Zy samples. This difference is considered as the \ac{QCD} modelling
@@ -49,44 +50,88 @@ analysis whilst the former is used for the triboson analysis.
 
 % > EW PS&UE
 For the \ac{EW} signal, parton showering and underlying event uncertainties are
-calculated by comparing the default \pythia hadronisation to alternatives with
-\herwig or with a varied \pythia tune.
-%TODO add details on this tune to samples section?
-%TODO write about tune in theory?
+calculated by comparing the default \pythia samples to alternatives with \herwig
+or with eigenvariations of the \pythia tune \cite{A14tune}.  The difference in
+predicted yields between the default and \herwig samples is taken as the
+uncertainty on parton showering. The envelope of the largest deviations from the
+nominal sample with the tune eigenvariations applied is taken as the uncertainty
+on the underlying event model.
 
 % > Interference
 The interference between \ac{EW} and \ac{QCD} \Zy production is not included in
 either the signal or background, but instead taken as an additional uncertainty,
 calculated using the dedicated interference sample.
 
-
 \subsection{Experimental uncertainties}
 
-Experimental systematic uncertainties cover uncertainties in energy scale and
+\newcommand\both{ \checkmark & \checkmark }
+\newcommand\justVBS{ \checkmark & }
+\newcommand\justVZy{ & \checkmark }
+\newcommand\systtabendwidth{5.5cm}
+\newcommand\systtabletitles{%
+  \multirow{2}{*}{Uncertainty name} & \multicolumn{2}{c}{Analysis} &
+  \multirow{2}{*}{Accounts for uncertainty on} \\\cmidrule{2-3}
+  & {\fontsize{8}{8}\selectfont VBS} & {\fontsize{8}{8}\selectfont \VZy} & \\
+}
+\begin{table}[p]
+  \centering
+  \caption{
+    List of experimental systematic uncertainties, whether they are included in
+    the \acs{VBS} \Zy and semileptonic \VZy analyses, and a brief description of
+    what the uncertainty represents. The names of uncertainties are often
+    abbreviated when shown in figures.
+  }
+  \input{\relpath{syst_table.tex}}
+  \raggedleft
+  \emph{continued on next page}
+  \label{tab:methods-systematics-list}
+\end{table}
+\begin{table}[p]
+  \centering
+  Table \ref{tab:methods-systematics-list} continued \\[.5em]
+  \input{\relpath{syst_table2.tex}}
+\end{table}
+
+Experimental systematic uncertainties cover errors in energy scale and
 resolution of jets, photons, and electrons; momentum scale and resolution of
 muons; scale factors used to reproduce trigger, reconstruction, identification,
 and isolation efficiencies from data; suppression of pile-up jets; and flavour
-tagging. These uncertainties have a varying level of effect on the presented
-results, some of the most impactful uncertainties are discussed here.
+tagging. The full list of experimental systematics considered
+between the two analyses is given in Table \ref{tab:methods-systematics-list}.
+The primary difference between the two analyses is that the \VZy analysis has no
+flavour tagging systematics, as no b-tagging is used; though there are other
+small changes due to a change in jet uncertainty configuration. These
+uncertainties have a varying level of effect on the presented results, some of
+the most impactful are discussed here.
 
 \subsubsection{Pileup reweighting}
+\label{sec:methods-systematics-prw}
 
 \ac{MC} samples are typically generated before data-taking is complete. The
 pileup distribution, i.e. the distribution of instantaneous luminosities, is
+%TODO reference pileup distribution from detector chapter?
 therefore only estimated and does not exactly match that in data. Events are
-reweighted to align the pileup distributions between \ac{MC} and data. The scale
-factors used to achieve this reweighting are calculated with a corresponding
-uncertainty. This uncertainty is propagated to physics results as a systematic
-uncertainty.
+reweighted to align the pileup distributions between \ac{MC} and data; a scale
+factor is calculated \cite{Buttinger2017} to account for the difference between
+the predicted and measured inelastic proton-proton cross section
+\cite{ATLASppxsec2016}.
+
+The systematic uncertainty \verb|PRW_DATASF| represents the uncertainty on this
+scale factor, and so also covers uncertainties from the inelastic cross-section
+measurement and \ac{MC} pileup event modelling.
+
+Due to limited data statistics in the signal regions, this uncertainty is one
+of the most significant components of the error on the results of both
+analyses.
 
 \subsubsection{Jet flavour composition and response}
 \label{sec:methods-systematics-jet-flavour}
 
-Jets initiated by quarks and gluons exhibit differences in fragmentation and
-showering properties. These properties will impact the jet energy scale
-calibration and so the distribution of quark- and gluon-initiated jets and its
-uncertainty affects the overall jet energy scale uncertainty. Whether a jet is
-quark- or gluon-initiated is referred to as the flavour of the jet.
+Jets initiated by different quarks and by gluons exhibit differences in
+fragmentation and showering properties. These properties will impact the jet
+energy scale calibration, so the distribution of light-quark-, b-quark-,
+and gluon-initiated jets, i.e. the distribution of jet flavour, and
+its uncertainty affects the overall jet energy scale uncertainty.
 
 The response of the calorimeter to different flavours of jet is not well
 modelled in \ac{MC}, and so is corrected using comparisons with data.
@@ -100,9 +145,18 @@ well defined flavour composition. Uncertainties on the jet flavour composition
 within the phase space are taken as a systematic uncertainty on analyses
 \cite{JetFlavourUncerts2011}.
 
-Both jet flavour response and jet flavour composition uncertainties can be
-reduced by studying the fraction of quark and gluon jets in the phase space.
-This additional step is taken in the \ac{VBS} analysis to manage these
-uncertainties.
-
-%TODO write about fragmentaion in theory? Or in object reco
+The gluon fraction is defined as
+\begin{equation*}
+  f_g = \frac{N_g}{N_g + N_\text{LQ}},
+\end{equation*}
+where $N_g$ is the number of gluon-initiated jets in the phase space and
+$N_\text{LQ}$ the number of light-quark-initiated jets.
+This gluon fraction is used to determine the jet flavour uncertainties, but by
+default its value is taken as
+\begin{equation*}
+  f_g = 0.5 \pm 0.5.
+\end{equation*}
+Therefore both jet flavour response and jet flavour composition uncertainties
+can be reduced by explicitly calculating this gluon fraction and its error in
+the analysis phase space. This additional step is taken in the \ac{VBS} analysis
+to manage these uncertainties.

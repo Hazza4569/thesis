@@ -1,0 +1,61 @@
+% ========== STATISTICAL INFERENCE SECTION ==========
+
+% Introduction: fitting used in both analyses for parameter estimation of signal
+% strength
+
+% Simple binned likelihood calculation
+
+% FROM VZY BDT SECTION
+\newcommand\nobsi{\ensuremath{n_\text{obs}^i}\xspace}
+As the $m_{jj}$ distribution is not used for selection, it is used here to
+calculate significance with a binned likelihood method. Consider $n_b^i$ as the
+number of background events in bin $i$, and $n_s^i$ the number of signal events,
+from the relevant \ac{MC} samples after selection.  The likelihood of observing
+\nobsi events in bin $i$ is given by a Poisson distribution with a mean of
+$n_b^i + \mu\cdot n_s^i$, where $\mu$ is a signal strength parameter with
+$\mu=0$ for the background-only hypothesis or $\mu=1$ for alternate hypothesis
+with signal included. The likelihood, $\mathcal{L}$, of observing the set of
+$\{\nobsi\}$ in each bin is then the product of each of the per-bin likelihoods.
+
+Constructing the likelihood ratio
+\begin{equation*}
+  \mathscr{\lambda} = \frac{ \mathcal{L}( \{\nobsi\} ; \mu=0 ) }
+                           { \mathcal{L}( \{\nobsi\} ; \mu=1 ) },
+\end{equation*}
+enables a likelihood-ratio test, with the test statistic $-2\ln\lambda$
+distributed as $\chi^2(1)$ \cite{Wilks1938}, to calculate the significance of
+observing $\{\nobsi\}$.
+
+To obtain integer values for \nobsi from the \ac{MC} prediction, as required by
+the use of the Poisson distribution, random toy experiments are run. For each
+experiment, \nobsi is picked at random from a Poisson distribution with mean
+$n_b^i + n_s^i$. Running 1000 of these experiments, calculating the significance
+for each, and taking the mean of the results gives an estimate for the
+significance.
+
+These significances are calculated for each selection tested, given as a number
+of standard deviations.
+
+% FROM VZY FIT SECTION
+%Likelihood model
+In order to find which values for \muEW and the nuisance parameters give the
+best agreement with the data, a likelihood model is built. The likelihood is the
+product of several terms, primarily: a Poisson term for each bin in the fit,
+describing the probability of obtaining the observed data yield given the
+estimates from the templates; and a constraint function for each nuisance
+parameter. Given that each nuisance parameter has only an up variation, down
+variation, and nominal value, the constraint functions must be interpolated.
+This is done using a linear interpolation for shape uncertainties and an
+exponential interpolation for normalisation uncertainties; these interpolations
+are discussed in Reference \cite{Cranmer2012}.
+
+%Minimisation
+Once constructed, the maximum value for the likelihood must be found. This is
+achieved by minimising the negative logarithm of the likelihood through the
+Davidon-Fletcher-Powell approach \cite{Davidon1959,Fletcher1970,Powell1983}
+implemented in Minuit's MIGRAD algorithm \cite{Minuit2}.
+The values of parameters that minimise the negative log likelihood are taken as
+the fitted values for the \ac{PoI} and nuisance parameters. Uncertainties for
+these parameters are given by the covariance matrix calculated during
+minimisation. The MINOS technique \cite{Minuit2} is used to obtain a more
+accurate estimate of the uncertainties on \muEW.

@@ -1,71 +1,112 @@
 % ====== Samples section ======
 
-% TODO check this covers everything from VZy
-% TODO add a table to summarise samples?
+Samples created from \ac{MC} simulations are used in the analyses to represent
+the \ac{SM} prediction for the rate of a particular process (see Section
+\ref{sec:theory-mc}). Beyond providing the \ac{SM} estimate to which data is
+compared in the chosen sensitive phase space, the signal region, these
+simulations are also used to design the analysis. This includes optimising
+the selection cuts which define sensitive regions, training machine learning
+discriminants, and estimating the expected sensitivity of the analysis before
+unblinding.
 
-% TODO explain methodology of using simulations to represent theory,
-% as well as using blinding to avoid data bias?
-% Where does this fit? Theory, or earlier in this chapter?
-The signal and background processes for both analyses are the same, the same
-simulated event samples can therefore be used for each.
+The two analyses presented here have the same underlying signal process and the
+same set of backgrounds, so the \ac{MC} samples used are common for both
+analyses. Table \label{tab:methods-data-triggers} summarises how these samples
+were produced, including the physics process which is simulated; the \ac{MC}
+generator used for the hard scatter; the generator used to add parton showering,
+hadronisation, and underlying event; the order to which the cross section is
+calculated for the hard scatter; and the \ac{PDF} set used by the hard-scatter
+generator. The remainder of this section gives more precise details for each of
+these samples.
 
-\ac{EW} \Zyjj production, the signal sample, is generated with \madgraphfiveamc
-2.6.5 \cite{madgraph5amc}.  This sample is at \ac{LO} accuracy (order
-$\alpha_\text{EW}^4$) with the NNPDF3.1 \ac{LO} \ac{PDF} set \cite{NNPDF3dot1}.
-Parton showering, hadronisation, and underlying event activity are added through
-\pythia 8.240 \cite{pythia8dot2}. An alternate version of this sample is
-produced using {\herwig}++ 2.7.1 \cite{herwigpp,herwigpp2dot7} in place of \pythia
-to evaluate uncertainties due to the choice of parton showering and underlying
-event model.
+\begin{table}[tb]
+  \centering
+  \renewcommand\arraystretch{1.2}
+  \caption{
+    Samples from \ac{MC} simulation used in estimating signal and background
+    processes. For each sample the generator used for the hard scatter process is listed
+    as well as the generator used to add parton showering, hadronisation, and
+    the underlying event (marked PS\&UE). The order to which the cross section
+    is calculated and the \ac{PDF} set used are also given. Numbers on the right
+    are used to label the samples in the text.
+    Information on the listed \ac{PDF} sets can be found in References
+    \cite{NNPDF3dot1,NNPDF3dot0,ct10,NNPDF2dot3}
+  }
+  \begin{tabular}{cccccc}
+    \cmidrule{1-5}\morecmidrules\cmidrule{1-5}
+    \bf Process   & \bf Hard scatter & \bf PS\&UE & \bf Order & \bf \ac{PDF} set & \\ \cmidrule{1-5}
+    \ac{EW} \Zyjj & \madgraph & \pythia & \acs{LO} & NNPDF3.1 \acs{LO} & (1) \\ \cmidrule{1-5}
+    \multirow{2}{*}{\ac{QCD} \Zy} & \madgraph & \pythia & \acs{NLO} & NNPDF3.0 \acs{NLO} & (2) \\
+                                  & \sherpa & \sherpa & \acs{LO} & NNPDF3.0 \acs{NNLO} & (3) \\ \cmidrule{1-5}
+    Z+jets    & \powhegbox  & \pythia & \acs{NLO} & CT10 \acs{NLO} & (4) \\ \cmidrule{1-5}
+    \tty      & \madgraph  & \pythia & \acs{LO} & NNPDF2.3 \acs{LO} & (5) \\ \cmidrule{1-5}
+    \ac{QCD} WZ & \sherpa  & \sherpa & \acs{NLO} & NNPDF3.0 \acs{NNLO} & (6) \\
+    \ac{EW} \WZjj & \madgraph  & \pythia & \acs{LO} & NNPDF3.0 \acs{LO} & (7) \\
+    \cmidrule{1-5}\morecmidrules\cmidrule{1-5}
+  \end{tabular}
+  \label{tab:methods-data-triggers}
+\end{table}
 
-The dominant background process is \ac{QCD} production of \Zyjj. The nominal
-sample used for this process is produced with \madgraphfiveamc 2.3.3
-\cite{madgraph5amc} using the NNPDF3.0 \ac{NLO} \ac{PDF} set \cite{NNPDF3dot0}.
-Diagrams up to order $\alpha_s^2\alpha_\text{EW}^2$ are included.
+%Signal: A14 tune
+%QCD MG: pythia 8.212 A14 tune
+%Z+jets: ERRATUM pythia v8.186
+%tty: pythia 8.212 A14 tune
+%WZ: pythia 8.235 A14 tune
 
-Additional samples for \ac{QCD} \Zyjj are generated to evaluate uncertainties.
-A sample made with \sherpa 2.2.4 \cite{sherpa2dot2} at \ac{LO} accuracy, with up
-to three additional parton emissions, is used to assess generator differences.
-The NNPDF3.0 \ac{NNLO} \ac{PDF} set is used for this sample, in conjunction with
-a dedicated parton shower tuning developed by the \sherpa authors.
+The signal sample (Sample 1) uses \madgraphfiveamc 2.6.5 \cite{madgraph5amc} as
+well as
+\pythia 8.240 \cite{pythia8dot2}. The \acp{DSID}\footnote{
+  This is an internal \acs{ATLAS} identifier for the sample, included for
+  completeness.
+}
+for this sample are 363267-363268.
+%The \ac{LO} accuracy includes diagrams of order $\alpha_\text{EW}^4$.
+An alternate version of this sample is produced, with {\herwig}++ 2.7.1
+\cite{herwigpp,herwigpp2dot7} in place of \pythia, to evaluate uncertainties due
+to the choice of parton showering and underlying event model.
+
+For the \ac{QCD} \Zy samples, Sample 2 (\acp{DSID} 345775-345782) is the nominal
+sample and uses \madgraphfiveamc 2.3.3 and \pythia 8.212 and Sample 3
+(\acp{DSID} 366140-366149) gives an alternate estimate using \sherpa 2.2.4
+\cite{sherpa2dot2}. Both of these samples include additional parton emission
+beyond the order at which the cross-section is calculated \cite{VBSZy-CONF}. An
+additional five samples are generated at particle level for this process, using
+\sherpa 2.2.10. These are used for evaluating theoretical uncertainty and have
+varied values for merging and resummation scales (see Section
+\ref{sec:theory-mc}).
+
+Sample 4 (\acp{DSID} 361106-361107) uses \powhegbox v1
+\cite{Nason2004,powheg,powhegbox} and \pythia 8.186 \cite{pythia8dot1}.
+This sample is not used directly for a background estimate, but as part of the
+data-driven estimate discussed in Section
+\ref{sec:methods-backgrounds-fakephoton}.
+
+Sample 5 (\ac{DSID} 410389) uses \madgraphfiveamc 2.3.3 and \pythia 8.212.
+Sample 6 (\ac{DSID} 364253) uses \sherpa 2.2.2, and Sample 7 (\acp{DSID}
+364739-364742) is produced with \madgraphfiveamc 2.6.2 and \pythia 8.235.
+
+An additional truth-level sample is used to calculate interference between
+\ac{EW} and \ac{QCD} \Zyjj production. This is estimated at \ac{LO} with
+\madgraphfiveamc 2.3.3 with the NNPDF3.0 \ac{LO} \ac{PDF} set.
+
+All samples interfaced with \pythia use a specific set of parameters derived
+from data, a tune (as introduced in Section \ref{sec:theory-mc}). For samples
+generated with \madgraph and \pythia, the A14 tune \cite{A14tune} is used. The
+remaining \pythia sample, Sample 4, uses
+the AZNLO tune \cite{AZNLOtune}.
+% Also A3 tune used to add pileup (is this just UE?)
+
+% I didn't include the below in the updated version of this chapter. Is it
+% needed? I don't think so, this content is covered elsewhere (without
+% specififcs e.g. A3 tune). Would need to rewrite if I do include.
+%Pileup (additional proton-proton interactions) is overlaid on simulated samples,
+%generated with \pythia 8.186 using the A3 tune \cite{A3tune}
+%and the NNPDF2.3 \ac{LO} \ac{PDF} set.
+%Data is used to reweight these \ac{MC} events to respect the mean number of
+%interactions per bunch crossing from the corresponding data-taking period.
 %
-Five more samples are used for evaluation of theoretical uncertainty. These are
-generated at particle level using \sherpa 2.2.10 \cite{sherpa2dot2} with the
-NNPDF3.0 \ac{NNLO} \ac{PDF} set.  One of the five samples has a nominal value
-for the merging and resummation scales and the other four have an up or down
-variation for either.
-
-Interference between \ac{EW} and \ac{QCD} \Zy production is estimated at \ac{LO}
-using \madgraphfiveamc. 2.3.3 with the NNPDF3.0 \ac{LO} PDF set, including
-contributions order $\alpha_S\alpha_\text{EW}^3$ to the amplitude.
-
-The Z+jets background, in which a jet is misidentified as a photon, is estimated
-with a data-driven method. A \ac{MC} sample for this process is necessary to
-evaluate correlation between the regions used in this method, as discussed in
-Section \ref{sec:vbs-backgrounds}.
-\powhegbox v1 \cite{Nason2004,powheg,powhegbox}
-is used to generate this sample at \ac{NLO} accuracy with the CT10 \ac{NLO}
-\ac{PDF} set \cite{ct10}.
-\pythia 8.210 \cite{pythia8dot2}
-is used for parton showering in this sample, with the AZNLO \cite{AZNLOtune}
-set of tuned parameters.
-
-A \tty sample is generated at \ac{LO} accuracy with \madgraphfiveamc and
-the NNPDF2.3 \ac{LO} \ac{PDF} set \cite{NNPDF2dot3}.
-The WZ background has both a \ac{QCD} and \ac{EW} component produced with
-\sherpa 2.2.2 \cite{sherpa2dot2}
-at \ac{NLO}, with NNPDF3.0 \ac{NNLO} \ac{PDF} set, and
-\madgraphfiveamc 2.6.2 \cite{madgraph5amc}
-at \ac{LO}, with NNPDF3.0 \ac{LO} \ac{PDF} set, respectively.
-
-Pileup (additional proton-proton interactions) is overlaid on simulated samples,
-generated with \pythia 8.186 using the A3 tune \cite{A3tune}
-and the NNPDF2.3 \ac{LO} \ac{PDF} set.
-Data is used to reweight these \ac{MC} events to respect the mean number of
-interactions per bunch crossing from the corresponding data-taking period.
-
-Once physics events and pileup are combined, samples are passed through a
-simulation of the \ac{ATLAS} detector with GEANT4 \cite{ATLASsim1,geant4}
-and then processed with offline reconstruction in the same manner as data
-events. Additional scale factors and smearing are applied to more closely match
-data events.
+%Once physics events and pileup are combined, samples are passed through a
+%simulation of the \ac{ATLAS} detector with GEANT4 \cite{ATLASsim1,geant4}
+%and then processed with offline reconstruction in the same manner as data
+%events. Additional scale factors and smearing are applied to more closely match
+%data events.
