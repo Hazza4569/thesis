@@ -1,31 +1,5 @@
-%Structure of analysis
-
-% - Intro and motivation (drawing from topics discussed in theory)
-% - Simulated samples [shared+]
-% - Event reconstruction [shared]
-% ++ PFlow v Topo
-% - Event selection
-% - Background estimation (introduce backgrounds?)
-% - Systematic uncertainties
-% ++ Gluon fractions
-% - Template fit
-% ++ Systematic pruning
-% - Results
-
-% Have conf note, int note, and midterm to take inspo from
-
-
-
-
-% What is written in analysis methods chapter?
-
-% How simulations are used in analyses (goal of comparing data to theory,
-% simulation represents prediction from theory)
-% 
-
 \renewcommand\relpath[1]{chapters/vbs/#1}
 \renewcommand\resource[1]{chapters/vbs/resources/#1}
-\label{sec:vbs}
 
 \section{Introduction}
 \input{\relpath{intro.tex}}
@@ -35,6 +9,7 @@
 \input{\relpath{selection.tex}}
 
 \section{Particle-flow jet validation}
+\label{sec:vbs-pflow}
 \input{\relpath{pflow.tex}}
 
 \section{Background estimation}
@@ -45,9 +20,11 @@
 \input{\relpath{systematics.tex}}
 
 \section{Jet flavour uncertainties}
+\label{sec:vbs-fgluon}
 \input{\relpath{gluon-fracs.tex}}
 
 \section{Template fit}
+\label{sec:vbs-fit}
 \input{\relpath{fit.tex}}
 
 \section{Pruning systematic uncertainties}

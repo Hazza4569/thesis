@@ -1,6 +1,6 @@
 \documentclass[a4paper,twoside,12pt]{report}
 \usepackage[pdftex]{graphicx}
-\usepackage{tocloft}
+\usepackage[titles]{tocloft}
 \usepackage{notoccite}
 %
 \usepackage[printonlyused,withpage]{acronym}
@@ -26,10 +26,13 @@
 \usepackage{xspace}
 \usepackage{stringstrings}
 \usepackage{slashed}
+\usepackage{rotating}
 %
 \usepackage[Sonny]{fncychap} %Styles: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, and Bjornstrup.
+\ChNameAsIs
+\ChTitleAsIs
 
-\newcommand{\thesistitle}{Electroweak Multiboson Interactions in Z$\gamma jj$} %Fill in title
+\newcommand{\thesistitle}{Electroweak Multiboson Interactions in Z$\boldsymbol{\gamma}$jj} %Fill in title
 \newcommand{\thesisauthor}{Harry Cooke} %Fill in your name
 \newcommand{\thesisemail}{hgc@hep.ph.bham.ac.uk} %Fill in your email
 %Choose your front page crest. crest_1 (photograph) or crest_2 (logo)
@@ -45,6 +48,48 @@
             pdfsubject={High Energy Particle Physics Thesis},
             pdfcreator={\thesisemail}, 
 }
+
+%%%%%%%%% Custom command defs %%%%%%%%%%%%%
+\newcommand\eratio{\texorpdfstring{$E_\text{ratio}$}{E-ratio}\xspace}
+\newcommand\egamma{\texorpdfstring{$\text{e/}\gamma$}{e/y}\xspace}
+\newcommand\Zy{\texorpdfstring{$\text{Z}\gamma$}{Zy}\xspace}
+\newcommand\VZy{\texorpdfstring{$\text{VZ}\gamma$}{VZy}\xspace}
+\newcommand\Zyjj{\texorpdfstring{$\text{Z}\gamma\text{jj}$}{Zyjj}\xspace}
+\newcommand\tty{\texorpdfstring{$\text{t}\bar{\text{t}}\gamma$}{tty}\xspace}
+\newcommand\WZjj{WZjj\xspace}
+%\newcommand\pT{p_T}
+%\newcommand\ET{E_T}
+%\newcommand\GeV{GeV}
+\newcommand\invfb{$\text{fb}^{-1}$\xspace}
+\newcommand\powheg{\textsc{Powheg}\xspace}
+\newcommand\pythia{\textsc{Pythia}\xspace}
+\newcommand\herwig{\textsc{Herwig}\xspace}
+\newcommand\madgraphfiveamc{\textsc{MadGraph5\_aMC@NLO}\xspace}
+\newcommand\madgraph{\textsc{MadGraph}\xspace}
+\newcommand\sherpa{\textsc{Sherpa}\xspace}
+\newcommand\powhegbox{\textsc{PowhegBox}\xspace}
+\newcommand\geantfour{\textsc{Geant4}\xspace}
+% BDT hyperparameters
+\newcommand\ntrees{\ensuremath{N_\text{trees}}\xspace}
+\newcommand\ncuts{\ensuremath{N_\text{cuts}}\xspace}
+\newcommand\dmax{\ensuremath{d_\text{max}}\xspace}
+\newcommand\boostbeta{\ensuremath{\beta}\xspace}
+
+\makeatletter
+\newcommand{\hathat}[1]{% 
+\begingroup%
+  \let\macc@kerna\z@%
+  \let\macc@kernb\z@%
+  \let\macc@nucleus\@empty%
+  \hat{\mathchoice%
+    {\raisebox{.2ex}{\vphantom{\ensuremath{\displaystyle #1}}}}%
+    {\raisebox{.2ex}{\vphantom{\ensuremath{\textstyle #1}}}}%
+    {\raisebox{.16ex}{\vphantom{\ensuremath{\scriptstyle #1}}}}%
+    {\raisebox{.14ex}{\vphantom{\ensuremath{\scriptscriptstyle #1}}}}%
+    \smash{\hat{#1}}}%
+\endgroup%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Set colour of change-bar
 \cbcolor{red}
@@ -65,7 +110,9 @@
 %%%%%%%%%%%%%%%%%%%%%% Page dimensions %%%%%%%%%%%%%%%%%%%%%
 \allsectionsfont{\sf} %sectsty
 
-\setlength{\parskip}{12pt}  % 12 pt = space between paragraphs
+% Paragraph spacing, + and - give bounds for adjusting spacing when LaTeX wants
+% to pad things
+\setlength{\parskip}{12pt plus4mm minus3mm}
 \setlength{\parindent}{0pt} % 0 pt  = indentation
 
 \textwidth 15.0cm
@@ -105,26 +152,29 @@
 
 \begin{titlepage}
   \begin{center}
-    {\huge\sc \thesistitle}\\
-    \vspace{3.0cm}
-    {\Large\bf \thesisauthor}\\
-    \vspace{1.5cm}
-    {\large\em Thesis submitted for the degree of}\\
+    \parbox{14cm}{
+      \centering
+      \fontsize{29}{31}\fontseries{b}\selectfont \thesistitle
+    }\\
+    \vspace{1.2cm}
+  \end{center}
+  \begin{center}
+    \resizebox{10cm}{!}{
+      \includegraphics*{fig/\thesiscrest}
+    }
+  \end{center}
+  \begin{center}
+    \vspace{0.3cm}
+    {\fontsize{20}{22}\fontseries{b}\selectfont \thesisauthor}\\
+    \vspace{1.0cm}
+    {\large\em Thesis submitted for the degree of}\\[.1em]
     {\large\em Doctor of Philosophy}\\
     \vspace{1.5cm}
-  \end{center}
-  \begin{center}
-    \resizebox{6cm}{!}{
-    \includegraphics*{fig/\thesiscrest}}
-  \end{center}
-  \begin{flushleft}
-    \hspace{7.5cm} Particle Physics Group, \\
-    \hspace{7.5cm} School of Physics and Astronomy, \\
-    \hspace{7.5cm} University of Birmingham. \\
+    Particle Physics Group, \\
+    School of Physics and Astronomy, \\
+    University of Birmingham. \\
     \vspace{1cm}
-    \hspace{7.5cm} \emph{\today} \\
-  \end{flushleft}
-  \begin{center}
+    \fontsize{14}{16}\selectfont December 2023 \\
   \end{center}
 \end{titlepage}
 
@@ -139,14 +189,19 @@
 \pagenumbering{roman} %INTRO
 
 \pagestyle{fancy} %Set up page style
+% customise righmark and leftmark
+%\renewcommand{\sectionmark}[1]{\markright{\thesection~ ~#1}}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername~\thechapter:~ #1}{}}
+%
 \fancyfoot{} % clear all footer fields
 \fancyhead{}
-\fancyhead[RE]{\sf \slshape \rightmark \hspace{5mm} \thepage }
-\fancyhead[LO]{\sf \thepage \hspace{5mm} \slshape \leftmark }
+\fancyhead[RE]{\sf  \nouppercase\rightmark \hspace{5mm} \thepage }
+\fancyhead[LO]{\sf \thepage \hspace{5mm} \nouppercase\leftmark }
 \interfootnotelinepenalty=10000
-
+\renewcommand\headrule{\vspace{.2em}\hrule\vspace{-.2em}}
+%\renewcommand\footrule{\hrule}
 %%%%%%%%%%%%%%%%%%%%%% Preamble Formatting %%%%%%%%%%%%%%%%%%%%%
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 \setcounter{secnumdepth}{3}
 \renewcommand\tocloftpagestyle{fancy}
 \renewcommand\cftchapfont{\large\sf}
@@ -162,11 +217,49 @@
 \renewcommand\cftloftitlefont{\Huge\sf}
 \renewcommand\cftlottitlefont{\Huge\sf}
 \renewcommand\cfttoctitlefont{\Huge\sf}
+%
+\setlength{\cftbeforechapskip}{-2pt}
+\setlength{\cftbeforesecskip}{-8pt}
+\setlength{\cftbeforesubsecskip}{-10pt}
+%
+\setlength{\cftbeforeloftitleskip}{0in}
+\setlength{\cftbeforefigskip}{-8pt}
+\setlength{\cftbeforetabskip}{-8pt}
 %%%%%%%%%%%%%%%%%%%%%% Preamble Formatting %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Chapter customisation %%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\renewcommand*{\@makechapterhead}[1]{%
+  \vspace*{-10\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \if@mainmatter%%%%% Fix for frontmatter, mainmatter, and backmatter 040920
+        \DOCH
+      \fi
+    \fi
+    \interlinepenalty\@M
+    \if@mainmatter%%%%% Fix for frontmatter, mainmatter, and backmatter 060424
+      \DOTI{#1}%
+    \else%
+      \DOTIS{#1}%
+    \fi
+  }}
+% For the case \chapter*:
+\renewcommand*{\@makeschapterhead}[1]{%
+  \vspace*{-10\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \DOTIS{#1}
+    \vskip 40\p@
+  }}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%% Chapter customisation %%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%% Abstract %%%%%%%%%%
 \include{abstract}
 %%%%%%%%%% Abstract %%%%%%%%%%
+
+\setstretch{1}
 
 \tableofcontents
 \clearpage
@@ -177,8 +270,9 @@
 \listoffigures
 \clearpage
 
-\chapter*{DEFINITIONS OF ACRONYMS}
-\vspace{-5em}
+\chapter*{Definitions of Acronyms}
+\markboth{Definitions of Acronyms}{Definitions of Acronyms}
+%\vspace{-5em}
 \setstretch{0.25}
 \input{acronym.tex}
 
@@ -194,7 +288,7 @@
 
 \setstretch{1}
 \cleardoublepage
-\renewcommand{\bibname}{REFERENCES}
+\renewcommand{\bibname}{References}
 \bibliographystyle{cookestyle}
 \bibliography{bib/all}
 

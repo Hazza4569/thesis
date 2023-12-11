@@ -1,61 +1,154 @@
 % ========== STATISTICAL INFERENCE SECTION ==========
 
-% Introduction: fitting used in both analyses for parameter estimation of signal
-% strength
+The goal in making a particle physics measurement is to test the agreement
+between the observed data and the \ac{SM} prediction.  In frequentist statistics
+a model cannot be determined to be correct, instead models can be rejected if
+there is `significant' disagreement. To test agreement of data with a model
+(termed the `null hypothesis'), the level of discrepancy between the two is
+evaluated using hypothesis testing.  The result is either that data is
+consistent with the model, or that the discrepancy is is significant enough to
+reject the model.
+Certain thresholds are commonly used in particle physics to define when a result
+is significant, discussed below in Section
+\label{sec:methods-stats-signifthresh}.
 
-% Simple binned likelihood calculation
+If searching for an exotic process that is not predicted in the \ac{SM}, this
+null hypothesis would simply be the \ac{SM}. The analyses in this thesis instead
+search for rare processes predicted within the \ac{SM} and so need a different
+approach, as simply determining that data is consistent with the \ac{SM} does
+little to demonstrate the existence of this one process (the signal process).
+Instead a `background-only' hypothesis is created, including all \ac{SM}
+processes except for the signal process. If data shows a significant excess over
+the background-only hypothesis this demonstrates the signal process is likely
+present, particularly if the data agrees well with the combined background and
+signal prediction.
 
-% FROM VZY BDT SECTION
-\newcommand\nobsi{\ensuremath{n_\text{obs}^i}\xspace}
-As the $m_{jj}$ distribution is not used for selection, it is used here to
-calculate significance with a binned likelihood method. Consider $n_b^i$ as the
-number of background events in bin $i$, and $n_s^i$ the number of signal events,
-from the relevant \ac{MC} samples after selection.  The likelihood of observing
-\nobsi events in bin $i$ is given by a Poisson distribution with a mean of
-$n_b^i + \mu\cdot n_s^i$, where $\mu$ is a signal strength parameter with
-$\mu=0$ for the background-only hypothesis or $\mu=1$ for alternate hypothesis
-with signal included. The likelihood, $\mathcal{L}$, of observing the set of
-$\{\nobsi\}$ in each bin is then the product of each of the per-bin likelihoods.
+\subsection{Signal strength}
 
-Constructing the likelihood ratio
+A useful parameterisation is to introduce a signal strength, $\mu$, to connect
+the background-only hypothesis and the full \ac{SM} prediction. The predicted
+event yield, $n_\text{tot}$, then becomes
 \begin{equation*}
-  \mathscr{\lambda} = \frac{ \mathcal{L}( \{\nobsi\} ; \mu=0 ) }
-                           { \mathcal{L}( \{\nobsi\} ; \mu=1 ) },
+  n_\text{tot} = n_b + \mu\cdot n_s,
 \end{equation*}
-enables a likelihood-ratio test, with the test statistic $-2\ln\lambda$
-distributed as $\chi^2(1)$ \cite{Wilks1938}, to calculate the significance of
-observing $\{\nobsi\}$.
+where $n_b$ is the number of background events and $n_s$ the number of signal
+events. Setting $\mu=1$ corresponds to the \ac{SM} prediction while $\mu=0$
+gives the background-only prediction.
 
-To obtain integer values for \nobsi from the \ac{MC} prediction, as required by
-the use of the Poisson distribution, random toy experiments are run. For each
-experiment, \nobsi is picked at random from a Poisson distribution with mean
-$n_b^i + n_s^i$. Running 1000 of these experiments, calculating the significance
-for each, and taking the mean of the results gives an estimate for the
-significance.
+This signal strength is used as the parameter of interest in fits, and gives a
+simple interpretation of the result. If $\mu$ is large enough and precise enough
+to exclude it being consistent with a value of 0, the background-only hypothesis is
+rejected. If $\mu$ is consistent with a value of 1, the data agrees with the
+\ac{SM} prediction.
 
-These significances are calculated for each selection tested, given as a number
-of standard deviations.
+\subsection{Likelihood construction}
 
-% FROM VZY FIT SECTION
-%Likelihood model
-In order to find which values for \muEW and the nuisance parameters give the
-best agreement with the data, a likelihood model is built. The likelihood is the
-product of several terms, primarily: a Poisson term for each bin in the fit,
-describing the probability of obtaining the observed data yield given the
-estimates from the templates; and a constraint function for each nuisance
-parameter. Given that each nuisance parameter has only an up variation, down
-variation, and nominal value, the constraint functions must be interpolated.
-This is done using a linear interpolation for shape uncertainties and an
-exponential interpolation for normalisation uncertainties; these interpolations
-are discussed in Reference \cite{Cranmer2012}.
+In order to fit data and obtain a measured value for $\mu$, a likelihood
+function is constructed to describe the likelihood of obtaining such data given
+a certain value of $\mu$. Here two cases are discussed. First, a simplified
+case using the Poisson distribution to describe the likelihood of a
+binned dataset considering only statistical uncertainties, used as a simple
+performance metric in Section \ref{sec:vzy-bdt}. The second case expands on this
+to create a likelihood that accounts for systematic uncertainties with nuisance
+parameters, as is used in the fits introduced in Sections \ref{sec:vbs-fit} and
+\ref{sec:vzy-fit}.
 
-%Minimisation
-Once constructed, the maximum value for the likelihood must be found. This is
-achieved by minimising the negative logarithm of the likelihood through the
-Davidon-Fletcher-Powell approach \cite{Davidon1959,Fletcher1970,Powell1983}
-implemented in Minuit's MIGRAD algorithm \cite{Minuit2}.
-The values of parameters that minimise the negative log likelihood are taken as
-the fitted values for the \ac{PoI} and nuisance parameters. Uncertainties for
-these parameters are given by the covariance matrix calculated during
-minimisation. The MINOS technique \cite{Minuit2} is used to obtain a more
-accurate estimate of the uncertainties on \muEW.
+\subsubsection{Simple binned likelihood}
+\label{sec:methods-stats-llh-simple}
+
+\newcommand\nobsi{\ensuremath{n_\text{obs}^i}\xspace}
+Consider the predicted number of events in the $i$\textsuperscript{th} bin,
+as a function of $\mu$, as
+\begin{equation}
+  n_\text{tot}^i = n_b^i + \mu\cdot n_s^i,
+\end{equation}
+for $n_b^i$ and $n_s^i$
+giving the predicted numbers of background and signal events per bin
+respectively. The likelihood of observing \nobsi events in bin $i$ is
+given by a Poisson distribution with a mean of $n_\text{tot}^i$, or
+\begin{equation*}
+  \mathcal{L}(\nobsi;\mu) = \text{Poisson}(\nobsi; n_b^i + \mu n_s^i).
+  \label{eqn:methods-stats-llh-perbin}
+\end{equation*}
+
+The combined likelihood of observing this set of per-bin yields, given a value
+of the signal strength, is therefore given by the product of the per-bin
+likelihoods:
+\begin{equation}
+  \mathcal{L}(\{\nobsi\};\mu) = \prod_i \mathcal{L}(\nobsi;\mu).
+  \label{eqn:methods-stats-llh-total}
+\end{equation}
+
+\subsubsection{Adding nuisance parameters}
+
+To account for the effect of external systematic uncertainties in a fit,
+nuisance parameters are added to the likelihood. This can be done per-bin or
+across the whole distribution, as required for each source of uncertainty.
+
+Each nuisance parameter adds a constraint function as a factor to the
+likelihood. The constraint functions describe the behaviour of varying the
+nuisance parameter up or down from its nominal value, by any amount. Since the
+input for each systematic uncertainty is a nominal value, one upwards variation,
+and one downwards variation, the constraint function must be interpolated from
+these values.
+
+Uncertainties affecting each bin individually, shape uncertainties, are linearly
+interpolated to evaluate the constraint function. These constraint functions are
+then added as multiplicative factors to the per-bin likelihoods given by
+Equation \ref{eqn:methods-stats-llh-perbin}. Alternatively, constraint functions
+for systematic uncertainties affecting the overall scale, normalisation
+uncertainties, are calculated with an exponential interpolation and included as
+a multiplicative factor in the total likelihood of Equation
+\ref{eqn:methods-stats-llh-total} \cite{Cranmer2012}.
+
+\subsection{Maximum likelihood estimation}
+
+\newcommand\dvec{\ensuremath{\mathbf{d}}\xspace}
+\newcommand\thetavec{\ensuremath{\boldsymbol{\theta}}\xspace}
+Given a likelihood, $\mathcal{L}(\dvec;\mu,\thetavec)$, where \dvec is the set
+of observed data and \thetavec is the set of nuisance parameters, the value of
+the parameters can be estimated by finding the set of their values that
+maximises the likelihood.
+
+This is achieved in practice by minimising the negative logarithm of the
+likelihood through the Davidon-Fletcher-Powell approach
+\cite{Davidon1959,Fletcher1970,Powell1983} implemented in Minuit's MIGRAD
+algorithm \cite{Minuit2}.  The values of parameters that minimise the negative
+log likelihood are taken as the fitted values for $\mu$ and the nuisance
+parameters. Uncertainties for these parameters are given by the covariance
+matrix calculated during minimisation. The MINOS technique \cite{Minuit2} is
+used to obtain a more accurate estimate of the uncertainties on $\mu$.
+
+\subsection{Likelihood ratio tests}
+
+The likelihood ratio test is used to evaluate how significant a discrepancy is
+present between the observed data and the null hypothesis. This ratio is given
+by
+\begin{equation*}
+  \mathscr{\lambda}(\mu) = \frac{ \mathcal{L}( \dvec ; \mu, \hathat{\thetavec} ) }
+                                { \mathcal{L}( \dvec ; \hat{\mu}, \hat{\thetavec} ) },
+\end{equation*}
+where $\hat{\mu}$ and $\hat{\thetavec}$ are the parameter values that maximise
+the likelihood, and $\hathat{\thetavec}$ are the nuisance parameter values that
+maximise the likelihood for the given $\mu$ value.
+
+Wilks' theorem demonstrates that the test statistic $-2\log\lambda(\mu=0)$ will
+be $\chi^2(1)$-distributed under the null hypothesis \cite{Wilks1938}.
+Calculating the $p$-value from this gives the probability of this data being
+measured if the null hypothesis were true. This is typically rephrased as a
+significance, measured in standard deviations; this is equal to the deviation
+from zero of a normal distribution for which the two-sided integral of the tails
+would give the same $p$-value.
+
+% TODO section on limits?
+% If so add a note below about 95% being used for limits
+
+\subsection{Significance thresholds}
+\label{sec:methods-stats-signifthresh}
+
+Established thresholds are used within particle physics to ensure that any
+discoveries made are statistically valid. An `observation' of a process requires
+the significance of an excess over the background-only hypothesis to be at least
+five standard deviations. If that threshold is not met, it can still constitute
+`evidence' towards an observation if the significance exceeds three standard
+deviations.

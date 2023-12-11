@@ -2,25 +2,37 @@
 \newcommand\inputchapter[1]{\input{chapters/#1/index}}
 \newcommand\resource[1]{#1}
 \chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\markboth{Introduction}{Introduction}
 \inputchapter{introduction}
 
 \chapter{Theory}
+\label{sec:theory}
 \inputchapter{theory}
 
 \chapter{The ATLAS detector at the Large Hadron Collider}
+\label{sec:detector}
 \inputchapter{detector}
 
 \chapter{Upgrading the ATLAS Level-1 Calorimeter Trigger}
+\label{sec:trig}
 \inputchapter{l1calo}
 
 \chapter{Analysis Methods}
+\label{sec:methods}
 \inputchapter{analysis-common}
 
 \chapter{Search for vector-boson scattering production of a Z boson and a photon}
+\chaptermark{Search for VBS \Zy production}
+\label{sec:vbs}
 \inputchapter{vbs}
 
 \chapter{Search for triboson production of \VZy through its semileptonic decay mode}
+\chaptermark{Search for semileptonic \VZy production}
+\label{sec:vzy}
 \inputchapter{vzy}
 
 \chapter*{Conclusions}
+\addcontentsline{toc}{chapter}{Conclusions}
+\markboth{Conclusions}{Conclusions}
 \inputchapter{conclusion}

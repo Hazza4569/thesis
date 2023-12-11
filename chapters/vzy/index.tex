@@ -1,8 +1,6 @@
 \renewcommand\relpath[1]{chapters/vzy/#1}
 \renewcommand\resource[1]{chapters/vzy/resources/#1}
-\label{sec:vzy}
 
-\section{Introduction}
 \input{\relpath{intro.tex}}
 
 \section{Event Selection}
@@ -13,19 +11,22 @@
 \label{sec:vzy-bdt}
 \input{\relpath{bdt.tex}}
 
-% Signal and control region definition section?
 \section{Signal and control regions definition}
+\label{sec:vzy-srcr}
 \input{\relpath{regions.tex}}
 
 \section{Background estimation}
+\label{sec:vzy-bg}
 \input{\relpath{backgrounds.tex}}
 % Give more detailed numbers on Fake Photon parameters here
 
 \section{Systematic Uncertainties}
+\label{sec:vzy-systematics}
 \input{\relpath{systematics.tex}}
 % Overview pruning performed by TRExFitter here.
 
 \section{Template fit}
+\label{sec:vzy-fit}
 \input{\relpath{fit.tex}}
 
 \section{Results}
@@ -35,6 +36,9 @@
 \section{Projected results}
 \label{sec:vzy-projection}
 \input{\relpath{projections.tex}}
+
+\section{Extensions}
+\label{sec:vzy-extensions}
 % TODO list:
 
 % - Whole chapter
@@ -43,4 +47,3 @@
 %   - Add context on other triboson analyses, in particular WZy/ZZy
 % - backgrounds section
 %   - Add fake photon numbers
-%   - Add more detail with relative amounts of background in signal region

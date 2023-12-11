@@ -3,11 +3,15 @@
 Events in data and simulation, from the samples discussed in Section
 \ref{sec:methods-samples}, undergo selection to create an analysis region
 sensitive to \VZy triboson production. This section discusses an initial
-pre-selection applied to samples and the additional requirements used
-to define the signal sample. Measures to further refine the analysis region are
-discussed in Section \ref{sec:vzy-bdt}.
+pre-selection as well as the additional requirements used
+to define the signal sample.
 
-% Uses Zy selection from anacom
+By implementing the selection defined here the analysis is focused on the dijet
+channel, in line with the goal of measuring \Zyjj signatures. However, an
+additional channel could be defined for cases where the quarks from the V$\to$qq
+decay are sufficiently close that they are detected as one large jet, typically
+if the V boson has large transverse momentum. This `merged jet' channel offers
+an alternative approach to the two `resolved jets' used here.
 
 \subsection{Analysis region definition}
 
@@ -19,9 +23,9 @@ The \Zy selection defined in Section \ref{sec:methods-selection} is first
 applied to events. Events are then required to have at least two jets, each with
 rapidity $|y_j| < 4.4$. The leading jet must have a transverse momentum of at
 least 40 GeV, and the sub-leading jet at least 30 GeV. The invariant mass of the
-dijet system must satisfy $m_{jj} < 150$ GeV, and the rapidity separation of the
-jets $|\Delta y_{jj}| < 2$. These cuts are summarised in Table
-\ref{tab:vzy-selection}.
+dijet system, formed from the two leading jets, must satisfy $m_{jj} < 150$ GeV,
+and the rapidity separation of these jets $|\Delta y_{jj}| < 2$. These cuts are
+summarised in Table \ref{tab:vzy-selection}.
 
 \begin{table}
   \centering
@@ -55,9 +59,9 @@ The $m_{jj}$ cut ensures that this analysis is orthogonal to the \ac{VBS} \Zy
 analysis (which uses a cut of $m_{jj} > 150$ GeV), and is also compatible with
 the expected signal values of $m_{jj} \sim m_W,m_Z$.
 
-These cuts define the full analysis region, further cuts on the \ac{BDT} output
+These cuts define the full `analysis region', further cuts on the \ac{BDT} output
 and $m_{jj}$ are used to define the \ac{SR} and \acp{CR}, discussed in Section
-X.  %TODO -- what section are these discussed in?
+\ref{sec:vzy-srcr}.
 
 % Dyjj made BDT cleaner -- discuss in BDT section, doesn't make much sense here.
 
@@ -76,7 +80,8 @@ background.
 This analysis defines two samples as orthogonal subsets of the \ac{EW} \Zyjj
 production sample detailed in Section \ref{sec:methods-samples}: \ac{EW} \VZy
 (the signal sample) and \ac{EW} \Zyjj background (or the \ac{EW}
-background). These samples are separated using truth information.
+background). These samples are separated using truth information on the
+kinematics and flavour of the jets.
 
 Two variables are used to test if the jets are products of a W or Z boson decay:
 \mjjtruth, the invariant mass of the dijet system calculated at truth level, and
@@ -97,7 +102,7 @@ events failing either of these cuts are included in the \ac{EW} background
 sample.
 % 95% of WZ combined lineshape (approx integral gave 0.9406)
 
-This selection is not 100\% efficient and as such there is some
+This truth-level classification is not 100\% efficient and as such there is some
 cross-contamination between the samples. Nevertheless, applying this truth
 selection increases the probability that any event considered signal contains
 the physics processes of interest, direct multiboson interactions.  Of the
