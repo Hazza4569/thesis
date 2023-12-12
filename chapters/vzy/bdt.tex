@@ -32,20 +32,48 @@ largest signal-background discrepancies.
 % m_jj and cos_theta_CS_jj show cuttable differences
 
 \begin{figure}[tbp]
-  \includegraphics[width=.49\textwidth]{\resource{EWvQCD/m_jj.pdf}}
-  \includegraphics[width=.49\textwidth]{\resource{EWvQCD/cos_theta_CS_jj.pdf}}
-  \\
-  \includegraphics[width=.49\textwidth]{\resource{EWvQCD/Dy_j_j.pdf}}
-  \includegraphics[width=.49\textwidth]{\resource{EWvQCD/Dphi_j_j.pdf}}
-  \\
-  \includegraphics[width=.49\textwidth]{\resource{EWvQCD/pT_jj.pdf}}
-  \includegraphics[width=.49\textwidth]{\resource{EWvQCD/Dphi_lly_jj.pdf}}
+  \begin{subfigure}{.49\textwidth}
+    \includegraphics[width=\textwidth]{\resource{EWvQCD/m_jj.pdf}}
+    \vspace{-.9cm}
+    \caption{}
+    \label{fig:vzy-bdt-ewvqcd-mjj}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\textwidth}
+  \includegraphics[width=\textwidth]{\resource{EWvQCD/cos_theta_CS_jj.pdf}}
+    \vspace{-.9cm}
+    \caption{}
+  \end{subfigure}
+  \\[.5cm]
+  \begin{subfigure}{.49\textwidth}
+    \includegraphics[width=\textwidth]{\resource{EWvQCD/Dy_j_j.pdf}}
+    \vspace{-.9cm}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\textwidth}
+    \includegraphics[width=\textwidth]{\resource{EWvQCD/Dphi_j_j.pdf}}
+    \vspace{-.9cm}
+    \caption{}
+  \end{subfigure}
+  \\[.5cm]
+  \begin{subfigure}{.49\textwidth}
+    \includegraphics[width=\textwidth]{\resource{EWvQCD/pT_jj.pdf}}
+    \vspace{-.9cm}
+    \caption{}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{.49\textwidth}
+    \includegraphics[width=\textwidth]{\resource{EWvQCD/Dphi_lly_jj.pdf}}
+    \vspace{-.9cm}
+    \caption{}
+  \end{subfigure}
   %
   \caption{
-    Kinematic distributions, comparing \acs{EW} V\Zy production (red) to \acs{QCD}
-    \Zyjj production (blue). Generated from the corresponding \ac{MC} samples
-    with V\Zy preselection applied. Events are normalised to compare the shape
-    of distributions between the two samples.
+    Kinematic distributions, comparing \acs{EW} V\Zy production (red) to
+    \acs{QCD} \Zyjj production (blue). Generated from the corresponding \ac{MC}
+    samples with the analysis region selection applied. Events are normalised to
+    compare the shape of distributions between the two samples.
   }
   \label{fig:vzy-bdt-ewvqcd}
 \end{figure}
@@ -413,8 +441,9 @@ Figure \ref{fig:vzy-bdt-centrality}.
   \includegraphics[width=.48\textwidth]{\resource{EWvQCD/log_Zy_centrality.pdf}}
   \caption{
     Distribution of centrality, $\zeta(ll\gamma)$, both linear (left) and
-    logarithmic (right) scales on the $x$-axis. Normalised events are shown for
-    the \VZy signal sample and the \ac{QCD} \Zy background.
+    logarithmic (right) scales on the $x$-axis. Normalised event counts are
+    shown for the \VZy signal sample and the \ac{QCD} \Zy background, for events
+    in the analysis region.
   }
   \label{fig:vzy-bdt-centrality}
 \end{figure}
@@ -423,33 +452,35 @@ Figure \ref{fig:vzy-bdt-centrality}.
 \subsubsection{Preselection and training cuts}
 
 Another route to improving performance of the \ac{BDT} is constraining the phase
-space to further simplify the signature the \ac{BDT} is trying to identify. Even
+space to further simplify the signature the \ac{BDT} identifies. Even
 in cases where there is no performance increase, reducing the phase space
-without significant loss in signal efficiency is still beneficial as it can help
+without significant loss in signal efficiency can be beneficial as it may help
 to reduce the impact of systematic uncertainties. It also improves the
 interpretability of the analysis phase space; cuts on simple kinematic variables
-are much more easily understood than a cut on a \ac{BDT} output.
+are more easily understood than a cut on a \ac{BDT} output.
 
 Two types of selection are used for this purpose: preselection applied to all
-events, including those input to the \ac{BDT}, and training cuts applied only
-to events when provided to the \ac{BDT} for training. Preselection will narrow
-the whole analysis phase space whilst training cuts give the \ac{BDT} a more
-focused view of the signal and background.
+events, including those input to the \ac{BDT}, and training cuts which are
+applied only during \ac{BDT} training. Preselection will narrow the whole
+analysis phase space whilst training cuts give the \ac{BDT} a more focused view
+of the signal and background.
 
 Three preselection cuts are applied, on top of the baseline selection for these
 studies given in Table \ref{tab:vzy-bdt-preliminaryselection}. Minimum jet
 transverse momentum is included for both leading and sub-leading jets. Each is
 set to the highest value that did not degrade the sensitivity of the \ac{BDT}:
-$p_T^{j,1} > 40$ GeV and $p_T^{j,2} > 30$ GeV. This reduces the impact of
-any systematic uncertainties that behave poorly for low-$p_T$ jets.
+$p_T^{j,1} > 40$ GeV and $p_T^{j,2} > 30$ GeV.
 A requirement is also placed on the rapidity difference $|\Delta y_{jj}|$.
 Artefacts were found in the \ac{BDT} response for background events with
 high $|\Delta y_{jj}|$; a cut of $|\Delta y_{jj}| < 2$ was found to remove these
 issues and have no impact on sensitivity.
+These preselection cuts contribute to the analysis region definition given
+previously in Table \ref{tab:vzy-selection}.
 
 A training cut is made on the dijet mass, $m_{jj}$, to focus on a more
 signal-rich region. Applying a training cut of $60 < m_{jj} < 115$ GeV was found
-to improve \ac{BDT} performance. Tighter mass window cuts were tested and no
+to improve \ac{BDT} performance, and is well motivated by Figure
+\ref{fig:vzy-bdt-ewvqcd-mjj}. Tighter mass window cuts were tested and no
 further improvements were found.  This cut is only applied for training the
 \ac{BDT}, and not as a preselection cut, to preserve its use for defining
 \acp{CR}.
@@ -458,13 +489,10 @@ further improvements were found.  This cut is only applied for training the
 % TODO revisit section after BDT theory written
 
 A \ac{BDT} implementation has hyperparameters that instruct it on how to build
-decision trees during training, as discussed in Section [theory:BDT].
-%TODO update reference
+and boost decision trees during training.
 Four hyperparameters were investigated to optimise performance of the \ac{BDT}
-used for this analysis: the number of cuts tested across the range of a variable
-when splitting nodes, \ncuts; the number of trees in the forest, \ntrees; the
-maximum allowed depth of each decision tree, \dmax; and the \boostbeta
-parameter which controls the rate of learning by modifying the boost weights.
+used for this analysis: \ncuts, \ntrees, \dmax, and \boostbeta; each defined in
+Section \ref{sec:methods-bdt}.
 
 Each parameter was tested in turn, training and testing the \ac{BDT} to evaluate
 overtraining and sensitivity through the same procedure as in Section
@@ -473,22 +501,16 @@ the greatest sensitivity was achieved with $\ncuts=90$, with no significant
 overtraining. Numbers of trees between 300 and 1500 were tested, with optimal
 sensitivity obtained for $\ntrees=850$. The \dmax hyperparameter was tested
 for values from 1 to 9 and the sensitivity was found to increase for increasing
-\dmax. However, deeper trees also became more prone to overtraining. A value
-of $\dmax=3$ was chosen as the best balance between sensitivity and
-overtraining. The boost \boostbeta parameter was tested with a range of values
+\dmax. However, deeper trees also became more prone to overtraining; a value
+of $\dmax=3$ was chosen to give the best balance in performance.
+The boost \boostbeta parameter was tested with a range of values
 between 0 and 1, $\boostbeta=0.5$ was chosen with the best sensitivity and no
 significant overtraining.
 
 \subsubsection{Overall performance}
 
 With all of the optimisations made, the best significance obtained for events
-passing a \ac{BDT} cut is 1.5 standard deviations. This represents a sizeable
+passing a \ac{BDT} cut is 1.5 standard deviations, using the same
+statistics-only performance metric. This represents a sizeable
 improvement over the 1.2 standard deviations obtained with the cut-based
 approach, and motivates use of the \ac{BDT} in this analysis.
-
-% TODO write BDT section in theory
-% Include something on overtraining?
-% sources:
-%http://dx.doi.org/10.1016/j.nima.2004.12.018
-%https://arxiv.org/abs/2206.09645
-

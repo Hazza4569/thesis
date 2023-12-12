@@ -15,13 +15,14 @@ the \ac{LHC} was designed to study higher energy systems than had previously
 been accessible in controlled, high-rate, collisions. One of the key goals of
 the \ac{LHC} was discovering the Higgs boson, a goal which was achieved in 2012
 \cite{Higgs2012a,Higgs2012b,Higgs2013}. However, the \ac{LHC} research programme
-is much more broad than the search and study of the Higgs boson; many aspects of
+is much more broad than the search for and study of the Higgs boson; many aspects of
 the \ac{SM} are investigated to find signs of inconsistency between theory and
-experiment.
+experiment, to measure \ac{SM} parameters, and to explore untested regions of
+the \ac{SM}.
 
 Controlled interactions are created by colliding accelerated beams of protons at
 interaction points.  Two beams of protons, travelling in opposite directions
-around the \ac{LHC} ring, are accelerated to an energy of 6.5 TeV\footnote{
+around the \ac{LHC} ring, are accelerated to an energy of 6.5 TeV \footnote{
   Numbers given here correspond to the Run-2 parameters of the machine.
 }.
 Creating collisions between these two beams at certain interaction points on the
@@ -40,10 +41,9 @@ accelerated to the desired beam energy of 6.5 TeV.
 % RF Acceleration
 This acceleration, both in the injectors and the \ac{LHC} machine itself, is
 performed using superconducting radio-frequency cavities; these are
-electromagnetic fields that alternate in such a way as to `pull' protons towards
-them and then `push' them away.
+electromagnetic fields that accelerate protons as they pass through.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.8\textwidth]{\resource{CCC-v2018-print-v2.pdf}}
   \caption{
@@ -65,19 +65,19 @@ compact \cite{LHCVol1}.
 % Bunches, bunch trains
 Protons are injected into the \ac{LHC} in bunches, with approximately $10^{11}$
 protons in a single bunch. Consecutive bunches are injected with a minimum
-separation of 25 ns; this is referred to as a bunch train when many bunches are
+separation of 25 ns; this is referred to as a `bunch train' when many bunches are
 used at this minimum separation.
 
 % How are the beams made to collide? Bunch crossings
 To create collisions between the two proton beams, insertion magnets are used to
 cross the paths of the beams \cite{Ostojic2002}. Each colliding pair of bunches,
 one from each beam, is called a `bunch crossing'. The magnets can be adjusted in
-order to change the crossing angle, affecting the number of proton-proton
+order to change the crossing angle, modifying the expected number of proton-proton
 collisions induced for each bunch crossing.
 
 % Luminosity
-The rate at which collisions occur in the \ac{LHC} is known as instantaneous
-luminosity, $\mathcal{L}$, and is given by
+The rate at which collisions occur in the \ac{LHC} is given by the instantaneous
+luminosity, $\mathcal{L}$, defined as \cite{Evans2008}
 \begin{equation*}
   \mathcal{L} = \frac{ N_p^2 n_b f_\text{rev} \gamma }
   { 4 \pi \epsilon_n \beta^*} F,
@@ -95,10 +95,11 @@ operated between around 0.5 to 2 times this amount \cite{Steerenberg2019}.
 Integrated luminosity, $L$, is used to measure the amount of data in an entire
 dataset. This quantity is the integral of instantaneous luminosity over time,
 \begin{equation*}
-  L = \int dt \mathcal{L}.
+  L = \int dt \mathcal{L},
 \end{equation*}
-The expected number of collisions for a particular process is given by the
-product of the integrated luminosity with the cross-section of the process,
+and is typically measured in units of fb$^{-1}$.
+The expected number of occurrences of a particular process is given by the
+product of the integrated luminosity with the cross section of the process,
 $\sigma$. Obtaining a large dataset is therefore vital to measure processes with
 very low cross sections. The \ac{LHC} produced a dataset of 160 fb$^{-1}$ over
 the entirety of Run 2 \cite{Steerenberg2019}.
@@ -110,5 +111,6 @@ and minor upgrades. Between each run is a `long shutdown' period, in which more
 significant upgrades can take place. Analyses in this thesis use data taken
 during Run 2, between 2015 and 2018. Run 3 began in 2022, with an increase in
 centre of mass energy to 13.6 TeV, and is currently ongoing at the time of
-writing.
- 
+writing. After Run 3, a larger set of upgrades is planned and future runs will
+be at much higher luminosities; this period is known as the \ac{HL-LHC}
+\cite{Aberle2020}.

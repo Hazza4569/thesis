@@ -1,12 +1,24 @@
 % ========== PROJECTED RESULTS SECTION ==========
 
-To test what sensitivity might be possible with more time or data available for
-this analysis, projected future results are explored. Firstly the reducible
-uncertainties, jet flavour composition and response and \ac{MC} statistics, are
-removed. This simulates processing larger datasets, to reduce \ac{MC} statistics
-uncertainties, and including gluon fraction information, to reduce jet flavour
-uncertainties. With the existing analysis and dataset this would give a
-measurement of
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.8\textwidth]{\resource{Ranking_mu_EWK_x3.pdf}}
+  \caption{
+    Systematic uncertainties ranked by their post-fit impact on \muEW, for a
+    projected fit scaled to a luminosity of 420 fb$^{-1}$.
+    Uncertainties from \ac{MC} statistics and jet flavour were removed from this
+    fit.
+  }
+  \label{fig:vzy-projections-rank}
+\end{figure}
+
+To test what sensitivity might be possible with further optimisations or
+additional data available for this analysis, projected future results are
+explored. Firstly the reducible uncertainties, jet flavour composition and
+response and \ac{MC} statistics, are removed. This simulates processing larger
+datasets, to reduce \ac{MC} statistics uncertainties, and including gluon
+fraction information, to reduce jet flavour uncertainties. With the existing
+analysis and dataset this gives a measurement of
 %
 \begin{equation*}
   \muEW = 1.43 \pm 1.08,
@@ -17,10 +29,9 @@ calculated from performing a fit without these uncertainties included.
 This is a small improvement by itself, but combined with an expanded dataset
 this could greatly enhance sensitivity. By scaling up the luminosity of the
 templates in the fit, performing the analysis with a larger dataset can be
-simulated. This is a naïve estimate as with a significantly larger dataset the
+simulated. This is a naïve estimate as, with a significantly larger dataset, the
 analysis would need to be re-optimised to take advantage of the available data.
 
-% TODO explain LHC runs, Run 2 and Run 3, luminosities, energies
 To estimate sensitivity possible with a Run 2 and Run 3 combined dataset,
 templates are scaled to a luminosity of 420 fb$^{-1}$. The measured signal
 strength from this fit is
@@ -34,28 +45,17 @@ strength from this fit is
   % mu_EWK  0.999978 +0.525063 -0.525063 (statonly)
 \end{equation*}
 %
-corresponding to a significance of 2.09 standard deviations. This still falls
-short of the evidence threshold of 3 standard deviations. Whilst proper
-optimisation for the larger dataset might make obtaining evidence achievable,
-the initial indication would be that additional data beyond Run 3 will be
-needed to reach the 3$sigma$ threshold.
+corresponding to a significance of 2.09 standard deviations. This falls
+short of the evidence threshold of 3 standard deviations, but with a
+re-optimised analysis this channel could get close to the sensitivity required. 
+The potential sensitivity from adding a merged jet channel may be enough to give
+a significant measurement for this process.
 
 The largest systematic uncertainties for the 420 fb$^{-1}$ projected fit are
-shown in Figure \ref{fig:vzy-projections-rank}. It is noticeably that pileup
+shown in Figure \ref{fig:vzy-projections-rank}. It is noticeable that pileup
 reweighting is still the dominant systematic uncertainty, but much reduced from
-its post-fit scale seen in Figure \ref{fig:vzy-results-ranking}. Indeed running
-fits with luminosities scaled even higher sees further reduction in the impact
-of this uncertainty; likely it is so dominant for the current analysis because
-of the limited statistics in the phase space.
+its post-fit scale seen in Figure \ref{fig:vzy-results-ranking}. From running
+fits with luminosities scaled beyond 420 fb$^{-1}$ a continued reduction in the impact
+of this uncertainty is observed; the conclusion is that this uncertainty is
+inflated by the small phase space of the analysis.
 
-\begin{figure}[tbhp]
-  \centering
-  \includegraphics[width=.8\textwidth]{\resource{Ranking_mu_EWK_x3.pdf}}
-  \caption{
-    Systematic uncertainties ranked by their post-fit impact on \muEW, for a
-    projected fit scaled to a luminosity of 420 fb$^{-1}$.
-    Uncertainties from \ac{MC} statistics and jet flavour were removed from this
-    fit.
-  }
-  \label{fig:vzy-projections-rank}
-\end{figure}

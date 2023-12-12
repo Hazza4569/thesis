@@ -2,19 +2,19 @@
 
 % TODO add discussion of previous and related measurements
 
-Vector-boson scattering provides a unique experimental signature, producing
+Vector-boson scattering (\ac{VBS}) provides a unique experimental signature, producing
 decay channels with excellent potential to probe rare \ac{SM} processes; the
 high selection efficiency achievable by exploiting kinematics of the \ac{VBS}
-tag jets allows measurements to be conducted at lower cross-sections than would
+tag jets allows measurements to be conducted at lower cross sections than would
 otherwise be accessible in the current dataset.
-%
+
 VBS \Zy serves as a production mechanism for the \Zyjj final state,
 %The \Zyjj final state can be interpreted as \ac{VBS} \Zy production,
 with the Z boson and photon resulting from a direct multiboson interaction
 and the jets created as a feature of the \ac{VBS} production.
-This provides a robust framework for studying these rare \ac{SM} interactions,
-motivated previously in Chapter X. %TODO, theory chapter -- change to reference Section?
-% Feynman diagram time
+This provides a robust framework for studying these rare \ac{SM} interactions
+introduced in Chapter \ref{sec:theory}.
+%
 Feynman diagrams for \ac{VBS} \Zy production are represented in Figure
 \ref{fig:vbs-vbsfeynman}, showing that \ac{QGC} or \ac{TGC} vertices are the
 only \ac{SM} contributions at tree-level.
@@ -35,13 +35,13 @@ In the archetypal \ac{VBS} event, a quark from each of the two colliding protons
 radiates a boson. The two bosons interact to produce the \ac{EW} component of
 the final state and the quarks, deflected from their original trajectories after
 boson emission, appear as jets in the detector. Since the initial quarks are
-usually very energetic, the angle through which the quarks are deflected in the
-interaction is typically small. The final-state jets, known as tag jets, would
+usually very energetic, the angle through which they are deflected in the
+interaction tends to be small. The final-state jets, known as tag jets, would
 therefore be in the very forward regions of the detector, at opposite ends to
 one another, and also still carrying large amounts of energy. These kinematics
 are typically characterised by a large invariant mass of the dijet system
-($m_{jj}$) and a large difference between the rapidities of the jets ($\Delta
-y(j,j)$).
+($m_{jj}$) and a large difference between the rapidities of the jets ($|\Delta
+y_{jj}|$).
 
 % Other EWK production
 \ac{VBS} \Zy production is one component of the more general \ac{EW} production
@@ -71,11 +71,6 @@ from \ac{QCD} \Zyjj production. Figure \ref{fig:vbs-qcdfeynman} gives example
 Feynman diagrams for this \ac{QCD} production, which differs from the \ac{EW}
 mode as the strong force either provides the interaction between the two quarks
 or otherwise generates the final-state jets, resulting in colour-connected jets.
-% TODO revisit after writing about colour connection in theory?
-% TODO write about colour connection in theory!
-%These strong interactions mean that the jets created must have compatible
-%colours to facilitate further strong interactions: the jets are
-%colour-connected.
 %
 Additional interactions between the colour-connected jets are
 very probable and will affect the observed jet kinematics, allowing these events
@@ -90,16 +85,20 @@ to be distinguished from \ac{VBS} events.
   \label{fig:vbs-qcdfeynman}
 \end{figure}
 
+%TODO lit review here
+
 %overall strategy of measurement:
-%TODO explain fiducial cross section in theory
-The goal of this analysis is to measure the fiducial cross-section of \ac{EW}
+The goal of this analysis is to measure the fiducial cross section of \ac{EW}
 \Zyjj production in a region sensitive to \ac{VBS} \Zy production.
-Ideally, if enough precision is obtained, this will constitute the first
-observation of this process by the \ac{ATLAS} experiment.
+% > Instead of the below, reference the above lit review TODO
+%Ideally, if enough precision is obtained, this will constitute the first
+%observation of this process by the \ac{ATLAS} experiment.
 %
 The measurement relies on a cut-based selection, exploiting the \ac{VBS} event
 kinematics. Signal and background processes are estimated, through a combination
 of \ac{MC} simulation and data-driven estimates, and used to make a template fit
 to the dijet mass distribution. This chapter presents the analysis as a whole,
-with additional focus given to sections on jet collection investigations,
-controlling jet flavour systematics, and pruning of systematic uncertainties.
+with additional focus given to sections on jet collection investigations
+(Section \ref{sec:vbs-pflow}),
+controlling jet flavour systematics (Section \ref{sec:vbs-fgluon}), and pruning
+  of systematic uncertainties (Section \ref{sec:vbs-prune}).

@@ -11,15 +11,15 @@ distance traversed in $\eta$. This distance is calculated in pseudorapidity
 units rather than number of cells to give a consistent response across
 calorimeter regions.
 
-Performance for the \eratio algorithm with different search limit values was
+The performance of the \eratio algorithm with different search limit values was
 tested on simulations, with the results presented in Figure
 \ref{fig:trig-eratio-algorith-limit-result}. Distances in $\Delta\eta$ from
 0.025 up to 0.15 were tested, with 0.15 being the width of the clusters and thus
 the limit in place in the baseline algorithm. While no performance gains are
 seen by reducing the search limit, there is a plateau in performance from
-$\Delta\eta > 0.1$. This means the required cluster size, and thus the amount of
-computation required, can be reduced without degrading performance of the
-algorithm.
+$\Delta\eta > 0.1$ (equivalent to 32 cells in the barrel region). This means the
+required cluster size, and thus the amount of computation required, can be
+reduced without degrading performance of the algorithm.
 
 \begin{figure}
   \centering

@@ -2,9 +2,9 @@
 % https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2021-038/
 
 The dominant background for this analysis, QCD \Zyjj production, suffers from
-known mismodelling for high dijet masses, which is precisely corresponds to the
-region of interest in this analysis. Rather than using the \ac{MC} template
-directly for estimating this background, the normalisation is corrected by
+known mismodelling for high dijet masses, which is the
+region of interest in this analysis. Rather than using the \ac{MC} template to
+directly estimate this background, the normalisation is corrected by
 comparing with data in a \ac{CR} enriched in this background.  The centrality
 variable is used to separate the \ac{SR} ($\zeta(ll\gamma) < 0.4$) from this
 \ac{QCD} \ac{CR} ($\zeta(ll\gamma) > 0.4$). The \ac{CR} is rich in the \ac{QCD}
@@ -13,7 +13,7 @@ production mechanism peaks at low values of centrality. Figure
 \ref{fig:vbs-bkg-centrality} shows the centrality distribution for signal and
 background events.
 
-\begin{figure}
+\begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{\resource{centrality_dist.pdf}}
   \caption{
@@ -27,13 +27,13 @@ background events.
   \label{fig:vbs-bkg-centrality}
 \end{figure}
 
-The normalisation correction is calculated by fitting a normalisation factor for
+This normalisation correction is calculated by fitting a normalisation factor for
 the \ac{QCD} background in the \ac{SR} and \ac{CR} simultaneously, allowing the
 overall normalisation to be adjusted according to data. The shape of the
 background is taken from \ac{MC}, but data in the \ac{CR} is used to validate
 this shape and constrain correlated uncertainties.
 
-Estimation for the remaining backgrounds; Z+jets, \tty, and WZ$jj$; is detailed
+Estimation for the remaining backgrounds, Z+jets, \tty, and \WZjj, is detailed
 in Section \ref{sec:methods-backgrounds}.
 
 % Z+jets

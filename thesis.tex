@@ -112,7 +112,7 @@
 
 % Paragraph spacing, + and - give bounds for adjusting spacing when LaTeX wants
 % to pad things
-\setlength{\parskip}{12pt plus4mm minus3mm}
+\setlength{\parskip}{10pt plus6pt minus8pt}
 \setlength{\parindent}{0pt} % 0 pt  = indentation
 
 \textwidth 15.0cm
@@ -229,7 +229,7 @@
 %%%%%%%%%%%%%%%%%%%%%% Chapter customisation %%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 \renewcommand*{\@makechapterhead}[1]{%
-  \vspace*{-10\p@}%
+  \vspace*{-30\p@}%
   {\parindent \z@ \raggedright \normalfont
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter%%%%% Fix for frontmatter, mainmatter, and backmatter 040920
@@ -245,12 +245,12 @@
   }}
 % For the case \chapter*:
 \renewcommand*{\@makeschapterhead}[1]{%
-  \vspace*{-10\p@}%
+  \vspace*{-40\p@}%
   {\parindent \z@ \raggedright
     \normalfont
     \interlinepenalty\@M
     \DOTIS{#1}
-    \vskip 40\p@
+    \vskip 10\p@
   }}
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%% Chapter customisation %%%%%%%%%%%%%%%%%%%%%
@@ -260,6 +260,7 @@
 %%%%%%%%%% Abstract %%%%%%%%%%
 
 \setstretch{1}
+\acused{CR}\acused{QCD}\acused{SR}\acused{CPM}
 
 \tableofcontents
 \clearpage
@@ -275,6 +276,7 @@
 %\vspace{-5em}
 \setstretch{0.25}
 \input{acronym.tex}
+\accustomreset
 
 \cleardoublepage
 \pagenumbering{arabic}

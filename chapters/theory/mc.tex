@@ -15,8 +15,7 @@ contributing process, containing particles with random kinematic properties
 generated in such a way that the overall distribution matches the expectation
 from the model. If all processes are accounted for, taking the sum of events
 from all of these samples in the desired phase space gives an estimate for the
-\ac{SM} prediction; this is then compared to data to see if the measurement
-agrees with the theory.
+\ac{SM} prediction.
 
 %Talk about specific generators
 Production of \ac{MC} samples is a very complicated process and there are
@@ -26,20 +25,19 @@ several implementations commonly used in the field, known as
 \powheg \cite{powheg}, and \herwig \cite{herwigpp}.
 
 % PDFs
-These generators are used to simulate the hard scatter, the interaction
-responsible for creating the desired final state. In order to match the
-simulation to the conditions under which the process is initiated, the generator
-must use a \ac{PDF} set determined from data under the same conditions.
+The first step of the process is simulating the hard scatter. These rely on
+matrix element calculations (which give the probabilities for each interaction
+from the theory) and \ac{PDF} sets in order to accurately simulate the desired
+processes at the given centre-of-mass energy.
 
 % What needs to be added to hard scatter?
-Simulating a single physics process does not give a complete picture of a real
-detector event, however. This is the core of the hard scatter, the primary high
-energy collision in the event, but several additional steps must be taken:
-parton showering, applied to any strongly interacting particles; hadronisation,
-converting these showers into composite hadrons; adding the `underlying event',
-all of the activity expected in the collision from sources other than the hard
-scatter; and detector simulation, accounting for effects of particles being
-measured by the detector.
+The hard scatter alone cannot mimic a full event in the detector, and so several
+additional steps are needed: parton showering, applied to any strongly
+interacting particles; hadronisation, converting these showers into composite
+hadrons; adding the `underlying event', activity expected in the collision from
+sources other than the hard scatter; pileup overlay, to account for the number
+of simultaneous proton-proton interactions; and detector simulation, accounting
+for effects of particles being measured by the detector.
 
 % parton showering and hadronisation: pythia and herwig
 For each parton from the hard-scatter process, a shower of \ac{QCD} activity is
@@ -48,11 +46,11 @@ energy, partons until the energies reach a regime where confinement effects
 become relevant. Confining the shower products into colourless hadrons is
 handled by a hadronisation model, such as string fragmentation
 \cite{Andersson1983}. Both parton showering and hadronisation are incorporated
-into \ac{MC} event generators. Some generators, such as \sherpa, will simulate
-the hard-scatter process, parton showering, and hadronisation all in one. In
-other cases the hard-scatter process is created with one generator, e.g.
-\madgraph, and then another generator is used to add parton showering and
-hadronisation to it, e.g. \pythia or \herwig.
+into \ac{MC} event generators. Some generators, such as \sherpa, \pythia, or
+\herwig, can simulate the hard-scatter process, parton showering, and
+hadronisation all in one. In other cases the hard-scatter process is created
+with one generator, e.g.  \madgraph, and then another generator is used to add
+parton showering and hadronisation to it, e.g. \pythia or \herwig.
 
 % merging and resummation scales
 The models used to simulate these processes are not calculable from first
@@ -63,27 +61,30 @@ resummation of soft gluon emissions \cite{sherpa2dot2}.
 
 % what is the underlying event? Modelling issues => 
 % tuning parameters to data to match underlying event description
-Underlying event is a term used to describe everything happening around the hard
-scatter in collisions; this includes spectator and pileup interactions, as
-introduced in Section \ref{sec:theory-pp}.
-%This includes interactions from pileup collisions, other
-%proton-proton collisions in the event besides the one that produced the hard
-%scatter, and spectator interactions, i.e. interactions between partons in the
-%same protons as the hard scatter.
-Modelling the underlying event is very dependent on the specific conditions
-under which the collisions are happening.  This is mitigated by tuning certain
+Underlying event is a term used to describe activity around the hard
+scatter in collisions, such as spectator interactions
+(introduced in Section \ref{sec:theory-pp}).
+%
+Modelling the underlying event is dependent on the specific conditions
+under which the collisions occur. This is mitigated by tuning certain
 parameters of the model to match data; different `tunes' are available from data
-collected under different conditions.  For \ac{MC} samples, underlying event
+collected under different conditions. For \ac{MC} samples, underlying event
 modelling is typically handled by the same generators as the parton showering
 and hadronisation.
 
+% pileup overlay
+Pileup overlay describes the process of adding additional soft events around the
+hard scatter to simulate the presence of additional proton-proton collisions.
+The number of pileup events added can be configured to match the number of
+proton-proton collisions expected per bunch crossing in the detector.
+
 % detector simulation
-Having simulated the hard scatter, parton showering, hadronisation, and the
-underlying event, the particles and their kinematics should be established. The
-remaining step is determining how this event would be detected in an experiment,
-if it were from a real collision. For the \acs{ATLAS} detector (introduced in
-Section \ref{sec:detector-atlas}) this is done using \geantfour \cite{geant4,
-ATLASsim1}.
+Having simulated the hard scatter, parton showering, hadronisation, the
+underlying event, and pileup, the particles and their kinematics should be
+established. The remaining step is determining how this event would be detected
+in an experiment, if it were from a real collision. For the \acs{ATLAS} detector
+(introduced in Section \ref{sec:detector-atlas}) this is done using \geantfour
+\cite{geant4, ATLASsim1}.
 
 % truth and reco information in MC samples
 A distinction is made between information from \ac{MC} samples before and after

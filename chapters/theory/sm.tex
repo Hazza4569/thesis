@@ -2,46 +2,45 @@
 
 % TODO add citations for experimental `success` of SM
 
-\acused{SM}
-The Standard Model (SM) of particle physics is a gauge \ac{QFT} which combines
+The \ac{SM} of particle physics is a gauge \ac{QFT} which combines
 all of the theories discussed in Section \ref{sec:theory-theories} into a
 single theoretical description. As a result, the \ac{SM} respects a symmetry of
 $SU(3) \times SU(2) \times U(1)$, a combination of the \ac{QCD} and \ac{EW}
 theories.
 
-The \ac{SM} models the interactions of 12 fermions, mediated by 12 gauge bosons
-and an additional scalar boson, the Higgs. The 12 fundamental fermions are split
-into six leptons and six quarks, each can be paired up across three generations.
-The leptons come in charged lepton-neutrino pairs in electron, muon, and tau
-families. There are three generations of up-type and down-type quark pairs:
-up-down, charm-strange, and top-bottom. These fermions all have unique masses,
-although the values of the masses are not derivable from the theory.
+The \ac{SM} models the interactions of 12 fermions (and 12 antifermions),
+mediated by 12 gauge bosons and an additional scalar boson, the Higgs. The 12
+fundamental fermions are split into six leptons and six quarks, each can be
+paired up across three generations.  The leptons come in charged lepton-neutrino
+pairs in electron, muon, and tau families. There are three generations of
+up-type and down-type quark pairs: up-down, charm-strange, and top-bottom. These
+fermions all have different masses, although the values of the masses are not
+derivable from the theory.
 
 The 12 gauge bosons are those introduced by the imposed symmetries: eight gluons
-from $SU(3)$, 3 weak bosons (W$^+$, W$^-$, Z) from $SU(2)$ and the photo
-($\gamma$) from $U(1)$. The gluons and photon are all required to be massless by
-the theory and the weak bosons have related masses, as discussed in Section
-\ref{sec:theory-theories-ew}. The additional boson, the Higgs boson, is also
-massive, although the theory does not explicitly constrain its mass.  All 17
-varieties of fundamental particle (grouping the eight gluons and 2 W bosons) are
-shown in Figure \ref{fig:theory-sm-particles}.
+from the $SU(3)$ \ac{QCD} sector and 4 electroweak bosons (W$^+$, W$^-$, Z,
+$\gamma$) from the $SU(2)\times U(1)$ electroweak sector.  The gluons and photon
+are observed to be massless and the W and Z bosons are massive, as discussed in
+Section \ref{sec:theory-theories-ew}. The additional boson, the Higgs boson, is
+also massive, although, as with the fermions, the theory does not explicitly
+constrain its mass. All 17 varieties of fundamental particle (grouping the eight
+gluons and 2 W bosons) are shown in Figure \ref{fig:theory-sm-particles}.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.95\textwidth]{\resource{standard-model.pdf}}
   \caption{
     All fundamental particles described by the Standard Model shown with their
     masses, or limits on masses, measured from experiments. Particles are
-    grouped into quarks, leptons, and bosons, with the grey outlines grouping
-    each gauge boson with the fermions it acts on.
-    %TODO cite
+    grouped into quarks, leptons, and bosons.
+    \cite{wiki2019}
   }
   \label{fig:theory-sm-particles}
 \end{figure}
 
 Of particular interest to analyses presented in this thesis are \ac{EW} direct
 multiboson interactions. These are interactions introduced in the Lagrangian
-involving multiple \ac{EW} bosons. As explained in Section
+involving multiple \ac{EW} bosons; as explained in Section
 \ref{sec:theory-theories}, these arise from the non-Abelian construction of the
 electroweak sector. These interactions involve either three or four bosons at a
 single vertex, termed \acp{TGC} and \acp{QGC} respectively. In the \ac{SM},
@@ -66,36 +65,44 @@ compared to experimental observations, it does not fully describe elementary
 particle physics. One missing piece is the fourth fundamental force, gravity.
 The current best theory of gravity, general relativity, is not quantisable and
 thus incompatible with the \ac{QFT} structure of the \ac{SM}. At sufficiently
-high energies, the \ac{SM} description of physics will break down without
-accounting for the effects of gravity. 
+high energies, the \ac{SM} description of physics will break down since it
+does not account for the effects of gravity. 
 
 Other signs point to the \ac{SM} being merely an effective theory, a low-energy
 approximation of some more complete theory. The \ac{SM} has $25$ parameters
 \cite{Thomson2013}, such as the fermion masses, with values that have to be
-constrained by experiment rather than being dictated by the theory itself. This
-is not characteristic of a truly fundamental theory as it leaves many questions
-unanswered.
+constrained by experiment rather than being dictated by the theory itself.
+Moreover, there appears to be some structure linking sets of parameter values
+\cite{Thomson2013}, perhaps indicating that a more fundamental theory exists to
+explain these patterns.
 
 Contemporary experimental particle physics is dedicated to both testing
 predictions of the \ac{SM} and searching for signatures of physics beyond it.
 Either by finding evidence of a more fundamental theory, or by identifying a
-breakdown in the \ac{SM} description, the goal is to break the \ac{SM}.
+breakdown in the \ac{SM} description, a significant goal in the field is to
+`break' the \ac{SM}.
 
 \subsection{Standard model processes}
+
+% TODO give relation between cross-section and rate 'luminosity is a factor
+% dependent on the experimental conditions, described in Section X'
 
 A selection of \ac{SM} processes are shown in Figure \ref{fig:theory-sm-xsecs},
 with measurements and predictions of their cross sections. The cross section of
 a process is calculable from theory as a measure of the probability for a
 particular process occurring, typically given in units of fb. Cross sections
 relevant to \ac{VBS} \Zy production and \VZy production are given in the figure.
+The given cross sections are `fiducial' cross sections, meaning they describe
+the production rate only in a specific phase space, dependent on the analysis
+selection involved.
 
 \begin{sidewaysfigure}[p]
   \centering
   \includegraphics[width=.8\textwidth,clip,trim=0 0 0 45px]{\resource{xsecs.pdf}}
   \caption{
-    Cross-sections for \acs{SM} processes, with measurements from the
+    Cross sections for \acs{SM} processes, with measurements from the
     \acs{ATLAS} experiment shown alongside predictions from theory.
-    Cross-sections are corrected for branching fractions but subject to fiducial
+    Cross sections are corrected for branching fractions but subject to fiducial
     phase spaces of the analyses. From the processes discussed in this thesis,
     \acs{VBS} \Zy (labelled as \Zyjj EWK) and W\Zy, one component of \VZy, are
     included.

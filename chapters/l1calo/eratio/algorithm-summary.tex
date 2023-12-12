@@ -1,7 +1,7 @@
 %%% Algorithm summary subsection %%%
 
-Given the results presented in Sections
-\ref{sec:trig-eratio-algorithm-peak}-\ref{sec:trig-eratio-algorithm-limit}, the
+Given the results presented in Section
+\ref{sec:trig-eratio-algorithm}, the
 most performant and resource-efficient algorithm for calculating \eratio in the
 \ac{GEP} is the baseline algorithm established in Section
 \ref{sec:trig-eratio-algorithm-initial} with an exclusion region of one cell and
@@ -12,12 +12,20 @@ signal efficiency.
 %%% Further adjustments %%%
 
 The \eratio algorithm presented here is functionally complete and serves as an
-option for \egamma discrimination in the \ac{GEP}, but further improvements
-could be made with additional study.
-More parameters could be varied and tested for performance against simulations.
+option for \egamma discrimination in the \ac{GEP}. Additionally, further improvements
+could likely be made with more studies.
+More parameters for this \eratio algorithm could be conceived and tested to
+potentially improve performance.
 One example is a threshold in the energy gradient between steps to allow a
 change in gradient to be identified, which might improve the response of the
 algorithm to noise or statistical fluctuations.
+
+This study focused on the design of the \eratio algorithm, using background
+rejection as a metric for performance. Due to technical limitations, the \ac{MC}
+samples used do not represent the projected pileup conditions of \ac{ATLAS}
+during the \ac{HL-LHC}.  Further study would be needed for a full evaluation of
+the performance possible in these conditions, alongside other components of the
+hardware trigger.
 
   %TODO
   % - more parameter options to test?

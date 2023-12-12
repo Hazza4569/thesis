@@ -1,5 +1,5 @@
 % ====== Jet flavour uncertainties section ======
-\newcommand\fgluon{$f^\text{gluon}$\xspace}
+\newcommand\fgluon{$f_g$\xspace}
 
 The uncertainties associated with the flavour composition and response of the
 jets in this analysis make a significant contribution to the result. This
@@ -8,25 +8,15 @@ improve the precision of the final measurement.
 
 These jet flavour uncertainties, as discussed in Section
 \ref{sec:methods-systematics-jet-flavour}, can be reduced by specifying the
-expected fraction of jets initiated by quarks and gluons in the analysis phase
-space.
+expected fraction of jets initiated by (light) quarks and gluons in the analysis phase
+space. This is parameterised by the gluon fraction, given in Equation
+\ref{eqn:methods-systematics-fgluon}.
 
-The gluon fraction is defined as
-%
-\begin{equation*}
-  f^\text{gluon} = \frac{ N_j^\text{gluon} }
-                        { N_j^\text{gluon} + N_j^\text{udsc}},
-\end{equation*}
-%
-where $N_j^\mathrm{gluon}$ and $N_j^\mathrm{udsc}$ are the number of jets
-initiated by gluons and by up/down/strange/charm quarks respectively. A given
-jet in a \ac{MC} event is determined to be quark- or gluon-initiated from the
-truth record.
-Measuring both \fgluon and its associated uncertainty as a function of jet
-pseudorapidity and transverse momentum, for events passing the analysis
-selection, provides the information needed to reduce the jet flavour
-uncertainty.
-%TODO define 'truth record' in theory discussion of \ac{MC}
+A given jet in a \ac{MC} event is determined to be quark- or gluon-initiated
+from the truth record, using the \verb|PartonTruthLabelID| variable.  Measuring
+both \fgluon and its associated uncertainty as a function of jet pseudorapidity
+and transverse momentum, for events passing the analysis selection, provides the
+information needed to reduce the jet flavour uncertainty.
 
 This calculation is performed on events in the \ac{QCD} \Zy \ac{MC} sample, in
 the inclusive analysis region (defined by Table \ref{tab:vbs-selection}) and its
@@ -55,7 +45,7 @@ the largest difference, in each bin, between \fgluon in the inclusive region
 used is then the per-bin quadrature sum of the generator differences and this
 inter-region difference.
 
-\begin{figure}[tbhp]
+\begin{figure}[p]
   \centering
   % ROW 1
   \begin{subfigure}{.48\textwidth}

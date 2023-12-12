@@ -1,61 +1,73 @@
 \begin{acronym}
   \acro{ATLAS}{A Toroidal LHC Apparatus}
-  \acro{BCID}{Bunch Crossing ID}
-  \acro{CERN}{The European Laboratory for Particle Physics}
+  \acro{BCID}{bunch crossing identifier}
+  \acro{BDT}{boosted decision tree}
+  \acro{CERN}{the European Laboratory for Particle Physics}
   \acro{CP}{Cluster Processor}
   \acro{CPM}{Cluster-processor Module}
-  \acro{CR}{Control Region}
+  \acro{CR}{control region}
+  \acro{CSC}{cathode strip chamber}
+  \acro{CTP}{central trigger processor}
+  \acro{DSID}{dataset identifier}
   \acro{eFEX}{Electromagnetic Feature Extractor}
-  \acro{EM}{Electromagnetic}
-  \acro{EW}{Electroweak}
+  \acro{EMEC}{electromagnetic end-cap}
+  \acro{EM}{electromagnetic}
+  \acro{EW}{electroweak}
+  \acro{FCal}{forward calorimeter}
   \acro{FEX}{Feature Extractor}
-  \acro{FPGA}{Field-programmable Gate Array}
+  \acro{FPGA}{field-programmable gate array}
+  \acro{FSR}{final-state radiation}
   \acro{GEP}{Global Event Processor}
   \acro{gFEX}{Global Feature Extractor}
+  \acro{HEC}{hadronic end-cap}
   \acro{HL-LHC}{High-Luminosity LHC}
   \acro{HLT}{High-level Trigger}
+  \acro{ID}{inner detector}
   \acro{JEP}{Jet/Energy Processor}
   \acro{jFEX}{Jet Feature Extractor}
   \acro{L1Calo}{Level-1 Calorimeter}
-  \acro{LAr}{Liquid Argon}
+  \acro{LAr}{liquid argon}
   \acro{LATOME}{Liquid Argon Trigger Optical Mezzanine}
-  \acro{LHC}{Large Hadron Collider} %\acroextra{\\Superconducting collider occupying the 27 km ring at CERN.}}
-  \acro{LO}{Leading Order}
-  \acro{MC}{Monte Carlo}
-  \acro{NLO}{Next-to-leading Order}
-  \acro{NNLO}{Next-to-next-to-leading Order}
-  \acro{PDF}{Parton Density Function}
-  \acro{QCD}{Quantum Chromodynamics}
-  \acro{QGC}{Quadrilinear Gauge Coupling {\acroextra{\\\small\it Often called `Quartic Gauge Couplings' in literature.}}}
-  \acro{RoI}{Region of Interest}
-  \acro{SM}{Standard Model}
-  \acro{SR}{Signal Region}
-  \acro{TGC}{Trilinear Gauge Coupling {\acroextra{\\\small\it Often called `Triple Gauge Couplings' in literature.}}}
-  \acro{TGCm}[TGC]{thin gap chamber{\acroextra{\\\small\it when used in Chapter \ref{sec:detector}}}}
-  \acro{TOB}{Trigger Object}
-  \acro{UI}{User Interface}
-  \acro{VBS}{Vector-boson Scattering}
-  \acro{FSR}{Final-state Radiation}
-  \acro{PV}{Primary Vertex}
-  \acro{TRT}{Transition Radiation Tracker}
-  \acro{MS}{Muon Spectrometer}
-  \acro{ID}{Inner Detector}
-  \acro{BDT}{boosted decision tree}
-  \acro{PoI}{parameter of interest}
-  \acro{QFT}{quantum field theory}
-  \acro{QED}{quantum electrodynamics}
-  \acro{MDT}{monitored drift tube}
-  \acro{CSC}{cathode strip chamber}
-  \acro{RPC}{resistive-plate chambers}
-  \acro{EMEC}{electromagnetic end-cap}
-  \acro{HEC}{hadronic end-cap}
-  \acro{FCal}{forward calorimeter}
-  \acro{TDAQ}{trigger and data acquisition}
-  \acro{PPM}{pre-processor module}
-  \acro{CTP}{central trigger processor}
   \acro{LEP}{Large Electron-Positron Collider}
-  \acro{SCT}{semiconductor tracker}
-  \acro{DSID}{dataset identifier}
+  \acro{LHC}{Large Hadron Collider} %\acroextra{\\Superconducting collider occupying the 27 km ring at CERN.}}
+  \acro{LO}{leading order}
+  \acro{MC}{Monte Carlo}
+  \acro{MDT}{monitored drift tube}
+  \acro{MS}{muon spectrometer}
+  \acro{NLO}{next-to-leading order}
+  \acro{NNLO}{next-to-next-to-leading order}
   \acro{OR}{overlap removal}
+  \acro{PDF}{parton density function}
+  \acro{PoI}{parameter of interest}
+  \acro{PPM}{pre-processor module}
+  \acro{PV}{primary vertex}
+  \acro{QCD}{quantum chromodynamics}
+  \acro{QED}{quantum electrodynamics}
+  \acro{QFT}{quantum field theory}
+  \acro{QGC}{quadrilinear gauge coupling{\acroextra{\\\small\it Often called `quartic gauge couplings' in literature.}}}
+  \acro{RoI}{region of interest}
+  \acro{RPC}{resistive-plate chambers}
+  \acro{SCT}{semiconductor tracker}
+  \acro{SM}{Standard Model}
+  \acro{SR}{signal region}
+  \acro{TDAQ}{trigger and data acquisition}
+  \acro{TGC}{trilinear gauge coupling{\acroextra{\\\small\it Often called `triple gauge couplings' in literature.}}}
+  \acro{TGCm}[TGC]{thin gap chamber{\acroextra{\\\small\it when used in Chapter \ref{sec:detector}}}}
+  \acro{TOB}{trigger object}
+  \acro{TRT}{Transition Radiation Tracker}
+  \acro{UI}{user interface}
+  \acro{VBS}{vector-boson scattering}
 \end{acronym}
+
+%Plural changes
+\acrodefplural{RoI}{regions of interest}
+\acrodefplural{PoI}{parameters of interest}
+\acrodefplural{PV}{primary vertices}
+\acrodefplural{QFT}{quantum field theories}
+
 \newcommand\acsfirst[1]{\acsu{#1}\label{acro:#1}\xspace}
+\newcommand\accustomreset{%
+  \acresetall%
+  \acused{ATLAS}%
+  \acused{LO}\acused{NLO}\acused{NNLO}%
+}

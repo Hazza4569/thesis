@@ -1,12 +1,21 @@
 % ========== SYSTEMATIC UNCERTAINTIES SECTION ==========
 
-% TODO discuss missing theory systematics!
-
 This analysis considers the sources of systematic uncertainty discussed in
 Section \ref{sec:methods-systematics}. As well as being applied to the signal
-and \ac{QCD} \Zy background, full experimental and theory systematic
-uncertainties are applied for the \ac{EW} \Zyjj background. A different pruning
-procedure is used here to the \ac{VBS} analysis, and is discussed below.
+and \ac{QCD} \Zy background, experimental and theory systematic
+uncertainties are applied for the \ac{EW} \Zyjj background. Due to the adoption
+of more standardised \ac{ATLAS} tools \cite{trexfitter}, a different pruning
+procedure is used here to that of the \ac{VBS} analysis, and is discussed below.
+
+Some of the theory uncertainties discussed in Section
+\ref{sec:methods-systematics-theory} are omitted from this analysis.
+Uncertainties on the signal process from choice of parton showering and
+underlying event model are not included, and the uncertainty for interference
+between \ac{EW} and \ac{QCD} \Zyjj production is also missing. These are not
+expected to be a significant omission due to the small signal yield.
+Uncertainties from choice of scale and \ac{PDF} set are included for the \ac{QCD}
+\Zy background and both \ac{EW} \Zyjj samples. The QCD modelling uncertainty is
+included and calculated using the difference of generators method.
 
 %Largest uncertainties
 
@@ -54,7 +63,7 @@ the treatment of each systematic uncertainty is indicated.
   \centering
   \includegraphics[height=.9\textheight]{\resource{Pruning.pdf}}
   \caption{
-    Pruning results for systematics in the \VZy analysis. The colours indicate
+    Pruning results for systematic uncertainties in the \VZy analysis. The colours indicate
     whether a systematics shape and normalisation uncertainty components were
     each retained for the fit or dropped, for each sample and region used in the
     fit.

@@ -5,9 +5,12 @@ The signal strength for \ac{EW} \VZy measured from the full fit is
 %
 \begin{equation*}
   \begin{split}
-  \muEW &= 1.406 ^{+1.195}_{-1.142} \\
-        &= 1.406 ^{+0.930}_{-0.901} \,(\text{stat.})
-                 ^{+0.750}_{-0.701} \,(\text{syst.}),
+  \muEW &= 1.41 ^{+1.20}_{-1.14} \\
+        &= 1.41 ^{+0.93}_{-0.90} \,(\text{stat.})
+                 ^{+0.75}_{-0.70} \,(\text{syst.}),
+  %\muEW &= 1.406 ^{+1.195}_{-1.142} \\
+  %      &= 1.406 ^{+0.930}_{-0.901} \,(\text{stat.})
+  %               ^{+0.750}_{-0.701} \,(\text{syst.}),
   \end{split}
 \end{equation*}
 % mu_EWK  1.40551 +1.19471 -1.1415
@@ -17,7 +20,7 @@ and is compatible with the \ac{SM} expectation. Post-fit distributions in the
 four regions are shown in Figure \ref{fig:vzy-results-postfit}.
 
 % Post-fit distributions
-\begin{figure}[tbhp]
+\begin{figure}[tp]
   \centering
   \begin{subfigure}{.495\textwidth}
     \includegraphics[width=\textwidth]{\resource{stack/CR_BDT_postFit.pdf}}
@@ -44,12 +47,12 @@ four regions are shown in Figure \ref{fig:vzy-results-postfit}.
 
 % Significance and limits
 The observed significance of the signal process is 1.24 standard deviations,
-from an expected significance of 1.40 standard deviations.
-This does not meet the threshold to provide evidence on the existence of the
-process. Instead a limit is set on the rate of production for signal events at
-3.46 times the \ac{SM} expectation. This can be used to constrain any new
-physics models that would enhance the cross-section for triboson \VZy
-production.
+compared with an expected significance of 1.40 standard deviations.  This does
+not meet the threshold to provide evidence on the existence of the process.
+Instead a 95\% confidence level upper limit is set on the rate of production for
+signal events at 3.46 times the \ac{SM} expectation. This can be used to
+constrain any new physics models that would enhance the cross-section for
+triboson \VZy production.
 
 %Injecting signal into the limit estimate: 1.000000
 %Expected limit (median): 2.261164, worst case error: -0.026594
@@ -69,17 +72,13 @@ Statistical uncertainties make the largest contribution to the measurement, but
 systematic uncertainties make a significant contribution. The largest systematic
 contributions are shown in Figure \ref{fig:vzy-results-ranking}.
 Pileup reweighting is the largest individual contribution, likely due to the
-limited data statistics (see Section \ref{sec:vzy-projection}). Section
-\ref{sec:methods-systematics} discusses the origin of pileup reweighting
-uncertainties.
-The second largest contribution is from jet flavour composition. This
-uncertainty is reducible, as was done for the \ac{VBS} \Zy analysis, but there
-was not sufficient time to implement it for this analysis. Several more of the
-largest uncertainties are \ac{MC} statistics uncertainties in signal bins; these
-are also reducible given large \ac{MC} samples. The effect of reducing some of
+limited data statistics (see Section \ref{sec:vzy-projection}).
+The second largest contribution is from jet flavour composition, and several more
+of the largest uncertainties are \ac{MC} statistics uncertainties in signal
+bins; as these uncertainties should be reducible, the effect of reducing some of
 these systematic uncertainties is discussed in Section \ref{sec:vzy-projection}.
 
-\begin{figure}[tbhp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.8\textwidth]{\resource{Ranking_mu_EWK.pdf}}
   \caption{

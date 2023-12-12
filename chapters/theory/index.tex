@@ -2,10 +2,14 @@
 \renewcommand\relpath[1]{chapters/theory/#1}
 \renewcommand\resource[1]{chapters/theory/resources/#1}
 
-\section {Quantum field theory}
+\input{\relpath{intro.tex}}
+
+\section{Quantum field theory}
+\label{sec:theory-qft}
 \input{\relpath{qft.tex}}
 
 \section{Symmetries and transformations}
+\label{sec:theory-symmetry}
 \input{\relpath{symmetry.tex}}
 
 \section{Gauge theories}
@@ -13,6 +17,7 @@
 \input{\relpath{theories.tex}}
 
 \section{The Standard Model of particle physics}
+\label{sec:theory-sm}
 \input{\relpath{sm.tex}}
 
 \section{Proton-proton collisions}

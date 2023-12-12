@@ -3,36 +3,24 @@
 %Rewritten intro
 The choice of jet collection for this analysis is non-trivial. Particle-flow
 jets have recently become the standard recommendation within \ac{ATLAS} in place
-of topo-cluster jets, but rather than applying that recommendation unilaterally,
+of topo-cluster jets, but rather than applying that recommendation blindly,
 the specific case for this analysis is considered. For a discussion of jet
 collections, see Section \ref{sec:methods-reconstruction-jet}.
 
 The benefits of particle-flow include improved resolution for low-energy jets,
 although this only works within the acceptance of the \ac{ID}.  Typical \ac{VBS}
-jets are energetic and very forward, perhaps pushing into regions beyond \ac{ID}
-acceptance.  Although a great deal of \ac{VBS} jets will still be in range to
-benefit from particle-flow, the phase space is very different from one which
-would make particle-flow jets an obvious choice. This section presents a
+jets, on the other hand, are energetic and very forward, perhaps pushing into
+regions beyond \ac{ID} acceptance. Although a great deal of \ac{VBS} jets will
+still benefit from particle-flow, the phase space is very different from one
+which would make particle-flow jets an obvious choice. This section presents a
 comparison between particle-flow and topo-cluster jets in the analysis phase
-space to justify the move to using particle-flow jets.
+space, to justify the move to using particle-flow jets.
 
-%Back to it
-The procedure for comparing performance between these two jet collections is to
-investigate the difference in event yield from applying jet-based selection
-criteria with values calculated from either jet collection.  The \Zy selection,
-as in Table \ref{tab:anacom-zy-selection}, is applied first then jet-based cuts
-are applied and the resulting yields compared.  For simplicity, this was
-investigated in the signal \ac{MC} sample for only Z$\to ee$ events.
-
-Looking at the overall yield of events after each cut shows that
-the two jet collections give very similar results, always within 1\% of one
-another. Table \ref{tbl:vbs-pflow-cutflow} shows these yields.
-
-\begin{table}[tbp]
+\begin{table}[!b]
   \centering
   \caption{
     Yields and efficiencies after each jet cut, compared for both topo-cluster
-    and particle-flow jets. Starting from all EW Z($\to ee$)$\gamma jj$
+    and particle-flow jets. Starting from all EW Z($\to ee$)$\gamma$jj
     events that pass the \Zy selection. Efficiencies given are for the
     individual cut, relative to the yield from the previous cut. The difference
     is given as percentage increase from the topo-cluster to the particle-flow
@@ -40,12 +28,13 @@ another. Table \ref{tbl:vbs-pflow-cutflow} shows these yields.
     photons.
   }
   \renewcommand\arraystretch{1.3}
-  \begin{tabular}{| c || c | c || c | c || c |}
-    \hline 
-    \multirow{2}{2em}{Cut} & \multicolumn{2}{c||}{Topo-cluster} &
-    \multicolumn{2}{c||}{Particle-flow} & \multirow{2}{5em}{Difference}\\
+  \begin{tabular}{p{5cm}ccccc}
+    \midrule\midrule 
+    \multirow{2}{2em}{Cut} & \multicolumn{2}{c}{Topo-cluster} &
+    \multicolumn{2}{c}{Particle-flow} & \multirow{2}{5em}{Difference}\\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}
     & \multicolumn{1}{c}{Yield} & Eff. & \multicolumn{1}{c}{Yield} & Eff. & \\
-    \hline\hline
+    \midrule
     $N_j \geq 2$
     & 51084 & 79.7\% & 51468 & 80.3\% & +0.7\% \\
     $p_T^j > 50~\mathrm{GeV},~|\eta_j| < 4.5$
@@ -56,18 +45,32 @@ another. Table \ref{tbl:vbs-pflow-cutflow} shows these yields.
     & 27127 & 86.5\% & 27293 & 86.5\% & +0.6\% \\
     $|m_{jj}| > 150~\mathrm{GeV}$
     & 26752 & 98.6\% & 26885 & 98.5\% & +0.5\% \\
-    \hline
+    \midrule\midrule
   \end{tabular}
   \label{tbl:vbs-pflow-cutflow}
 \end{table}
 
+%Back to it
+The procedure for comparing performance between these two jet collections is to
+investigate the difference in event yield from applying jet-based selection
+criteria with values calculated from either jet collection.  The \Zy selection,
+as in Table \ref{tab:anacom-zy-selection}, is applied first, then jet-based cuts
+are applied and the resulting yields compared. For simplicity, this was
+investigated in the signal \ac{MC} sample for only Z$\to ee$ events.
+
+
+Looking at the overall yield of events after each cut shows that
+the two jet collections give very similar results, always within 1\% of one
+another. Table \ref{tbl:vbs-pflow-cutflow} shows these yields.
+%
 Differences can be further scrutinised by looking at each individual event; most
 events should result in the same decision, pass or fail, regardless of the jet
 collection chosen. This checks that the similar yields aren't merely a
 coincidence, when in fact many events pass only one selection. Figure
 \ref{fig:vbs-pflow-pies} shows these per-event differences in decisions.
 
-\begin{figure}[tbh]
+
+\begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{\resource{pflow-pies.pdf}}
   \caption{
@@ -87,12 +90,13 @@ coincidence, when in fact many events pass only one selection. Figure
 For the vast majority of events, the two jet collections make the same
 selection, with less than 5\% of events showing differences. These differences
 are tested by investigating the distributions in the cut
-variables for cases where the two jet collections give a different result.
+variables for cases where the two jet collections give a different result, in
+these instances the two values should still be similar.
 For example, if an event passes $m_{jj} > 150$ GeV with topo-cluster jets
 but not with particle-flow jets then the particle-flow $m_{jj}$ value should be
 close to the cut boundary of 150 GeV.
 
-\begin{figure}[tbh]
+\begin{figure}[tb]
   \includegraphics[width=.5\textwidth]{\resource{decor_pflow_n_jet_raw.pdf}}
   \includegraphics[width=.5\textwidth]{\resource{decor_pflow_jet_subpt_raw_fix.pdf}}
   \\
@@ -114,8 +118,8 @@ close to the cut boundary of 150 GeV.
 
 Investigating the case where events are selected using particle-flow jets but
 not topo-cluster jets, results for the four key cut variables are shown in
-Figure \ref{fig:vbs-pflow-boundary-plots}. The distributions are, largely, as
-expected given that values peak on the cut boundary and tail off for more
+Figure \ref{fig:vbs-pflow-boundary-plots}. The distributions are largely as
+expected, given that values peak on the cut boundary and tail off for more
 extreme differences.  However, it is notable that for the dijet variables,
 $m_{jj}$ and $|\Delta\eta_{jj}|$, there are some strong outliers.
 
@@ -169,9 +173,9 @@ This study, although limited in scope, serves to demonstrate that the key jet
 variables used in this analysis perform very similarly when calculated with
 particle-flow and topo-cluster jets. Any differences seen are sufficiently small
 that no meaningful effect on the analysis result is expected.  This is
-considered as motivation to use particle-flow jets for this analysis in keeping
-with the updated \ac{ATLAS} recommendation.  To really understand if the
+considered as motivation to use particle-flow jets for this analysis, in keeping
+with the updated \ac{ATLAS} recommendation. To really understand if the
 improvements in resolution with particle-flow jets are seen in the analysis
 phase space, further studies could be conducted on how systematic uncertainties
 differ between collections, to determine which would give the most precise
-result. This would have been a possible extension given more time.
+result.

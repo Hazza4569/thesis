@@ -1,13 +1,13 @@
 %%% Phase-II upgrade subsection %%%
 
 As luminosity and pileup is increased even further with the high-luminosity era
-of the \ac{LHC} in Run 4, the trigger needs to be further improved to operate in
+of the \ac{LHC} in Run 4, the trigger again needs to be improved to operate in
 increasingly difficult conditions. The Phase-II upgrade to the hardware trigger
 aims to do this primarily by adding a new component, the \ac{GEP} (or Global
 Trigger). The \ac{GEP} will be downstream of the Phase-I \ac{FEX} modules, which
-will continue to contribute to the trigger, and will refine decisions made by
+will continue to contribute to the trigger, and it will refine decisions made by
 employing additional information: information from a larger area than typically
-available to a single \ac{FEX} but also finer in granularity.
+available to a single \ac{FEX} and also finer in granularity.
 
 % [P2 DIAGRAM]
 \begin{figure}
@@ -17,7 +17,8 @@ available to a single \ac{FEX} but also finer in granularity.
     Schematic of the \acs{ATLAS} hardware trigger as planned for the Phase-II
     upgrade in Run 4 of the \acs{LHC}. The red lines highlight the main parts
     relevant to the \egamma trigger, with the addition of the Global Trigger
-    being the main change with respect to the Phase-I system.
+    being and the use of calorimeter cell information being the main changes
+    with respect to the Phase-I system.
     \cite{ATLAS-TDR-TDAQ-PhaseII}
   }
   \label{fig:trig-upgrade-p2-diagram}
@@ -26,14 +27,14 @@ available to a single \ac{FEX} but also finer in granularity.
 An outline of how the \ac{GEP} fits in with the existing systems is shown in
 Figure \ref{fig:trig-upgrade-p2-diagram}. Information from the calorimeters will
 be sent directly to the \ac{GEP} in finer granularity than is available to the
-\ac{eFEX}, with energies in each individual cell without them being grouped into
-SuperCells. This gives a 4-8 times increase in granularity, depending on the
-region of the calorimeter.
-% Discuss how GEP and eFEX interact
+\ac{eFEX}, with energies in each individual cell at the full detector
+granularity. This gives a 4-8 times increase in granularity over SuperCells,
+depending on the region of the calorimeter.
 
 The additional information available to the \ac{GEP} means it can work together
-with the eFEX. The \ac{eFEX} will create \acp{TOB} with associated variables
-(discussed in Section \ref{sec:trig-upgrade-p1}) which are sent to the \ac{GEP},
-which can then further probe the same region of the calorimeter to determine if
-the candidate object should be accepted. The algorithms used by the \ac{GEP} to
-do this are the topic of the study in Section \ref{sec:trig-eratio}.
+with the eFEX to further refine the result. The \ac{eFEX} will create \acp{TOB}
+with associated variables (discussed in Section \ref{sec:trig-upgrade-p1}) which
+are sent to the \ac{GEP}.  The \ac{GEP} can then further probe the same region
+of the calorimeter to determine if the candidate object should be accepted. The
+algorithms used by the \ac{GEP} to do this are the topic of the study in Section
+\ref{sec:trig-eratio}.

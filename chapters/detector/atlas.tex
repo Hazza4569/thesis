@@ -1,18 +1,19 @@
 % ========== THE ATLAS DETECTOR SECTION ==========
 
 % Overview
-\acsfirst{ATLAS} (\acl{ATLAS}) is one of the four detectors built around interaction
+\acsfirst{ATLAS} (\acl{ATLAS}) is one of the four large detectors built around interaction
 points at the \ac{LHC}. The \ac{ATLAS} detector is the largest of the four, and
 designed as a general-purpose detector to measure as many different processes as
 possible. In order to do this, it surrounds the interaction point almost
-entirely; full angular acceptance would allow any event to be fully
-reconstructed from its detected decay products. The detector itself is built of
+entirely. Full angular acceptance would in principle allow any event to be fully
+reconstructed from its detected decay products, the goal is to get as close to
+this as is reasonably possible. The detector itself is built from
 several sub-detectors, each dedicated to measuring specific properties of
 particles. Each of these sub-detectors is discussed in detail below.
 Figure \ref{fig:detector-atlas-atlas} gives an overview of the \ac{ATLAS}
 detector and its components.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{\resource{atlas-schematic.pdf}}
   \caption{
@@ -23,11 +24,12 @@ detector and its components.
 \end{figure}
 
 \subsection{Coordinate system}
+
 A specific coordinate system is used to describe the \ac{ATLAS} detector and
 interactions within it. The $z$-axis runs along the beamline, the $x$-axis
 points, in the positive direction, towards the centre of the \ac{LHC} ring, and
 the $y$-axis points vertically upwards. The azimuthal angle, $\phi$, is measured
-around the beamline in the $x$-$y$ plane and the polar angle, $theta$, is
+around the beamline in the $x$-$y$ plane and the polar angle, $\theta$, is
 measured from the beam axis. A pseudorapidity coordinate, $\eta$, is defined as
 \begin{equation*}
   \eta = -\ln\tan(\theta/2).
@@ -38,8 +40,9 @@ momentum or energy in the $x$-$y$ plane, transverse to the beamline.
 The set of coordinates $p_T$, $\eta$, and $\phi$ are typically preferred to
 describe the kinematics of objects in the detector as they are invariant under
 Lorentz boosts along the beamline\footnote{
-  Pseudorapidity itself is not invariant, but transforms additively under
-  Lorentz boosts; differences in pseudorapidity are therefore Lorentz invariant.
+  Pseudorapidity itself is not invariant, but is approximately equal to rapidity
+  (in the relativistic limit). Rapidity transforms additively under
+  such Lorentz boosts and so differences in rapidity are Lorentz invariant.
 }.
 Without this Lorentz invariance, differences in kinematics between events could
 be introduced depending on the relative momenta of the colliding partons.
@@ -53,10 +56,11 @@ quantity $\Delta R = \sqrt{\Delta\eta^2 + \Delta\phi^2}$.
 The innermost detector system, known as the \ac{ID} or tracker, contains three
 sub-detectors designed to track the location of charged particles, to measure
 their momentum based on the curvature of their tracks. This is enabled by a
-solenoid magnet which surrounds the \ac{ID}, generating a 2 T magnetic field in
-order to curve the tracks of charged particles travelling through.
+solenoid magnet which surrounds the \ac{ID}, generating a 2 T magnetic field
+coaxial with the beam direction in
+order to bend the tracks of charged particles travelling through.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.9\textwidth]{\resource{tracker-schematic.jpg}}
   \caption{
@@ -78,8 +82,9 @@ origin allows it to be associated with a specific collision vertex location on
 the beamline.
 
 % ref figure
-Figure \ref{fig:detector-atlas-tracker} shows a cross-section of the \ac{ID} and
-its sub-detectors. From the beamline outwards, these are: the pixel detector,
+Figure \ref{fig:detector-atlas-tracker} shows a cross section of a sector of the
+\ac{ID}; the sub-detectors of which the tracker is composed are shown.
+From the beamline outwards, these are: the pixel detector,
 the \ac{SCT}, and the \ac{TRT}. Each of these are detailed below. The pixel and
 \ac{SCT} both cover an acceptance of $|\eta| < 2.5$ while the \ac{TRT} has an
 acceptance of $|\eta| < 2$.
@@ -270,6 +275,7 @@ data acquisition (\acsfirst{TDAQ}) system is summarised in Figure
 \end{figure}
 
 \subsubsection{Level-1 trigger}
+\label{sec:detector-atlas-tdaq-l1}
 
 The Level-1 trigger system is built of three main components: L1Calo, L1Muon,
 and L1Topo. Each of these are built from bespoke hardware modules designed to
