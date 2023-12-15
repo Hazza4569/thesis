@@ -1,9 +1,9 @@
 % ========== MONTE CARLO PREDICTIONS ==========
 
-The \ac{SM} is tested by comparing its predicted cross-sections for a set of
+The \ac{SM} is tested by comparing its predicted cross sections for a set of
 measurable physics processes with the rate observed in data. To isolate
 processes of interest, this is often done in complicated phase spaces and
-differentially across distributions, so calculating the predicted cross-sections
+differentially across distributions, so calculating the predicted rate
 is quite complex. Real measurements are also subject to the limitations and
 effects of the detector; for accurate comparisons to be made between data and
 predictions, these need to be accounted for.
@@ -26,8 +26,8 @@ several implementations commonly used in the field, known as
 
 % PDFs
 The first step of the process is simulating the hard scatter. These rely on
-matrix element calculations (which give the probabilities for each interaction
-from the theory) and \ac{PDF} sets in order to accurately simulate the desired
+matrix element calculations, at a given perturbative order,
+and \ac{PDF} sets in order to accurately simulate the desired
 processes at the given centre-of-mass energy.
 
 % What needs to be added to hard scatter?
@@ -91,6 +91,8 @@ A distinction is made between information from \ac{MC} samples before and after
 detector simulation. Simulated events before detector simulation is applied are
 known as `truth' events, they contain only the physics processes and are not
 subject to any inefficiencies or misidentification of the simulated detector.
+Samples or variables with truth information are often described as `truth-level'
+(or `particle-level').
 Events completing the full simulation chain are known as reconstructed \ac{MC}
 events. These are typically linked so that the truth properties (or `truth
 record') of reconstructed \ac{MC} events are accessible. Analysis is typically

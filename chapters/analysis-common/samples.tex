@@ -11,13 +11,19 @@ unblinding.
 
 The two analyses presented here have the same underlying signal process and the
 same set of backgrounds, so the \ac{MC} samples used are common for both
-analyses. Table \label{tab:methods-data-triggers} summarises how these samples
+analyses. Table \ref{tab:methods-data-samples} summarises how these samples
 were produced, including the physics process which is simulated; the \ac{MC}
 generator used for the hard scatter; the generator used to add parton showering,
 hadronisation, and underlying event; the order to which the cross section is
 calculated for the hard scatter; and the \ac{PDF} set used by the hard-scatter
-generator. The remainder of this section gives more precise details for each of
-these samples.
+generator. The remainder of this section gives more details for each of
+these samples, as well as some additional samples or variants of these samples
+which are necessary for evaluating analysis uncertainties. The \acp{DSID}%
+\footnote{
+  This is an internal \acs{ATLAS} identifier for the sample, included for
+  completeness.
+}
+are given for each sample accessible on the grid.
 
 \begin{table}[tb]
   \centering
@@ -44,7 +50,7 @@ these samples.
     \ac{EW} \WZjj & \madgraph  & \pythia & \acs{LO} & NNPDF3.0 \acs{LO} & (7) \\
     \cmidrule{1-5}\morecmidrules\cmidrule{1-5}
   \end{tabular}
-  \label{tab:methods-data-triggers}
+  \label{tab:methods-data-samples}
 \end{table}
 
 %Signal: A14 tune
@@ -55,10 +61,7 @@ these samples.
 
 The signal sample (Sample 1) uses \madgraphfiveamc 2.6.5 \cite{madgraph5amc} as
 well as
-\pythia 8.240 \cite{pythia8dot2}. The \acp{DSID}\footnote{
-  This is an internal \acs{ATLAS} identifier for the sample, included for
-  completeness.
-}
+\pythia 8.240 \cite{pythia8dot2}. The \acp{DSID}
 for this sample are 363267-363268.
 %The \ac{LO} accuracy includes diagrams of order $\alpha_\text{EW}^4$.
 An alternate version of this sample is produced, with {\herwig}++ 2.7.1
@@ -68,24 +71,26 @@ to the choice of parton showering and underlying event model.
 For the \ac{QCD} \Zy samples, Sample 2 (\acp{DSID} 345775-345782) is the nominal
 sample and uses \madgraphfiveamc 2.3.3 and \pythia 8.212 and Sample 3
 (\acp{DSID} 366140-366149) gives an alternate estimate using \sherpa 2.2.4
-\cite{sherpa2dot2}. Both of these samples include additional parton emission
+\cite{sherpa2dot2}. Both of these samples include additional hard parton emission
 beyond the order at which the cross-section is calculated \cite{VBSZy-CONF}. An
 additional five samples are generated at particle level for this process, using
 \sherpa 2.2.10. These are used for evaluating theoretical uncertainty and have
 varied values for merging and resummation scales (see Section
 \ref{sec:theory-mc}).
 
-Sample 4 (\acp{DSID} 361106-361107) uses \powhegbox v1
-\cite{Nason2004,powheg,powhegbox} and \pythia 8.186 \cite{pythia8dot1}.
-This sample is not used directly for a background estimate, but as part of the
-data-driven estimate discussed in Section
+Sample 4 (\acp{DSID} 361106-361107) models the Z+jets background using
+\powhegbox v1 \cite{Nason2004,powheg,powhegbox} and \pythia 8.186
+\cite{pythia8dot1}.  This sample is not used directly for a background estimate,
+but as part of the data-driven estimate discussed in Section
 \ref{sec:methods-backgrounds-fakephoton}.
 
-Sample 5 (\ac{DSID} 410389) uses \madgraphfiveamc 2.3.3 and \pythia 8.212.
-Sample 6 (\ac{DSID} 364253) uses \sherpa 2.2.2, and Sample 7 (\acp{DSID}
-364739-364742) is produced with \madgraphfiveamc 2.6.2 and \pythia 8.235.
+The \tty background is modelled by Sample 5 (\ac{DSID} 410389) with
+\madgraphfiveamc 2.3.3 and \pythia 8.212.  The \ac{QCD} and \ac{EW} production
+modes for the \WZjj background are from Sample 6 (\ac{DSID} 364253), with
+\sherpa 2.2.2, and Sample 7 (\acp{DSID} 364739-364742), with \madgraphfiveamc
+2.6.2 and \pythia 8.235, respectively.
 
-An additional truth-level sample is used to calculate interference between
+An additional particle-level sample is used to calculate interference between
 \ac{EW} and \ac{QCD} \Zyjj production. This is estimated at \ac{LO} with
 \madgraphfiveamc 2.3.3 with the NNPDF3.0 \ac{LO} \ac{PDF} set.
 

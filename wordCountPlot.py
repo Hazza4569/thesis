@@ -7,7 +7,7 @@ def dstr(datestring):
     return mdate.datestr2num(datestring)
 
 xlow = '2022/11/01'
-xupp = '2023/12/15'
+xupp = '2023/12/16'
 # Read data and convert dates
 # (append 0-point for line coming off the edge of the graph)
 date, count = np.loadtxt('wordCountHistory').transpose()
@@ -55,4 +55,4 @@ ax.tick_params(axis='y',which='minor',size=3)
 #)
 # Save figure
 plt.savefig('word_count.pdf')
-plt.savefig('word_count.png', dpi=1200)
+plt.savefig('word_count.png', dpi=200)

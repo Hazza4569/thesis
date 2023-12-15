@@ -1,8 +1,8 @@
 % ========== STATISTICAL INFERENCE SECTION ==========
 
 The goal in making a particle physics measurement is to test the agreement
-between the observed data and the \ac{SM} prediction.  In frequentist statistics
-a model cannot be determined to be correct, instead models can be rejected if
+between the observed data and the \ac{SM} prediction. In frequentist statistics,
+a model cannot be determined to be correct, instead models are be rejected if
 there is `significant' disagreement. To test agreement of data with a model
 (termed the `null hypothesis'), the level of discrepancy between the two is
 evaluated using hypothesis testing.  The result is either that data is
@@ -10,7 +10,7 @@ consistent with the model, or that the discrepancy is is significant enough to
 reject the model.
 Certain thresholds are commonly used in particle physics to define when a result
 is significant, discussed below in Section
-\label{sec:methods-stats-signifthresh}.
+\ref{sec:methods-stats-signifthresh}.
 
 If searching for an exotic process that is not predicted in the \ac{SM}, this
 null hypothesis would simply be the \ac{SM}. The analyses in this thesis instead
@@ -31,7 +31,7 @@ event yield, $n_\text{tot}$, then becomes
 \begin{equation*}
   n_\text{tot} = n_b + \mu\cdot n_s,
 \end{equation*}
-where $n_b$ is the number of background events and $n_s$ the number of signal
+where $n_b$ is the predicted number of background events and $n_s$ the predicted number of signal
 events. Setting $\mu=1$ corresponds to the \ac{SM} prediction while $\mu=0$
 gives the background-only prediction.
 
@@ -46,7 +46,7 @@ rejected. If $\mu$ is consistent with a value of 1, the data agrees with the
 
 In order to fit data and obtain a measured value for $\mu$, a likelihood
 function is constructed to describe the likelihood of obtaining such data given
-a certain value of $\mu$. Here two cases are discussed. First, a simplified
+a certain value of $\mu$. Here, two cases are discussed. First, a simplified
 case using the Poisson distribution to describe the likelihood of a
 binned dataset considering only statistical uncertainties, used as a simple
 performance metric in Section \ref{sec:vzy-bdt}. The second case expands on this
@@ -60,17 +60,17 @@ parameters, as is used in the fits introduced in Sections \ref{sec:vbs-fit} and
 \newcommand\nobsi{\ensuremath{n_\text{obs}^i}\xspace}
 Consider the predicted number of events in the $i$\textsuperscript{th} bin,
 as a function of $\mu$, as
-\begin{equation}
+\begin{equation*}
   n_\text{tot}^i = n_b^i + \mu\cdot n_s^i,
-\end{equation}
+\end{equation*}
 for $n_b^i$ and $n_s^i$
 giving the predicted numbers of background and signal events per bin
 respectively. The likelihood of observing \nobsi events in bin $i$ is
 given by a Poisson distribution with a mean of $n_\text{tot}^i$, or
-\begin{equation*}
+\begin{equation}
   \mathcal{L}(\nobsi;\mu) = \text{Poisson}(\nobsi; n_b^i + \mu n_s^i).
   \label{eqn:methods-stats-llh-perbin}
-\end{equation*}
+\end{equation}
 
 The combined likelihood of observing this set of per-bin yields, given a value
 of the signal strength, is therefore given by the product of the per-bin
@@ -81,7 +81,7 @@ likelihoods:
 \end{equation}
 
 \subsubsection{Adding nuisance parameters}
-\ref{sec:methods-stats-llh-nps}
+\label{sec:methods-stats-llh-nps}
 
 To account for the effect of external systematic uncertainties in a fit,
 nuisance parameters are added to the likelihood. This can be done per-bin or
@@ -90,9 +90,9 @@ across the whole distribution, as required for each source of uncertainty.
 Each nuisance parameter adds a constraint function as a factor to the
 likelihood. The constraint functions describe the behaviour of varying the
 nuisance parameter up or down from its nominal value, by any amount. Since the
-input for each systematic uncertainty is a nominal value, one upwards variation,
-and one downwards variation, the constraint function must be interpolated from
-these values.
+input for each systematic uncertainty is not a continuous function but just a
+nominal value, one upwards variation, and one downwards variation, the
+constraint function must be interpolated from these values.
 
 Uncertainties affecting each bin individually, shape uncertainties, are linearly
 interpolated to evaluate the constraint function. These constraint functions are
@@ -150,7 +150,7 @@ would give the same $p$-value.
 \label{sec:methods-stats-signifthresh}
 
 Established thresholds are used within particle physics to ensure that any
-discoveries made are statistically valid. An `observation' of a process requires
+discoveries made are robust. An `observation' of a process requires
 the significance of an excess over the background-only hypothesis to be at least
 five standard deviations. If that threshold is not met, it can still constitute
 `evidence' towards an observation if the significance exceeds three standard

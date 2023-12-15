@@ -82,19 +82,61 @@ Either by finding evidence of a more fundamental theory, or by identifying a
 breakdown in the \ac{SM} description, a significant goal in the field is to
 `break' the \ac{SM}.
 
-\subsection{Standard model processes}
+\subsection{Cross sections}
 
-% TODO give relation between cross-section and rate 'luminosity is a factor
-% dependent on the experimental conditions, described in Section X'
+For each process predicted by the \ac{SM}, its cross section, $\sigma$, can be
+calculated from the theory. The cross section is a measure of the probability
+for the process to occur; cross sections have the dimension of area and are
+typically quoted in units of `barns', where $1~\text{b} \equiv
+10^{-28}~\text{m}^{2}$.
+
+A useful tool in calculating the cross section of a process is the Feynman
+diagram. A theory defines all of the allowed interactions between particles,
+which can be interpreted as the set of allowed vertices in Feynman diagrams
+(e.g. the vector gauge boson vertices in Figure \ref{fig:theory-sm-mbis}). An
+interaction taking a certain initial state to given final state can then proceed
+through all mechanisms that can be drawn as valid Feynman diagrams.
+
+The cross section for an interaction is proportional to the amplitude squared of
+the transition matrix element of the interaction. This matrix element is the
+sum of the individual matrix elements for each mechanism through which the
+process can proceed, i.e. for each Feynman diagram. Matrix elements are
+calculated from Feynman diagrams via the Feynman rules \cite{Feynman1949}.
+
+In principle, an infinite number of Feynman diagrams can be drawn for any
+process, as more intermediary vertices can always be added. However, as more
+vertices are added and the process becomes more complex, the associated
+probability becomes smaller. Cross sections are therefore calculated
+perturbatively: contributing Feynman diagrams are considered up to a certain
+order to allow for a finite set of matrix elements to be included.
+
+The simplest calculation for a process' cross section is at \ac{LO}. This involves all diagrams with the
+fewest number of vertices possible to get between the desired initial and final
+states. These \ac{LO} Feynman diagrams are also known as `tree-level' diagrams.
+Allowing additional diagrams which are only one step more complicated (e.g.
+adding two more vertices through a loop) gives a \ac{NLO} calculation, including
+a further set of diagrams makes a \ac{NNLO} calculation, and so on.
+
+The rate of experimental observations of a process will depend on its cross
+section, the total number of occurrences expected for a process in data is given
+by
+\begin{equation*}
+  N = L\sigma,
+\end{equation*}
+where $L$ is the integrated luminosity, a measure of the size of the dataset
+introduced in Section \ref{sec:detector-lhc}. Processes with low cross sections,
+such as the subjects of the analyses in Chapters \ref{sec:vbs} and
+\ref{sec:vzy}, therefore occur very infrequently and can be difficult to
+measure.
+
+\subsection{Standard Model processes}
 
 A selection of \ac{SM} processes are shown in Figure \ref{fig:theory-sm-xsecs},
-with measurements and predictions of their cross sections. The cross section of
-a process is calculable from theory as a measure of the probability for a
-particular process occurring, typically given in units of fb. Cross sections
-relevant to \ac{VBS} \Zy production and \VZy production are given in the figure.
-The given cross sections are `fiducial' cross sections, meaning they describe
-the production rate only in a specific phase space, dependent on the analysis
-selection involved.
+with measurements and predictions of their `fiducial' cross sections.  A
+fiducial cross section describes the rate a process in a specific phase space,
+and is typically measured because analyses are limited to making measurements
+only in regions sensitive to the process of interest. Cross sections relevant to
+\ac{VBS} \Zy production and \VZy production are given in the figure.
 
 \begin{sidewaysfigure}[p]
   \centering
@@ -102,7 +144,7 @@ selection involved.
   \caption{
     Cross sections for \acs{SM} processes, with measurements from the
     \acs{ATLAS} experiment shown alongside predictions from theory.
-    Cross sections are corrected for branching fractions but subject to fiducial
+    Cross sections are corrected for branching fractions and subject to fiducial
     phase spaces of the analyses. From the processes discussed in this thesis,
     \acs{VBS} \Zy (labelled as \Zyjj EWK) and W\Zy, one component of \VZy, are
     included.

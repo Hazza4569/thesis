@@ -5,15 +5,15 @@ presented analyses. The subsections below cover uncertainties from theoretical
 and experimental sources which are considered for \ac{EW} and \ac{QCD} \Zyjj
 production processes.
 
-Smaller sources of background, Z+jets, \tty, and \WZjj, are all assigned a
+Smaller sources of background, Z+jets, \tty, and \WZjj, are each assigned a
 single normalisation uncertainty, as detailed in Section
 \ref{sec:methods-backgrounds}.
 Limited statistics in \ac{MC} samples also contributes uncertainties to all
 processes.
 
 All systematic uncertainties are included as nuisance parameters in the fit used
-for each analysis, and the final impact of each uncertainty is adjusted
-according to the data.
+for each analysis, following the procedure given in Section
+\ref{sec:methods-stats-llh-nps}.
 
 % Theoretical uncertainties
 \subsection{Theoretical uncertainties}
@@ -25,13 +25,13 @@ renormalisation and factorisation scales, \ac{QCD} modelling, choice of parton
 showering and underlying event model, and \ac{EW}-\ac{QCD} interference.
 
 % > PDF
-Evaluating uncertainty in \ac{PDF} set choice is done by reweighting events
+Evaluating the uncertainty in \ac{PDF} set choice is done by reweighting events
 using a number of replica \ac{PDF} sets, chosen in agreement with the PDF4LHC
 recommendations \cite{Butterworth2016}. Taking the standard deviation of yields
 under each of these weights gives the \ac{PDF} uncertainty on the event yield. 
 
 % > Scale
-Uncertainty due to scale choice is calculated by varying the default values of
+The uncertainty due to scale choice is calculated by varying the default values of
 renormalisation and factorisation scales in the nominal QCD \Zy \ac{MC} sample.
 Each scale value is independently varied up and down by a factor 2.
 The per-bin envelope of all deviations from combinations of these variations
@@ -47,7 +47,8 @@ uncertainty on the nominal yield.
 Alternately, uncertainty from choice of merging (CKKW) and
 resummation (QSF) scale is calculated using the dedicated samples described in
 Section \ref{sec:methods-samples}. The latter method is used for the \ac{VBS}
-analysis whilst the former is used for the triboson analysis.
+analysis whilst the former is used for the triboson analysis, due to
+availability of samples.
 
 % > EW PS&UE
 For the \ac{EW} signal, parton showering and underlying event uncertainties are

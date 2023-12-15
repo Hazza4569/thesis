@@ -14,12 +14,7 @@ criteria specified in Section \ref{sec:methods-reconstruction}.  Both analyses
 also require the presence of two jets, but their selection varies per analysis
 and is discussed separately there.
 
-Further selection is applied to the lepton-photon system in order to identify
-events with a real Z boson and a photon not produced from \ac{FSR}. This \Zy
-selection is detailed in Table \ref{tab:anacom-zy-selection}, and acts as a
-pre-selection for both analyses before additional jet selection is applied.
-
-\begin{table}
+\begin{table}[!b]
   \centering
   \caption{
     Cuts implemented for both analyses to select \Zy events. Here $p_T^{l,1}$
@@ -51,6 +46,11 @@ pre-selection for both analyses before additional jet selection is applied.
   \label{tab:anacom-zy-selection}
 \end{table}
 
+Further selection is applied to the lepton-photon system in order to identify
+events with a real Z boson and a photon not produced from \ac{FSR}. This \Zy
+selection is detailed in Table \ref{tab:anacom-zy-selection}, and acts as a
+pre-selection for both analyses before additional jet selection is applied.
+
 % Discuss FSR cut
 The cut on the sum of the dilepton mass and the dilepton-photon mass, $m_{ll} +
 m_{ll\gamma}$ is imposed to reject events with photons from \ac{FSR}.  In an
@@ -66,7 +66,7 @@ mass.  Figure \ref{fig:anacom-fsr-plot} shows a two-dimensional distribution of
 these two invariant masses and how this cut rejects the population of events
 with \ac{FSR} photons.
 
-\begin{figure}[h]
+\begin{figure}[t]
   \centering
   \includegraphics[width=.95\textwidth]{\resource{FSR_cut_plot}}
   \caption{

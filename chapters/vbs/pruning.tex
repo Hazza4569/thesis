@@ -79,7 +79,7 @@ a systematic uncertainty with an obvious impact on the shape.
 
 \begin{figure}[tb]
   \centering
-  \includegraphics[width=.95\textwidth]{\resource{shape_uncert-fit_example.pdf}}
+  \includegraphics[width=.85\textwidth]{\resource{shape_uncert-fit_example.pdf}}
   \caption{
     Binned $m_{jj}$ distribution of measured systematic uncertainty,
     $\sigma_\text{Norm}$, for one systematic variation as labelled on the plot.
@@ -132,8 +132,9 @@ from statistical fluctuation. Uncertainties with a $p$-value below this
 threshold have the full shape treatment in the fit, with per-bin nuisance
 parameters. Figure \ref{fig:vbs-prune-shapeuncerts} shows the results of the
 chi-squared test for the largest experimental systematics in the \ac{SR}. For
-the signal sample, 30 of the 74 experimental systematic uncertainties are
-significant, while for \ac{QCD} \Zy there are 18 significant uncertainties.
+the signal sample, 30 of the 74 experimental systematic uncertainties have
+a significant impact on shape in the \ac{SR}, while for \ac{QCD} \Zy there
+are 18 significant shape uncertainties.
 
 
 \subsection{Determining overall yield impact}
@@ -156,3 +157,11 @@ consistent with zero have a dedicated nuisance parameter in the fit. All
 remaining uncertainties are pruned.
 The relative change in yield from each of the largest experimental systematic
 uncertainties is shown in Figure \ref{fig:vbs-prune-scaleuncerts}.
+
+Of the 44 uncertainties from the signal sample that do not have a significant
+shape impact in the \ac{SR}, 11 are still found to impact the overall
+normalisation; the remaining 33 uncertainties are combined into a single
+normalisation uncertainty. For the \ac{QCD} \Zy background, 11 uncertainties
+affect the normalisation and the remaining 45 are combined. Across both samples,
+this represents a decrease of more than 50\% in the number of nuisance
+parameters that must be considered, contributing to the stability of the fit.

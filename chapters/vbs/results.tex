@@ -14,9 +14,7 @@
   \label{fig:vbs-result-postfit-mjj}
 \end{figure}
 
-Fitted $m_{jj}$ distributions are shown in Figure
-\ref{fig:vbs-result-postfit-mjj}.
-The measured signal strength in the fit is
+The fit gives a measured signal strength of
 %
 \begin{equation*}
   \begin{split}
@@ -30,12 +28,40 @@ deviations, and is the first observation of this process by the \ac{ATLAS}
 collaboration. As the measurement is consistent with $\mu_\text{EW} = 1$, the
 rate seen in data is consistent with the \ac{SM} expectation.
 
+The total yields from data and signal and background estimates in both the
+\ac{SR} and \ac{CR} are given in Table \ref{tab:vbs-results-yields}.
+Post-fit $m_{jj}$ distributions in these regions are shown in Figure
+\ref{fig:vbs-result-postfit-mjj}.
+
 The fiducial cross section of the \ac{EW} production of \Zyjj in this
-\ac{VBS}-like phase space is measured from this fit as
+\ac{VBS}-like phase space is measured from the fit as
 \begin{equation*}
   \sigma_\text{EW} = 4.49 \pm 0.40 \, (\text{stat.}) \pm 0.42 \, (\text{syst.})
   ~\text{fb}.
 \end{equation*}
+
+\begin{table}[!b]
+  \centering
+  \caption{
+    Yield estimates and associated post-fit uncertainties for each of the processes
+    contributing to the signal region and control region, compared to data. The
+    total estimate and its uncertainty is also given.
+  }
+  \label{tab:vbs-results-yields}
+  \begin{tabular}{p{2.5cm}cc}
+    \midrule\midrule
+    \multirow{2}{*}{Process} & \multicolumn{2}{c}{Yield} \\\cmidrule{2-3}
+                             & \ac{SR} & \ac{CR} \\\midrule
+    \ac{EW} \Zyjj & $300 \pm 36$  & $55 \pm 7$ \\
+    \ac{QCD} \Zy  & $987 \pm 55$  & $1352 \pm 60$ \\
+    \tty          & $72 \pm 11$   & $59 \pm 9$ \\
+    \WZjj         & $17 \pm 3$    & $14 \pm 3$ \\
+    Z+jets        & $85 \pm 30$   & $143 \pm 43$ \\\midrule
+    Total         & $1461 \pm 38$ & $1624 \pm 40$ \\\midrule
+    Data          & 1461          & 1624 \\
+    \midrule\midrule
+  \end{tabular}
+\end{table}
 
 %TODO:
 % - systematic ranking

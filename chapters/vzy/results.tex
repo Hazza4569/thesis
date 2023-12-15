@@ -17,7 +17,37 @@ The signal strength for \ac{EW} \VZy measured from the full fit is
 % mu_EWK  1.35899 +0.930069 -0.900662
 %
 and is compatible with the \ac{SM} expectation. Post-fit distributions in the
-four regions are shown in Figure \ref{fig:vzy-results-postfit}.
+four regions are shown in Figure \ref{fig:vzy-results-postfit}, and the corresponding yields are given in Table \ref{tab:vzy-results-yields}.
+
+% Post-fit yields
+\begin{table}[!b]
+  \centering
+  \caption{
+    Post-fit yields and uncertainties in each of the four regions included in
+    the fit, and additionally for the final bin of the signal region. Yields
+    are shown for each signal or background process individually, for the total
+    signal+background yield, and for data.
+}
+  \begin{tabular}{p{2.5cm}ccccc}
+    \midrule\midrule
+    \multirow{2}{*}{Process} & \multicolumn{5}{c}{Yield} \\\cmidrule{2-6}
+                             & \ac{BDT} \ac{CR} & $m_{jj}^\text{low}$ \ac{CR} &
+                             $m_{jj}^\text{high}$ \ac{CR} & \ac{SR} & \ac{SR}$(\rarsig > 0.95)$ \\
+    \midrule
+    \ac{EW} \VZy  & $17 \pm 14    $&$ 1.4 \pm 1.5  $&$ 2.1 \pm 2.0  $&$ 31 \pm 25   $&$ 15   \pm 12     $\\
+    \ac{QCD} \Zy  & $1360 \pm 40  $&$ 1320 \pm 50  $&$ 1970 \pm 60  $&$ 383 \pm 15  $&$ 112  \pm 7     $\\
+    \tty          & $310 \pm 40   $&$ 206 \pm 25   $&$ 580 \pm 70   $&$ 50 \pm 6    $&$ 10.0 \pm 1.2  $\\
+    Z+jets        & $157 \pm 23   $&$ 150 \pm 16   $&$ 270 \pm 60   $&$ 71 \pm 9    $&$ 18.4 \pm 2.2  $\\
+    \ac{EW} \Zyjj & $17.6 \pm 0.8 $&$ 25.7 \pm 0.7 $&$ 27.8 \pm 0.7 $&$ 9.2 \pm 0.4 $&$ 3.34 \pm 0.16 $\\
+    \WZjj         & $12.4 \pm 2.5 $&$ 12.1 \pm 2.4 $&$ 18 \pm 4     $&$ 4.2 \pm 0.8 $&$ 1.34 \pm 0.27 $\\\midrule
+    Total         & $1884 \pm 28  $&$ 1718 \pm 31  $&$ 2870 \pm 40  $&$ 549 \pm 21  $&$ 159  \pm 11      $\\\midrule
+    Data          & 1931         & 1697         & 2866         & 530         & 162           \\
+    \midrule\midrule
+  \end{tabular}
+  \label{tab:vzy-results-yields}
+\end{table}
+
+
 
 % Post-fit distributions
 \begin{figure}[tp]
@@ -40,7 +70,9 @@ four regions are shown in Figure \ref{fig:vzy-results-postfit}.
   \caption{
     Post-fit signal rarity distributions in each of the four regions used in the
     fit, as labelled. Uncertainty bands represent the combined uncertainties in
-    each bin, with values constrained by the fit.
+    each bin, with values constrained by the fit. Uncertainty on data is due to
+    statistics. The lower sections of each plot give the ratio of the data to
+    the total background estimate.
   }
   \label{fig:vzy-results-postfit}
 \end{figure}

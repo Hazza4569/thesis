@@ -92,11 +92,11 @@ typically occurs when the model is too complicated relative to the size of the
 training sample. Model complexity is linked to the number of input variables and
 the number and size of decision trees.
 The result is that the \ac{BDT} will misidentify statistical fluctuations
-in the signal and background as features of the sample.
+in the signal and background as features of the population.
 
 Overtraining can be identified as a reduced performance on the independent
-test sample compared to on the training sample. Some amount of overtraining is
-inevitable but it should normally be mitigated; though there is nothing
+test sample compared to that on the training sample. Some amount of overtraining is
+inevitable but it should normally be mitigated; although there is nothing
 inherently wrong with overtraining a \ac{BDT} model, it will limit
 discrimination power. If a \ac{BDT} suffers from overtraining, it can be
 countered by either increasing the size of the training sample or decreasing the
@@ -108,12 +108,12 @@ model complexity.
 Once trained, each event evaluated by the \ac{BDT} is given a score,
 calculated from the output of each individual decision tree:
 \begin{equation*}
-  y(x_i) = \frac1{\ntrees} \sum_k^{\ntrees} \log(\alpha_k)h_k(x_i)
+  y(x_i) = \frac1{\ntrees} \sum_k^{\ntrees} \log(\alpha_k)h_k(x_i),
 \end{equation*}
 where $y(x_i)$ is the \ac{BDT} score for the $i$\textsuperscript{th} event,
 $h_k(x_i)$ is the output of the $k$\textsuperscript{th} decision tree for the
-$i$\textsuperscript{th} event, and $\alpha_k$ is the boost weight for the
-$k^\textsuperscript{th}$ decision tree.
+$i$\textsuperscript{th} event, and $\alpha_k$ is the boost weight calculated
+from the $k^\textsuperscript{th}$ decision tree.
 
 Lower values of this \ac{BDT} score indicate an event is background-like,
 whereas higher values indicate it is signal-like. This variable can be used
@@ -138,7 +138,7 @@ response distribution.
   \label{fig:methods-bdt-score}
 \end{figure}
 
-The relevant variable for this thesis is known as the signal rarity. The signal
+One such \ac{BDT} response variable is `signal rarity'. The signal
 rarity distribution is defined through an integral over the probability density
 of the background events used in training, such that the distribution of
 background events in signal rarity is flat. A formal definition is given in

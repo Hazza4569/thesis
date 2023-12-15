@@ -1,7 +1,9 @@
 % ========== Object reconstruction section ==========
 
-A reconstruction procedure is applied in order to match signals in the detector
-to the corresponding physics object that created them, and to calculate the
+A reconstruction procedure is applied in order to
+deduce what particles gave rise to the observed signals,
+%match signals in the detector to the corresponding physics object that created them,
+and to measure the
 kinematic properties of the incident particles.
 The procedure used is different for any class of physics object. This section
 discusses the details of the reconstruction for each of the objects used in the
@@ -35,10 +37,11 @@ clusters with any further clusters within a $0.075\times0.125$
 are corrected for scale and resolution effects due to variation in detector
 response across $\eta$-$\phi$ and data-\ac{MC} differences
 \cite{EGamCalibration2019}. Systematic uncertainties are included in the results
-to account for uncertainties from these corrections.
+(as discussed in Section \ref{sec:methods-systematics}) to account for
+uncertainties from these corrections.
 
 % Identification
-Jets can often produce similar signatures to photons, and so additional
+Jets can produce similar signatures to photons, and so additional
 requirements are placed on the calorimeter shower shape to discriminate against
 these `fake photons'. The desired prompt photons typically result in more
 collimated clusters contained within the \ac{EM} calorimeter, whereas fake
@@ -48,11 +51,15 @@ variables, is derived to minimise photon fakes. Photons for these analyses are
 required to meet the identification criteria for the `tight' working point
 defined in reference \cite{ATLASegamPerf2019}.
 
+Figure \ref{fig:methods-reconstruction-photonIDeff} shows the efficiency for
+photon identification in Run 2, which for high-$E_T$ ($\gtrsim 40$ GeV)
+loosely-isolated photons is greater than 90\%.
+
 % Isolation
 \newcommand\ptcone{$p_T^{\text{cone},20}$\xspace}
 \newcommand\etcone{$E_T^{\text{cone},20}$\xspace}
-Photons are also required to be considered isolated, to reduce backgrounds such
-as photons produced as parts of hadronic or \ac{EM} showers. These non-prompt photons
+Photons are also required to be isolated, to reduce backgrounds such
+as photons produced in jets and as part of hadronic or \ac{EM} showers. These non-prompt photons
 will typically appear nearby other activity in the detector. Prompt photons can be
 selected by ensuring that photon candidates are isolated in a region with little
 activity around them. Two variables are used to define the isolation:
@@ -66,10 +73,6 @@ Cuts are defined on these variables as a function of the photon $p_T$:
 p_T^\gamma$ (calorimeter isolation). This corresponds to the `FixedCutLoose'
 criteria defined in Reference \cite{ATLASegamPerf2019}.
 
-Figure \ref{fig:methods-reconstruction-photonIDeff} shows the efficiency for
-photon identification in Run 2, which for high-$p_T$ ($\gtrsim 40$)
-loosely-isolated photons is greater than 90\%.
-
 \begin{figure}[tbh]
   \centering
   \includegraphics[width=.8\textwidth]{\resource{photonID.pdf}}
@@ -77,7 +80,9 @@ loosely-isolated photons is greater than 90\%.
     Efficiencies for identification of photons in Run 2 of the \acs{ATLAS}
     detector, as a function of transverse energy.
     Shown are the values for loosely-isolated unconverted photons in
-    the central region of the detector \cite{ATLASphotonID2021}.
+    the central region of the detector. The efficiency is evaluated from data
+    using three techniques, as indicated.
+    \cite{ATLASphotonID2021}
   }
   \label{fig:methods-reconstruction-photonIDeff}
 \end{figure}
@@ -103,13 +108,13 @@ Electron candidates are also subject to identification and isolation
 requirements, to minimise the impact of fakes. Identification is based on both
 \ac{EM} shower shape in the calorimeter and transition radiation in the
 \ac{TRT}. Similarly to the photon, isolation is determined in both the tracker
-and calorimeter by requiring the energy or momenta within a cone around the seed
-is below a threshold. 
+and calorimeter by requiring that summed energies or momenta within a cone
+around the seed is below a threshold. 
 
 Electrons used for these analyses are required to match the `medium'
 identification working point and the `FCLoose' isolation selection, both of
-which are defined in Reference \cite{ATLASegamPerf2019}. The
-efficiency of this and other working points is shown in Figure
+which are defined in Reference \cite{ATLASegamPerf2019}. The efficiency of
+electron identification working points in Run-2 data is shown in Figure
 \ref{fig:methods-reconstruction-electronIDeff}.
 
 \begin{figure}[tbh]
@@ -119,12 +124,12 @@ efficiency of this and other working points is shown in Figure
     Efficiencies for identification of electrons in Run 2 of the \acs{ATLAS}
     detector, as a function of transverse energy. 
     Loose, medium, and tight working points for electron identification are
-    shown in different colours. \cite{ATLASegamEffs2023}.
+    shown in different colours. \cite{ATLASegamEffs2023}
   }
   \label{fig:methods-reconstruction-electronIDeff}
 \end{figure}
 
-\subsection{Muon}
+\subsection{Muons}
 
 % Basic signature
 Muon candidates are seeded from tracks in either the \ac{MS} or \ac{ID}.  A seed
@@ -189,8 +194,8 @@ uses the anti-$k_t$ jet clustering algorithm \cite{antikt}, with a distance
 parameter of $R=0.4$. This algorithm is chosen for its infrared and collinear
 safety; in short, the same set of jets would be constructed from an event if
 additional soft emissions or collinear splittings are added \cite{Salam2010}. It
-also produces geometrically-regular conical jets which are convenient to work
-with experimentally.
+also produces geometrically-regular and approximately conical jets which are
+convenient to work with experimentally.
 
 % Jet collections
 The definition of a jet is dependent on the clustering algorithm used and on the

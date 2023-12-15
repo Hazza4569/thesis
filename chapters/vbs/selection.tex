@@ -30,37 +30,84 @@ is given by
 where $y_{ll\gamma}$ is the rapidity of the $ll\gamma$ system and $y_{j_i}$ is
 the rapidity of the $i$\textsuperscript{th} highest-energy jet.
 
-\begin{table}
-  \centering
-  \renewcommand\arraystretch{1.3}
-  \caption{
-    Summary of event selection criteria defining the \acs{VBS} analysis region.
-    This region is further subdivided by additional criteria on
-    $\zeta(ll\gamma)$.
-  }
-  \begin{tabular}{p{6em}l}
-    \hline\hline
-    \multicolumn{2}{c}{VBS \Zy selection} \\
-    \hline
-    \Zy system & \Zy selection (Table \ref{tab:anacom-zy-selection}) \\
-    \hline
-    Jet & $N_j \geq 2$ \\
-        & $|y_j| < 4.4$ \\
-        & $p_T^{j} > 50$ GeV \\
-        & $N_j^\text{b-tag} = 0$ \\
-        & $N_j^\text{gap} = 0$ \\
-    \hline
-    Dijet system & $m_{jj} > 150$ GeV \\
-                 & $|\Delta y_{jj}| > 1$ \\
-    \hline
-    Event & $\zeta(ll\gamma) < 5$ \\
-    \hline\hline
-  \end{tabular}
-  \label{tab:vbs-selection}
-\end{table}
-
 These cuts define the analysis region, and are summarised in Table
 \ref{tab:vbs-selection}.  This is further split into the \ac{SR} and the
 \ac{QCD} \ac{CR} with tighter requirements on the $ll\gamma$ centrality:
 $\zeta(ll\gamma) < 0.4$ defines the \ac{SR} and $\zeta(ll\gamma) > 0.4$ gives
 the \ac{CR} used for the \ac{QCD} \Zy background estimate.
+
+\begin{table}[p]
+  \centering
+  \renewcommand\arraystretch{1.1}
+  % VBS selection table:
+  \caption{
+    Summary of event selection criteria defining the \acs{VBS} analysis region.
+    This region is further subdivided by additional criteria on
+    $\zeta(ll\gamma)$.
+  }
+  \label{tab:vbs-selection}
+  \begin{tabular}{p{6em}l}
+    \midrule\midrule
+    \multicolumn{2}{c}{VBS \Zy selection} \\
+    \midrule
+    \Zy system & \Zy selection (Table \ref{tab:anacom-zy-selection}) \\
+    \midrule
+    Jet & $N_j \geq 2$ \\
+        & $|y_j| < 4.4$ \\
+        & $p_T^{j} > 50$ GeV \\
+        & $N_j^\text{b-tag} = 0$ \\
+        & $N_j^\text{gap} = 0$ \\
+    \midrule
+    Dijet system & $m_{jj} > 150$ GeV \\
+                 & $|\Delta y_{jj}| > 1$ \\
+    \midrule
+    Event & $\zeta(ll\gamma) < 5$ \\
+    \midrule\midrule
+  \end{tabular}
+  \\[2cm]
+  % Fiducial selection table:
+  \caption{
+    Particle-level selection applied to events in the fiducial region. Included
+    are approximate particle-level equivalents to the photon isolation
+    and overlap removal applied for the signal region selection.
+  }
+  \label{tab:vbs-selection-fiducial}
+  \begin{tabular}{p{6em}l}
+    \midrule\midrule
+    \multicolumn{2}{c}{VBS \Zy fiducial selection} \\
+    \midrule
+    Lepton & $p_T^{l,1} > 30$ GeV,
+             $p_T^{l,2} > 20$ GeV \\
+           & $|\eta_l| < 2.47$,
+             $N_l \geq 2$ \\
+    \midrule
+    Photon & $E_T^\gamma > 25$ GeV,
+             $|\eta_\gamma| < 2.47$ \\
+           & $E_T^\text{cone20} < 0.07E_T^\gamma$ \\
+           & $\Delta R(l,\gamma) > 0.4$ \\
+    \midrule
+    Jet    & $p_T^{j} > 50$ GeV, 
+             $|y_j| < 4.4$ \\
+           & $N_j \geq 2$ \\
+           & remove jets if $\Delta R(\gamma,j) < 0.4$ \\
+           & or if $\Delta R(l,j) < 0.3$ \\
+    \midrule
+    Event  & $m_{ll} > 40$ GeV \\
+           & $m_{ll}+m_{ll\gamma} > 182$ GeV \\
+           & $m_{jj} > 150$ GeV \\
+           & $|\Delta y_{jj}| > 1$ \\
+           & $N_j^\text{gap} = 0$,
+             $\zeta(ll\gamma) < 0.4$ \\
+    \midrule\midrule
+  \end{tabular}
+
+\end{table}
+
+\subsection{Fiducial region definition}
+
+As the result of this analysis is a fiducial cross-section measurement, the
+particle-level selection for which this measurement applies, i.e. the fiducial
+region, must be defined.  This fiducial selection mimics the detector-level
+selection for the \ac{SR} as closely as possible. Table
+\ref{tab:vbs-selection-fiducial} reports this selection. For more details of the
+exact parameters defining this fiducial region, see Reference \cite{VBSZy-CONF}.
