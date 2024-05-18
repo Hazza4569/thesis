@@ -2,14 +2,26 @@
 
 \begin{figure}[p]
   \centering
-  \includegraphics[width=.88\textwidth]{\resource{matchrate_427885_CPM}} \\
-  \includegraphics[width=.88\textwidth]{\resource{matchrate_427885_eFEX}}
+  \includegraphics[width=.88\textwidth]{\resource{matchrate_corrections_423433_CPM}} \\
+  \includegraphics[width=.88\textwidth]{\resource{matchrate_corrections_423433_eFEX}}
   \caption{
     Match rate for \acsp{TOB}/\acsp{RoI} as a function of energy as measured by
-    the \ac{CPM} (top) and \acs{eFEX} (bottom). Objects grouped in 20 GeV bins, with the last bin including
+    the \acs{CPM} (top) and \acs{eFEX} (bottom) for Run 423433. Objects grouped in 20 GeV bins, with the last bin including
     all overflow.
   }
-  \label{fig:trig-r3anal-matchrate}
+  \label{fig:trig-r3anal-matchrate-1}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=.88\textwidth]{\resource{matchrate_corrections_427885_CPM}} \\
+  \includegraphics[width=.88\textwidth]{\resource{matchrate_corrections_427885_eFEX}}
+  \caption{
+    Match rate for \acsp{TOB}/\acsp{RoI} as a function of energy as measured by
+    the \acs{CPM} (top) and \acs{eFEX} (bottom) for Run 427885. Objects grouped in 20 GeV bins, with the last bin including
+    all overflow.
+  }
+  \label{fig:trig-r3anal-matchrate-2}
 \end{figure}
 
 From the 1,636,636 events in Run 423433, 292,498 \ac{RoI}/\ac{TOB} pairs are
@@ -17,12 +29,25 @@ selected. Of these, 271,854 matched in $\eta-\phi$ coordinates, giving a total
 match rate of 93\%.
 %
 For Run 427885, 22,337 of 27,973 pairs were matched for a match rate of 80\%.
-Figure \ref{fig:trig-r3anal-matchrate} and
-shows the match rate for objects in Run
-427885 as a function of energy, using \ac{CP}-measured and \ac{eFEX}-measured
-energies. This shows that the bulk of the mismatches come from
-low-energy objects, with a plateau in match rate above $E_T > 20$ GeV. At all
-energies the match rate is worse here than in the earlier run.
+Figures \ref{fig:trig-r3anal-matchrate-1} and \ref{fig:trig-r3anal-matchrate-2}
+show the fraction of objects matched as a function of energy, with histograms
+using both the \ac{CP}-measured and \ac{eFEX}-measured energies shown for each
+run. Uncertainties on these match rates are due to statistical uncertainties in
+the number of matched objects and the total number of objects, and are
+calculated using the Clopper-Pearson interval \cite{Clopper1934} with a
+confidence level of 68\%.
+
+%
+%shows the match rate for objects in Run
+%427885 as a function of energy, using \ac{CP}-measured and \ac{eFEX}-measured
+%energies.
+For Run 427885 (Figure \ref{fig:trig-r3anal-matchrate-2}) it can be seen 
+that the bulk of the mismatches come from
+low-energy objects, with a plateau in match rate above $E_T > 20$ GeV.
+This issue was not present in the earlier Run 423433 (Figure
+\ref{fig:trig-r3anal-matchrate-1}), which shows a relatively consistent match
+rate across all energies. This is reflected in the overall match rate, 
+which is considerably lower in the later run.
 
 Figure \ref{fig:trig-r3anal-matches}
 compares the energies recorded by the Run-2 and the Phase-I systems for matched

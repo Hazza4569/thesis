@@ -35,8 +35,12 @@ Transverse energies are calculated by combining candidate photon \ac{EM}
 clusters with any further clusters within a $0.075\times0.125$
 ($\eta\times\phi$) area centred on the candidate cluster. Energy measurements
 are corrected for scale and resolution effects due to variation in detector
-response across $\eta$-$\phi$ and data-\ac{MC} differences
-\cite{EGamCalibration2019}. Systematic uncertainties are included in the results
+response across $\eta$-$\phi$ and data-\ac{MC} differences. This calibration to
+the raw calorimeter response is
+calculated for both electrons and photons using $Z\to ee$ events
+\cite{EGamCalibration2019}. Energy corrections to photons are validated using
+photons from radiative Z boson decays, systematic uncertainties are included in
+the results
 (as discussed in Section \ref{sec:methods-systematics}) to account for
 uncertainties from these corrections.
 
@@ -47,9 +51,75 @@ these `fake photons'. The desired prompt photons typically result in more
 collimated clusters contained within the \ac{EM} calorimeter, whereas fake
 photons produce broader showers and leakage into the hadronic calorimeter.
 An identification selection, consisting of a set of cuts on shower-shape
-variables, is derived to minimise photon fakes. Photons for these analyses are
+variables, is derived to minimise photon fakes. Signal photons for these analyses are
 required to meet the identification criteria for the `tight' working point
-defined in reference \cite{ATLASegamPerf2019}.
+defined in reference \cite{ATLASegamPerf2019}, whilst the `loose' identification
+working point is applied as a pre-selection to all photons (this is relevant for
+the ABCD method discussed in Section \ref{sec:methods-backgrounds-fakephoton}).
+Table \ref{tab:methods-reconstruction-photonIDvars} gives definitions for the
+shower-shape variables used to form these two working points.
+
+%table
+\begin{table}[tbp]
+  \centering
+  \renewcommand\arraystretch{1.3}
+  \caption{
+    Shower-shape variables used for identification of photons. The four
+    variables contributing to the loose working point are shown, and all
+    variables are used to define the tight working point. The full definition of
+    the working points in relation to these variables is given in Reference
+    \cite{ATLASegamPerf2019}.
+  }
+  \begin{tabular}{c|p{8cm}|c}
+    \hline\hline
+    Variable & Description & Working points\\
+    \hline
+    $R_\text{had}$     &    
+    Ratio of $E_T$ in the hadronic calorimeter to that of the \acs{EM} cluster.
+    & Loose, Tight \\
+    $R_{\text{had}_1}$ &
+    Ratio of $E_T$ in the first layer of the hadronic calorimeter to that
+    of the \acs{EM} cluster.
+    & Loose, Tight \\
+    $R_\eta$           &
+    Ratio of energies in a $3\times7$ area of calorimeter cells to that in a
+    $7\times7$ area (in $\eta\times\phi$).
+    & Loose, Tight \\
+    $w_{\eta_2}$       &
+    Lateral shower width in Layer 2 of the \ac{EM} calorimeter.
+    & Loose, Tight \\
+    %tight only:
+    $E_\text{ratio}$   &
+    Ratio of the difference between to the sum of the highest- and
+    second-highest-energy energy cells in the cluster.
+    & Tight \\
+    $R_\phi$           &
+    Ratio of energies in a $3\times3$ area of calorimeter cells to that in a
+    $3\times7$ area (in $\eta\times\phi$).
+    & Tight \\
+    $w_{s,\text{tot}}$ &
+    Total lateral shower width in Layer 1 of the calorimeter
+    & Tight \\
+    $w_{s,3}$          &
+    Lateral shower width in a window of three cells around the highest-energy cell
+    & Tight \\
+    $f_\text{side}$    &
+    Fraction of energy outside central three strips within seven strips of the
+    maximum
+    & Tight \\
+    $\Delta E_s$       &
+    Difference between energies of the second-highest-energy cell and the lowest
+    energy cell in the region between the second-highest-energy cell and the
+    highest-energy cell.
+    & Tight \\
+    $f_1$              &
+    Ratio of the energy Layer 1 of the \ac{EM} calorimeter to the energy of the
+    \ac{EM} cluster.
+    & Tight \\
+    \hline\hline
+  \end{tabular}
+  \label{tab:methods-reconstruction-photonIDvars}
+\end{table}
 
 Figure \ref{fig:methods-reconstruction-photonIDeff} shows the efficiency for
 photon identification in Run 2, which for high-$E_T$ ($\gtrsim 40$ GeV)
@@ -65,7 +135,7 @@ selected by ensuring that photon candidates are isolated in a region with little
 activity around them. Two variables are used to define the isolation:
 \ptcone and \etcone.
 Here \ptcone is the sum of transverse momenta of all $p_T > 1$ GeV tracks originating from the
-\ac{PV}, within a cone of $\Delta R < 0.2$ around the direction of the photon.
+\ac{PV} (the vertex of the hard scatter event), within a cone of $\Delta R < 0.2$ around the direction of the photon.
 The \etcone variable is the sum of \ac{EM} cluster transverse energies within the same cone,
 minus the energy of the photon.
 Cuts are defined on these variables as a function of the photon $p_T$:
@@ -100,8 +170,12 @@ with an associated track that has hits in at least four silicon layers. As with
 photons, the transverse energy for an electron candidate is calculated by
 summing the energy of the seed cluster with any additional clusters in a
 $0.075\times0.125$ ($\eta\times\phi$) area, as well as any clusters matched to
-the same track as the seed. Energy scale and resolution effects are accounted
-for in the same manner as for photons, and included in systematic uncertainties.
+the same track as the seed.
+
+Energy scale and resolution effects are accounted
+for in the same manner as for photons, primarily using Z$\to ee$ decays for
+energy calibrations, and then validated with electrons from $J/\psi\to ee$
+events \cite{EGamCalibration2019}. Inefficiencies in this calibration are accounted for in systematic uncertainties.
 
 %Identification and Isolation
 Electron candidates are also subject to identification and isolation
@@ -109,7 +183,7 @@ requirements, to minimise the impact of fakes. Identification is based on both
 \ac{EM} shower shape in the calorimeter and transition radiation in the
 \ac{TRT}. Similarly to the photon, isolation is determined in both the tracker
 and calorimeter by requiring that summed energies or momenta within a cone
-around the seed is below a threshold. 
+around the seed are below a threshold. 
 
 Electrons used for these analyses are required to match the `medium'
 identification working point and the `FCLoose' isolation selection, both of
@@ -231,24 +305,35 @@ and resolution of jets from detector calibration, properties of the jet such as
 quark/gluon flavour composition, and data-\ac{MC} differences
 \cite{JESUncerts2017}.
 
+% Flavour tagging
+It can be useful for physics analyses to establish whether a jet was likely
+initiated by a b-quark; this process, known as `flavour tagging' or `b-tagging', is used in the
+\ac{VBS} \Zy analysis to reject against backgrounds which are likely to produce
+b-quarks in the final state. Flavour tagging is performed by dedicated
+algorithms which use tracking information to identify differences in the
+properties of tracks and reconstruct displaced vertices (e.g. where
+a b-quark has travelled a short distance in the detector before decaying to
+lighter quark flavours) within a jet \cite{ATLASbtag2019}.
+
 \subsection{Overlap removal}
 
-Once the above objects are reconstructed, they are only used in the analyses if
-they survive overlap removal. This procedure takes the lists of each set of
-object and removes candidates based on their proximity to other objects. This
-procedure is known as `overlap removal' (\acsfirst{OR}).
+\begin{sloppypar}
+Overlap removal (\acsfirst{OR}) avoids double-counting of energies across
+multiple objects. Jet
+\ac{OR} avoids fake jets that are reconstructed from a prompt electron or photon
+signal and also avoids cases where near-coincident leptons and jets might bias
+each other's reconstruction. Muon-electron \ac{OR} avoids reconstructing
+electrons from muon bremsstrahlung, meanwhile photon-lepton \ac{OR} acts as an
+additional isolation precaution \cite{Adams2015}.
+\end{sloppypar}
 
+Once the above objects are reconstructed, they are only used in the analyses if
+they survive \ac{OR}. This procedure takes the lists of each set of
+object and removes candidates based on their proximity to other objects.
+%
 First, jet candidates are removed if $\Delta R(j,e) < 0.2$ or $\Delta
 R(j,\gamma) < 0.4$ for any $e$ or $\gamma$. Lepton candidates are subsequently
 removed if $\Delta R(l,j) < 0.4$ for any remaining jet. Photon candidates are
 removed if $\Delta R(\gamma,l) < 0.4$ and electrons removed if $\Delta R(\mu,e)
 < 0.2$.
 
-\begin{sloppypar}
-This process avoids double-counting of energies across multiple objects.  Jet
-\ac{OR} avoids fake jets that are reconstructed from a prompt electron or photon
-signal and also avoids cases where near-coincident leptons and jets might bias
-each other's reconstruction. Muon-electron \ac{OR} avoids reconstructing
-electrons from muon bremsstrahlung, meanwhile photon-lepton \ac{OR} is simply an
-additional isolation precaution \cite{Adams2015}.
-\end{sloppypar}

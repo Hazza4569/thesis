@@ -2,12 +2,13 @@
 During development of algorithms for the hardware trigger, each algorithm is
 implemented multiple times. First, algorithms will be implemented in offline
 software to be tested and tuned against simulations or existing data. Then, in
-order to run on hardware, the algorithm needs to be ported to firmware. Often, to
-provide closer cross-checks of the firmware algorithms, they are also simulated
-in online software. Inevitably, due to software and firmware bugs, subtle
-differences will exist between these algorithms; these differences need to be
-understood and corrected to ensure firmware works as intended and software is
-bitwise accurate in simulating the firmware.
+order to run on hardware, the algorithm needs to be ported to firmware. Often,
+to provide closer cross-checks of the firmware algorithms, they are also
+simulated in `online' trigger software (hereafter referred to as online
+software). Inevitably, due to software and firmware bugs, subtle differences
+will exist between these algorithms; these differences need to be understood and
+corrected to ensure firmware works as intended and software is bitwise accurate
+in simulating the firmware.
 
 The need to find these subtle differences between algorithms motivates the
 visualisation software discussed here. Although at first it seems illogical to

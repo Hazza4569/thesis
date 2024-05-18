@@ -6,9 +6,15 @@ commonly in particle physics due to their ability to discriminate between
 populations (e.g. signal and background) through supervised training. This means
 that they can be fed events from \ac{MC} simulations labelled as either signal
 or background, learn the features which distinguish the two populations, and
-create a discriminant that can be applied to any other event. The \ac{BDT} can
-therefore use this discriminant to determine how likely a data event is to be
-signal or background.
+create a
+variable designed to separate background and signal events. When given the same
+input information for new events (e.g. data events) the \ac{BDT} can then
+calculate this output variable and its value will indicate how signal-like an
+event is.
+
+%discriminant that can be applied to any other event. The \ac{BDT} can
+%therefore use this discriminant to determine how likely a data event is to be
+%signal or background.
 
 \subsection{Decision trees}
 \label{sec:methods-bdt-trees}
@@ -86,6 +92,17 @@ its set of decision trees, which it can then use to classify further events.
 An independent set of signal and background events are typically used to test
 the \ac{BDT} classification.
 
+% Training
+When training a \ac{BDT}, it must be provided with a set of events (the training
+sample) and a set of variables which it can cut on. When creating the first
+branch, and any subsequent branches, possible cut values for each variable are
+tested on the set of events to find the cut in any variable which provides the
+best discrimination between signal and background. This cut is chosen, and the
+next branches are created by repeating the process on the remaining events in
+either branch. This stops once the decision tree has grown to the maximum depth,
+then misclassified events are boosted in order to create the next decision tree,
+where the process is repeated from the start (with appropriately adjusted event weights).
+
 % Overtraining
 A common problem with \ac{BDT} classifiers is overtraining. Overtraining
 typically occurs when the model is too complicated relative to the size of the
@@ -139,13 +156,21 @@ response distribution.
 \end{figure}
 
 One such \ac{BDT} response variable is `signal rarity'. The signal
-rarity distribution is defined through an integral over the probability density
-of the background events used in training, such that the distribution of
-background events in signal rarity is flat. A formal definition is given in
-Reference \cite{TMVAguide}. Signal rarity takes values from 0 to 1, higher
-values give more signal-like events. This distribution is used for the \ac{BDT}
+rarity distribution is defined as
+%
+\begin{equation*}
+  \mathcal{R}^\text{sig}(y) = \int_{-\inf}^{y} \hat{y}_B(y') dy',
+\end{equation*}
+%
+where $y$ is the \ac{BDT} score and $\hat{y}_B$ is the distribution of the \ac{BDT}
+score for background events in the training sample \cite{TMVAguide}.
+This variable takes values from 0 to 1, and is constructed
+such that background events should be uniformly distributed in signal rarity,
+whereas signal events occur more frequently at values closer to 1.
+This distribution is used for the \ac{BDT}
 response in the semileptonic \VZy analysis (e.g. Figure
 \ref{fig:vzy-srcr-cutdists}).
+
 
 \subsection{Variable importance}
 \label{sec:methods-bdt-importance}

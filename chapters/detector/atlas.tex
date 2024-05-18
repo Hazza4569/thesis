@@ -27,23 +27,40 @@ detector and its components.
 \subsection{Coordinate system}
 
 A specific coordinate system is used to describe the \ac{ATLAS} detector and
-interactions within it. The $z$-axis runs along the beamline, the $x$-axis
-points, in the positive direction, towards the centre of the \ac{LHC} ring, and
+interactions within it. The $z$-axis runs along the beamline; the $x$-axis
+points, in the positive direction, towards the centre of the \ac{LHC} ring; and
 the $y$-axis points vertically upwards. The azimuthal angle, $\phi$, is measured
 around the beamline in the $x$-$y$ plane and the polar angle, $\theta$, is
-measured from the beam axis. A pseudorapidity coordinate, $\eta$, is defined as
-\begin{equation*}
-  \eta = -\ln\tan(\theta/2).
-\end{equation*}
+measured from the beam axis.
 Transverse momentum, $p_T$, and transverse energy, $E_T$, are used to define the
 momentum or energy in the $x$-$y$ plane, transverse to the beamline.
 
+It is useful to define the rapidity, $y$, of a particle,
+\begin{equation*}
+  y = \frac12 \ln\frac{E+p_z}{E-p_z},
+\end{equation*}
+where $E$ is the energy of the particle and $p_z$ is its momentum in the $z$
+direction.
+Rapidity, like $\theta$, gives a measure of how `forward' a particle is in the
+detector (the forward regions are the high-rapidity, or high-$\theta$, regions).
+Rapidity transforms additively under Lorentz boosts along the beam axis, so
+differences in rapidity are invariant under such boosts. However, since the
+rapidity of the particle is dependent on its energy, it is difficult to use
+as a more general coordinate.
+A pseudorapidity coordinate, $\eta$, is defined as
+\begin{equation*}
+  \eta = -\ln\tan(\theta/2).
+\end{equation*}
+Pseudorapidity is equivalent to rapidity in the relativistic limit, and so holds
+for high-energy low-mass objects. Additionally, pseudorapidity has the benefit
+of being a simple translation of $\theta$, and so can be used not just for
+particles but to describe locations in the detector.
+
 The set of coordinates $p_T$, $\eta$, and $\phi$ are typically preferred to
-describe the kinematics of objects in the detector as they are invariant under
-Lorentz boosts along the beamline\footnote{
-  Pseudorapidity itself is not invariant, but is approximately equal to rapidity
-  (in the relativistic limit). Rapidity transforms additively under
-  such Lorentz boosts and so differences in rapidity are Lorentz invariant.
+describe the kinematics of objects in the detector as all three are invariant under
+Lorentz boosts along the beamline%
+\footnote{
+  The $\eta$ coordinate itself is not invariant but differences in $\eta$, i.e. $\Delta\eta$, are invariant in the relativistic limit.
 }.
 Without this Lorentz invariance, differences in kinematics between events could
 be introduced depending on the relative momenta of the colliding partons.
@@ -55,7 +72,7 @@ quantity $\Delta R = \sqrt{\Delta\eta^2 + \Delta\phi^2}$.
 \subsection{Inner detector}
 
 The innermost detector system, known as the \ac{ID} or tracker, contains three
-sub-detectors designed to track the location of charged particles, to measure
+sub-detectors designed to track the trajectory of charged particles, to measure
 their momentum based on the curvature of their tracks. This is enabled by a
 solenoid magnet which surrounds the \ac{ID}, generating a 2 T magnetic field
 coaxial with the beam direction in
@@ -126,7 +143,7 @@ particles crossing the boundaries between materials emit transition radiation,
 dependent on their $\gamma = E/m$. This transition radiation ionises xenon atoms in
 the gas mixture and gives a larger readout on the wire. 
 The \ac{TRT} therefore provides hits and also information on the $E/m$ ratio of
-incident particles; this is used for particle identifications, particularly for
+incident particles; this is used for particle identification, particularly for
 electrons.
 
 %  > momentum resolution?
@@ -169,7 +186,7 @@ to correct for energy loss due to material in front of the calorimeter.
 The full specification of the calorimeter cell granularity is given in Reference
 \cite[p.9]{ATLASpaper}.
 
-\begin{figure}[htbp]
+\begin{figure}[!tb]
   \centering
   \includegraphics[width=.8\textwidth]{\resource{accordion.pdf}}
   \caption{
@@ -217,6 +234,23 @@ Between the tile, \ac{HEC}, and \ac{FCal}, hadronic calorimetry acceptance is
 $|\eta| < 4.9$.
 % Probably more to say?
 
+% Energy resolution
+Energy resolution for a calorimeter has three contributions, given by
+\begin{equation*}
+  \frac{\sigma(E)}{E} = \frac{a}{\sqrt{E}} \oplus \frac{b}{E} \oplus c,
+\end{equation*}
+where $a$ quantifies the stochastic effects of particle
+showers, $b$ reflects the electronic noise in readout signals, and $c$ gives a
+constant term due to miscalibration or detector instabilities. The overall
+energy resolution of a calorimeter therefore improves for higher energy showers.
+The design resolution of the \ac{ATLAS} \ac{EM} calorimeter system is
+\cite{Cavallari2011}
+\begin{equation*}
+  \frac{\sigma(E)}{E} = \frac{10\%}{\sqrt{E}} \oplus \frac{170~\text{MeV}}{E}
+  \oplus 0.7\%.
+\end{equation*}
+
+
 \subsection{Muon spectrometer}
 
 % TODO explain MS station somewhere
@@ -243,7 +277,7 @@ triggering capabilities. These detectors are arranged into layers called
 stations along the $z$-axis in each end-cap.  A schematic of the full \ac{MS}
 system is shown in Figure \ref{fig:detector-atlas-ms}.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.9\textwidth]{\resource{ms-schematic.jpg}}
   \caption{
@@ -277,7 +311,7 @@ these are similar to \acp{CSC} but designed with a faster readout suitable for
 triggering. Both the \acp{RPC} and \acp{TGCm} are used to give real-time readout
 of track information for the Level-1 trigger. They also give a measurement of the
 `second coordinate', the coordinate orthogonal that measured by the \acp{MDT}
-and \acp{CSC}. This gives the $\phi$ coordinate with a spacial precision of
+and \acp{CSC}. This gives the $\phi$ coordinate with a spatial precision of
 5-10 mm \cite{ATLASmuonTDR}.
 
 \subsection{Trigger and data acquisition}
@@ -310,7 +344,7 @@ after receiving accept signals from the trigger systems. The entire trigger and
 data acquisition (\acsfirst{TDAQ}) system is summarised in Figure
 \ref{fig:detector-atlas-tdaq-tdaq}.
 
-\begin{figure}[htbp]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.9\textwidth]{\resource{tdaq.pdf}}
   \caption{
@@ -362,9 +396,9 @@ For events passing the Level-1 trigger threshold, \acp{RoI} are passed to the
 
 \subsubsection{High-level trigger}
 
-The \ac{HLT} runs algorithms in software on a dedicated server farm, afforded
-looser timing constraints due the reduced input rate from the Level-1 trigger
-and as such can run without fixed latency.
+The \ac{HLT} runs algorithms in software on a dedicated server farm. It is afforded
+looser timing constraints, due to the reduced input rate from the Level-1 trigger,
+and as such can run on traditional processors without fixed latency requirements.
 Algorithms are grouped into `chains', with each chain seeded by a Level-1
 \ac{RoI}. Algorithms that require less processing time are typically run earlier
 in the chain to enable faster rejection of bad events.
@@ -386,7 +420,7 @@ There are multiple methods of luminosity measurement employed by \ac{ATLAS},
 this includes the use of the LUCID detector \cite{Avoni2018}, designed for the
 sole purpose of making such measurements.
 
-\begin{figure}[htb]
+\begin{figure}[tb]
   \centering
   \includegraphics[width=.95\textwidth]{\resource{intlumivstimeRun2DQall.pdf}}
   \caption{

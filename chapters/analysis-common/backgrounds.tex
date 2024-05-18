@@ -2,17 +2,19 @@
 \newcommand\nxzj[2]{\ensuremath{N_{#1,\text{#2}}^\text{Z+jets}}}
 
 The two presented analyses share a common set of background processes. Due to
-the differing phase space, estimation of the \ac{QCD} \Zy background is
+the differing phase space, estimation of the \QCDZy background is
 different for each analysis. The remaining backgrounds however follow the same
 estimation procedure for both analyses. This section discusses the procedure for
 the common backgrounds: Z+jets, \tty, and \WZjj.
 
 \subsection{Monte Carlo backgrounds}
+\label{sec:methods-backgrounds-mc}
 
 The background from \tty events is estimated from \ac{MC} with a \ac{NLO}
 $k$-factor of 1.44 applied, calculated in Reference \cite{ATLAStty2019}.
 A conservative normalisation uncertainty of 15\% is applied to this background
-estimate.
+estimate, much larger than the uncertainty on the inclusive cross section for
+this process \cite{ATLAStty2019}.
 
 Events from \WZjj make a minor contribution to the background, this is
 estimated solely from \ac{MC}. Again a simple normalisation uncertainty is
@@ -95,9 +97,9 @@ $c_X$, as
   c_X = \frac{N_{X,\text{MC}}^\tsig}{N_{A,\text{MC}}^\tsig},
   ~~\text{for}~X=B,C,D,
 \end{equation*}
-calculated from \ac{QCD} and \ac{EW} \Zy \ac{MC}. Signal leakage represents
+calculated from \ac{QCD} and \ac{EW} \Zyjj \ac{MC}. Signal leakage represents
 prompt photon events that enter the \acp{CR}, hence both \ac{EW} and \ac{QCD}
-\Zy production are considered as `signal' in this instance.
+\Zyjj production are considered as `signal' in this instance.
 
 
 \subsubsection{Shape}
@@ -118,7 +120,8 @@ included as a systematic uncertainty on the results.
 % N_X
 The \ac{MC} background subtraction is subject to any uncertainty on the
 subtracted backgrounds. As this is predominantly from \tty, the 15\% \tty
-uncertainty is used on the total subtracted background.
+uncertainty (see Section \ref{sec:methods-backgrounds-mc})
+is used on the total subtracted background.
 
 % c_X
 The signal leakage fractions, $c_X$, are split into two components, \ac{EW} and

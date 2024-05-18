@@ -9,7 +9,7 @@ Smaller sources of background, Z+jets, \tty, and \WZjj, are each assigned a
 single normalisation uncertainty, as detailed in Section
 \ref{sec:methods-backgrounds}.
 Limited statistics in \ac{MC} samples also contributes uncertainties to all
-processes.
+processes, this is detailed below in Section \ref{sec:methods-systematics-mc}.
 
 All systematic uncertainties are included as nuisance parameters in the fit used
 for each analysis, following the procedure given in Section
@@ -19,7 +19,7 @@ for each analysis, following the procedure given in Section
 \subsection{Theoretical uncertainties}
 \label{sec:methods-systematics-theory}
 
-Theoretical uncertainties are calculated for \ac{EW} and \ac{QCD} \Zy production
+Theoretical uncertainties are calculated for \ac{EW} and \ac{QCD} \Zyjj production
 mechanisms. These come from a variety of sources: choice of \ac{PDF} set,
 renormalisation and factorisation scales, \ac{QCD} modelling, choice of parton
 showering and underlying event model, and \ac{EW}-\ac{QCD} interference.
@@ -32,17 +32,22 @@ under each of these weights gives the \ac{PDF} uncertainty on the event yield.
 
 % > Scale
 The uncertainty due to scale choice is calculated by varying the default values of
-renormalisation and factorisation scales in the nominal QCD \Zy \ac{MC} sample.
+renormalisation and factorisation scales in the nominal \QCDZy \ac{MC} sample.
 Each scale value is independently varied up and down by a factor 2.
 The per-bin envelope of all deviations from combinations of these variations
 is taken as the scale uncertainty.
 
 % > QCD modelling
+\ac{QCD} modelling uncertainty accounts for potential mismodelling in the
+hard-scatter process for \QCDZy, but also covers uncertainties in parton
+showering and underlying event model. This is particularly relevant in the \ac{VBS}
+\Zy analysis where this background is known to be poorly modelled in current
+\ac{MC} samples for high dijet masses.
 \ac{QCD} modelling uncertainty can be calculated conservatively by comparing
 predictions from different generators or, alternatively, by evaluating the
 effect of merging and resummation scales. Generator differences are calculated
 by taking the difference in event yields predicted by the nominal and alternate
-\ac{QCD} \Zy samples. This difference is considered as the \ac{QCD} modelling
+\QCDZy samples. This difference is considered as the \ac{QCD} modelling
 uncertainty on the nominal yield.
 Alternately, uncertainty from choice of merging (CKKW) and
 resummation (QSF) scale is calculated using the dedicated samples described in
@@ -60,7 +65,7 @@ nominal sample with the tune eigenvariations applied is taken as the uncertainty
 on the underlying event model.
 
 % > Interference
-The interference between \ac{EW} and \ac{QCD} \Zy production is not included in
+The interference between \ac{EW} and \QCDZy production is not included in
 either the signal or background, but instead taken as an additional uncertainty,
 calculated using the dedicated interference sample.
 
@@ -110,20 +115,25 @@ the most impactful are discussed here.
 \label{sec:methods-systematics-prw}
 
 \ac{MC} samples are typically generated before data-taking is complete. The
-pileup distribution, i.e. the distribution of instantaneous luminosities, is
-%TODO reference pileup distribution from detector chapter?
+pileup distribution, i.e. the distribution of instantaneous luminosities
+(see Figure \ref{fig:detector-atlas-muvalues}), is
 therefore only estimated and does not exactly match that in data. Events are
 reweighted to align the pileup distributions between \ac{MC} and data; a scale
 factor is calculated \cite{Buttinger2017} to account for the difference between
 the predicted and measured inelastic proton-proton cross section
 \cite{ATLASppxsec2016}.
 
-The systematic uncertainty \verb|PRW_DATASF| represents the uncertainty on this
-scale factor, and so also covers uncertainties from the inelastic cross-section
-measurement and \ac{MC} pileup event modelling.
+This scale factor, calculated as $1.16 \pm 0.07$, accounts for the fraction of visible
+cross-section from inelastic $pp$ collisions. This value is found to give good
+agreement between data and simulation, after reweighting, for the number of
+inelastic interactions reconstructed in the tracking detector
+\cite{ATLASpileupjets2017}.
+The systematic uncertainty \verb|PRW_DATASF| is calculated by varying the value
+of this scale factor between 1.09 and 1.23 during the reweighting process, and
+evaluating its impact on the results.
 
-Due to limited data statistics in the signal regions, this uncertainty is one
-of the most significant components of the error on the results of both
+Likely due to limited data statistics in the signal regions, this uncertainty is one
+of the most significant components of the total uncertainty on the results of both
 analyses.
 
 \subsubsection{Jet flavour composition and response}
@@ -163,3 +173,12 @@ Therefore both jet flavour response and jet flavour composition uncertainties
 can be reduced by explicitly calculating this gluon fraction and its error in
 the analysis phase space. This additional step is taken in the \ac{VBS} analysis
 to manage these uncertainties.
+
+\subsection{Monte Carlo statistics}
+\label{sec:methods-systematics-mc}
+
+Further systematic uncertainties are introduced into analyses from the limited
+statistics available in \ac{MC} samples. For a fit over a binned distribution
+(as discussed in Section \ref{sec:methods-stats}), the statistical uncertainties
+due to the number of \ac{MC} events available in each bin are added as per-bin
+nuisance parameters to the fit, as with other systematic uncertainties.

@@ -23,7 +23,7 @@ which are necessary for evaluating analysis uncertainties. The \acp{DSID}%
   This is an internal \acs{ATLAS} identifier for the sample, included for
   completeness.
 }
-are given for each sample accessible on the grid.
+are given for each sample where appropriate.
 
 \begin{table}[tb]
   \centering
@@ -42,7 +42,7 @@ are given for each sample accessible on the grid.
     \cmidrule{1-5}\morecmidrules\cmidrule{1-5}
     \bf Process   & \bf Hard scatter & \bf PS\&UE & \bf Order & \bf \ac{PDF} set & \\ \cmidrule{1-5}
     \ac{EW} \Zyjj & \madgraph & \pythia & \acs{LO} & NNPDF3.1 \acs{LO} & (1) \\ \cmidrule{1-5}
-    \multirow{2}{*}{\ac{QCD} \Zy} & \madgraph & \pythia & \acs{NLO} & NNPDF3.0 \acs{NLO} & (2) \\
+    \multirow{2}{*}{\QCDZy} & \madgraph & \pythia & \acs{NLO} & NNPDF3.0 \acs{NLO} & (2) \\
                                   & \sherpa & \sherpa & \acs{LO} & NNPDF3.0 \acs{NNLO} & (3) \\ \cmidrule{1-5}
     Z+jets    & \powhegbox  & \pythia & \acs{NLO} & CT10 \acs{NLO} & (4) \\ \cmidrule{1-5}
     \tty      & \madgraph  & \pythia & \acs{LO} & NNPDF2.3 \acs{LO} & (5) \\ \cmidrule{1-5}
@@ -68,7 +68,7 @@ An alternate version of this sample is produced, with {\herwig}++ 2.7.1
 \cite{herwigpp,herwigpp2dot7} in place of \pythia, to evaluate uncertainties due
 to the choice of parton showering and underlying event model.
 
-For the \ac{QCD} \Zy samples, Sample 2 (\acp{DSID} 345775-345782) is the nominal
+For the \QCDZy samples, Sample 2 (\acp{DSID} 345775-345782) is the nominal
 sample and uses \madgraphfiveamc 2.3.3 and \pythia 8.212 and Sample 3
 (\acp{DSID} 366140-366149) gives an alternate estimate using \sherpa 2.2.4
 \cite{sherpa2dot2}. Both of these samples include additional hard parton emission
@@ -91,7 +91,7 @@ modes for the \WZjj background are from Sample 6 (\ac{DSID} 364253), with
 2.6.2 and \pythia 8.235, respectively.
 
 An additional particle-level sample is used to calculate interference between
-\ac{EW} and \ac{QCD} \Zyjj production. This is estimated at \ac{LO} with
+\ac{EW} and \QCDZy production. This is estimated at \ac{LO} with
 \madgraphfiveamc 2.3.3 with the NNPDF3.0 \ac{LO} \ac{PDF} set.
 
 All samples interfaced with \pythia use a specific set of parameters derived

@@ -53,8 +53,8 @@ with one generator, e.g.  \madgraph, and then another generator is used to add
 parton showering and hadronisation to it, e.g. \pythia or \herwig.
 
 % merging and resummation scales
-The models used to simulate these processes are not calculable from first
-principles and have parameters that can be adjusted to best describe observed
+The models used to simulate parton showering and hadronisation are not calculable from first
+principles, and have parameters that can be adjusted to best describe observed
 physics. These parameters include merging and resummation scales, describing the
 merging of jets from the parton shower and the hard scatter event and the
 resummation of soft gluon emissions \cite{sherpa2dot2}.
@@ -93,10 +93,11 @@ known as `truth' events, they contain only the physics processes and are not
 subject to any inefficiencies or misidentification of the simulated detector.
 Samples or variables with truth information are often described as `truth-level'
 (or `particle-level').
-Events completing the full simulation chain are known as reconstructed \ac{MC}
+Events completing the full simulation, and subsequent reconstruction (see Section
+\ref{sec:methods-reconstruction}), chain are known as reconstructed \ac{MC}
 events. These are typically linked so that the truth properties (or `truth
-record') of reconstructed \ac{MC} events are accessible. Analysis is typically
-done using reconstructed \ac{MC} events, but in certain cases making
+record') of reconstructed \ac{MC} events are accessible. Analyses are typically
+performed using reconstructed \ac{MC} events, but in certain cases making
 distinctions based on truth information is necessary.
 
 % Link into my analyses?
